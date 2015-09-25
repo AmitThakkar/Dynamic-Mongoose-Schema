@@ -1,0 +1,31 @@
+{
+  "name": "dynamic-mongoose-schema",
+  "version": "0.0.1",
+  "description": "This is a demo repository which shows how to define mongoose schema at run time.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmitThakkar/Dynamic-Mongoose-Schema.git"
+  },
+  "keywords": [
+    "Mongoose",
+    "MongooseJS",
+    "NodeJS",
+    "Schema",
+    "Dynamic",
+    "Mongo",
+    "MongoDB"
+  ],
+  "author": "Amit Thakkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmitThakkar/Dynamic-Mongoose-Schema/issues"
+  },
+  "homepage": "https://github.com/AmitThakkar/Dynamic-Mongoose-Schema#readme",
+  "dependencies": {
+    "mongoose": "^4.1.8"
+  }
+}
