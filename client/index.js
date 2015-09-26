@@ -29,7 +29,7 @@
             };
         };
         schemaController.save = () => {
-            if (!schemaController.newSchema.dbName) {
+            if (!schemaController.newSchema.databaseName) {
                 schemaController.errorMessage = 'Please provide Database Name';
                 return;
             }
