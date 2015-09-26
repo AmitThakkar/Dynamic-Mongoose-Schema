@@ -4,7 +4,90 @@
     <meta charset="UTF-8">
     <title></title>
 </head>
-<body>
-Hello
+<body ng-app="dynamicMongooseSchema">
+<div ng-controller="SchemaController as schemaController">
+    New Schema Details:
+    <hr/>
+    <div>
+        Database Name: <input type="text" ng-model="schemaController.newSchema.dbName">
+        Table Name: <input type="text" ng-model="schemaController.newSchema.tableName">
+    </div>
+    Columns:
+    <button type="button" ng-click="schemaController.addNewColumn()">Add New Column</button>
+    <table>
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>Type</td>
+            <td>Required</td>
+            <td>UpperCase/LowerCase</td>
+            <td>Trim</td>
+            <td>Unique</td>
+            <td>Index</td>
+            <td>Default</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>_id</td>
+            <td>ObjectId</td>
+            <td>true</td>
+            <td>NA</td>
+            <td>NA</td>
+            <td>true</td>
+            <td>true</td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="column in schemaController.newSchema.columns track by column.name">
+            <td><input type="text" ng-model="column.name"></td>
+            <td>
+                <select ng-options="type for type in ::schemaController.types" ng-model="column.type">
+                    <option value="">NA</option>
+                </select>
+            </td>
+            <td>
+                <select ng-model="column.required">
+                    <option value="">NA</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </td>
+            <td>
+                <select ng-model="column.letterCase">
+                    <option value="">NA</option>
+                    <option value="U">Upper Case</option>
+                    <option value="L">Lower Case</option>
+                </select>
+            </td>
+            <td>
+                <select ng-model="column.trim">
+                    <option value="">NA</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </td>
+            <td>
+                <select ng-model="column.unique">
+                    <option value="">NA</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </td>
+            <td>
+                <select ng-model="column.index">
+                    <option value="">NA</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" ng-model="column.default">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script type="application/javascript" src="angular/angular.min.js"></script>
+<script type="application/javascript" src="index.js"></script>
 </body>
 </html>

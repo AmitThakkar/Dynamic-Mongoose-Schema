@@ -22,6 +22,7 @@
     });
 
     app.use(express.static('client'));
+    app.use(express.static('bower_components'));
     require('./server/routeMapping')(app);
 
     mongoose.connect('mongodb://localhost/test', (error) => {
