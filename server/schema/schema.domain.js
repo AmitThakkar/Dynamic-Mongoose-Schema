@@ -4,10 +4,11 @@
 ((module, require) => {
     "use strict";
     const mongoose = require('mongoose');
-    let Schema = mongoose.model('Schema', {
+    let schemaObject = mongoose.Schema({
         databaseName: {type: String, required: true, trim: true, lowercase: true},
         tableName: {type: String, required: true, trim: true, lowercase: true},
         columns: {type: Array}
     });
-    module.exports = Schema;
+    schemaObject.index({databaseName: 1, tableName: 1}, {unique: true});
+    module.exports = mongoose.model('Schema', schemaObject);
 })(module, require);
