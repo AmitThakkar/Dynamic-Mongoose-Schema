@@ -22,7 +22,7 @@
     });
 
     app.use(express.static('client'));
-
+    require('./server/routeMapping')(app);
 
     mongoose.connect('mongodb://localhost/test', (error) => {
         if (error) {
@@ -38,30 +38,9 @@
     });
 
 
-    /*let Schema = mongoose.model('Schema',
-     {
-     collectionName: {type: String},
-     collectionSchema: {}
-     }
-     );
-     let user = new Schema({
-     collectionName: 'User',
-     collectionSchema: {
-     name: {type: "String", required: true, uppercase: true, trim: true, index: true, select: false},
-     email: {type: "String", required: true, lowercase: true, trim: true, match: "", unique: true},
-     password: {type: "", required: false, default: "defaultPassword"},
-     age: {type: "Number", min: 10, max: 20, required: false},
-     dob: {type: "Number"},
-     sex: {type: "String", enum: ["M", "F"]}
-     }
-     });
-     user.save(function (error) {
-     if (error) {
-     console.log('User Schema saved Error', error);
-     } else {
-     console.log('User Schema saved');
-     }
-     });
+    /*
+
+
      Schema.findOne({collectionName: 'User'}, {collectionSchema: 1, _id: 0}).lean().exec(function (error, userSchema) {
      console.log(userSchema.collectionSchema);
      let User = mongoose.model('User', userSchema.collectionSchema);
