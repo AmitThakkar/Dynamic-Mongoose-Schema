@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/AmitThakkar/Dynamic-Mongoose-Schema#readme",
   "dependencies": {
-    "mongoose": "^4.1.8"
+    "hapi": "^10.1.0",
+    "mongoose": "^4.1.8",
+    "tracer": "^0.8.0"
   }
 }
