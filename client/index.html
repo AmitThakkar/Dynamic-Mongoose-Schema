@@ -8,12 +8,13 @@
 <div ng-controller="SchemaController as schemaController">
     New Schema Details:
     <hr/>
+    {{schemaController.errorMessage}}
     <div>
         Database Name: <input type="text" ng-model="schemaController.newSchema.dbName">
         Table Name: <input type="text" ng-model="schemaController.newSchema.tableName">
     </div>
     Columns:
-    <button type="button" ng-click="schemaController.addNewColumn()">Add New Column</button>
+    <button type="button" ng-click="schemaController.addNewColumn();">Add New Column</button>
     <table>
         <thead>
         <tr>
@@ -27,6 +28,12 @@
             <td>Default</td>
         </tr>
         </thead>
+        <tfoot>
+        <tr>
+            <td><button type="button" ng-click="schemaController.reset();">Reset</button></td>
+            <td><button type="button" ng-click="schemaController.save();">Save</button></td>
+        </tr>
+        </tfoot>
         <tbody>
         <tr>
             <td>_id</td>
