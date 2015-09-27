@@ -103,7 +103,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="schema in schemaListController.schemas track by $index">
+        <tr ng-repeat="schema in schemaListController.schemas track by $index" ng-click="schemaListController.viewSchema($index)">
             <td>{{schema.databaseName}}</td>
             <td>{{schema.tableName}}</td>
         </tr>

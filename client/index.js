@@ -81,16 +81,22 @@
         'SchemaService', '$rootScope',
         function (SchemaService, $rootScope) {
             let schemaListController = this;
+            let setSchema = (index) => {
+                schemaListController.schemaView = mongooseSchemaGenerator.generate(schemaListController.schemas[index].columns);
+            };
             SchemaService.list()
                 .success((schemas) => {
                     schemaListController.schemas = schemas;
-                    if(schemas.length > 0) {
-                        schemaListController.schemaView = mongooseSchemaGenerator.generate(schemas[0].columns);
+                    if (schemas.length > 0) {
+                        setSchema(0);
                     }
                 })
                 .error((error) => {
                     schemaListController.errorMessage = error;
                 });
+            schemaListController.viewSchema = (index) => {
+                setSchema(index);
+            };
             $rootScope.$on('schema:added', (event, newSchema) => {
                 schemaListController.schemas.push(newSchema);
             });
