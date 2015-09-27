@@ -13,6 +13,7 @@
         format: [config.logFormat],
         dateformat: config.dateFormat
     });
+    const MongooseSchemaGenerator = require('./server/MongooseSchemaGenerator');
 
     logger.info('Starting Application in =>', config.environment, 'Environment');
 
@@ -46,44 +47,20 @@
     Schema.findOne({databaseName: databaseName, tableName: tableName}, {
         _id: 0,
         columns: 1
-    }, function (error, userColumns) {
+    }, function (error, table) {
         if (error) {
             logger.error(error);
         } else {
-            logger.debug(userColumns);
-            let dynamicSchema = {};
-            userColumns.columns.forEach(function (column) {
-                let field = dynamicSchema[column.name] = {};
-                switch (column.type) {
-                    case 'String' :
-                        field.type = String;
-                        break;
-                    case 'Number' :
-                        field.type = Number;
-                        break;
-                    case 'Array' :
-                        field.type = Array;
-                        break;
-                    case 'Object' :
-                        field.type = Object;
-                        break;
-                }
-                field.required = column.required == 'true';
-                column.letterCase == 'L' ? column.lowercase = true : '';
-                column.letterCase == 'U' ? column.uppercase = true : '';
-                field.trim = column.trim == 'true';
-                field.unique = column.unique == 'true';
-                field.index = column.index == 'true';
-            });
-            let DynamicSchema = mongoose.model(databaseName + tableName, dynamicSchema);
+            logger.debug(table);
+            let DynamicSchema = mongoose.model(databaseName + tableName, MongooseSchemaGenerator.generate(table.columns));
             new DynamicSchema({
                 name: 'Amit',
                 age: 23,
                 email: 'asdf',
                 test: 232
-            }).save(function() {
-                logger.debug(arguments)
-            })
+            }).save(function () {
+                    logger.debug(arguments)
+                })
         }
     });
 })(require, process);
