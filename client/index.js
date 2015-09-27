@@ -21,6 +21,7 @@
             schemaController.types = [
                 'String',
                 'Number',
+                'Array',
                 'Object'
             ];
             schemaController.addNewColumn = () => {
