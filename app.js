@@ -51,9 +51,9 @@
             logger.error(error);
         } else {
             logger.debug(userColumns);
-            let userSchema = {};
+            let dynamicSchema = {};
             userColumns.columns.forEach(function (column) {
-                let field = userSchema[column.name] = {};
+                let field = dynamicSchema[column.name] = {};
                 switch (column.type) {
                     case 'String' :
                         field.type = String;
@@ -75,7 +75,7 @@
                 field.unique = column.unique == 'true';
                 field.index = column.index == 'true';
             });
-            let DynamicSchema = mongoose.model(databaseName + tableName, userSchema);
+            let DynamicSchema = mongoose.model(databaseName + tableName, dynamicSchema);
             new DynamicSchema({
                 name: 'Amit',
                 age: 23,
