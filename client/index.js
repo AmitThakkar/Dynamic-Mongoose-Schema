@@ -3,7 +3,24 @@
  */
 ((ng) => {
     'use strict';
-    var dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema', []);
+    class MongooseSchemaGenerator {
+        generate(columns) {
+            let dynamicSchema = {};
+            columns.forEach(function (column) {
+                let field = dynamicSchema[column.name] = {};
+                field.type = column.type;
+                field.required = column.required == 'true';
+                column.letterCase == 'L' ? column.lowercase = true : '';
+                column.letterCase == 'U' ? column.uppercase = true : '';
+                field.trim = column.trim == 'true';
+                field.unique = column.unique == 'true';
+                field.index = column.index == 'true';
+            });
+            return dynamicSchema;
+        }
+    }
+    let mongooseSchemaGenerator = new MongooseSchemaGenerator();
+    let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema', []);
     dynamicMongooseSchemaModule.service('SchemaService', ['$http', function ($http) {
         let schemaService = this;
         const URL = 'schema';
@@ -67,6 +84,9 @@
             SchemaService.list()
                 .success((schemas) => {
                     schemaListController.schemas = schemas;
+                    if(schemas.length > 0) {
+                        schemaListController.schemaView = mongooseSchemaGenerator.generate(schemas[0].columns);
+                    }
                 })
                 .error((error) => {
                     schemaListController.errorMessage = error;
