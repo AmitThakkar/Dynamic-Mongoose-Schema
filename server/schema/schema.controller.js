@@ -9,7 +9,7 @@
         new Schema(newSchema).save((error) => {
             if (error) {
                 logger.error(error);
-                if(error.code == 11000) {
+                if (error.code == 11000) {
                     response.status(500).json("Table already present.");
                 } else {
                     response.status(500).json(error.message);
@@ -18,5 +18,15 @@
                 response.status(200).json(newSchema);
             }
         });
-    }
+    };
+    module.exports.list = (request, response) => {
+        Schema.findAll((error, schemas) => {
+            if (error) {
+                logger.error(error);
+                response.status(500).json(error.message);
+            } else {
+                response.status(200).json(schemas);
+            }
+        });
+    };
 })(require, module);

@@ -94,6 +94,22 @@
         </tbody>
     </table>
 </div>
+<div ng-controller="SchemaListController as schemaListController">
+    <table>
+        <thead>
+        <tr>
+            <td>Database Name</td>
+            <td>Table Name</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="schema in schemaListController.schemas track by $index">
+            <td>{{schema.databaseName}}</td>
+            <td>{{schema.tableName}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <script type="application/javascript" src="angular/angular.min.js"></script>
 <script type="application/javascript" src="index.js"></script>
 </body>

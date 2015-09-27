@@ -6,5 +6,6 @@
     let SchemaController = require('./schema.controller');
     module.exports = (app) => {
         app.post('/schema', SchemaController.save);
+        app.get('/schema', SchemaController.list);
     };
 })(module, require);
