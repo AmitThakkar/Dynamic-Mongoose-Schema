@@ -53,14 +53,14 @@
         } else {
             logger.debug(table);
             let DynamicSchema = mongoose.model(databaseName + tableName, MongooseSchemaGenerator.generate(table.columns));
-            new DynamicSchema({
+            /*new DynamicSchema({
                 name: 'Amit',
                 age: 23,
                 email: 'asdf',
                 test: 232
             }).save(function () {
                     logger.debug(arguments)
-                })
+                });*/
         }
     });
 })(require, process);
