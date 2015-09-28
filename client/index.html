@@ -55,7 +55,9 @@
                 <label class="col-md-2" for="dbName">Click to Add</label>
 
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-primary btn-sm" ng-click="schemaController.addNewColumn();">Add New Column</button>
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="schemaController.addNewColumn();">Add
+                        New Column
+                    </button>
                 </div>
                 <div class="col-md-6">&nbsp;</div>
             </div>
@@ -68,7 +70,7 @@
                 <td>Name</td>
                 <td>Type</td>
                 <td>Required</td>
-                <td>UpperCase/LowerCase</td>
+                <td>Upper/Lower Case</td>
                 <td>Trim</td>
                 <td>Unique</td>
                 <td>Index</td>
@@ -147,6 +149,7 @@
 
 <div class="container" ng-controller="SchemaListController as schemaListController">
     <span class="fColor">Step 2 > Sip a Coffee, click below to view Schema:</span>
+
     <div class="clear">&nbsp;</div>
     <table class="table table-bordered">
         <thead>
@@ -163,9 +166,9 @@
         </tr>
         </tbody>
     </table>
-    <div>
+    <div ng-if="schemaListController.schemaView">
         <br>
-        {{schemaListController.schemaView | json}}
+        <json-view json="{{schemaListController.schemaView}}"></json-view>
     </div>
 </div>
 <script type="application/javascript" src="jquery/dist/jquery.min.js"></script>

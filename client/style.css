@@ -1,20 +1,45 @@
-
 .fColor {
     color: #0b97c4 !important;
 }
 
-.fs40{
+.fs40 {
     font-size: 40px;
 }
 
-.bgColor{
+.bgColor {
     background-color: #f8f8f8;
 }
 
-.clear{
+.clear {
     clear: both;
 }
 
-.h75{
+.h75 {
     height: 75px;
+}
+
+pre {
+    outline: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+}
+
+.string {
+    color: green;
+}
+
+.number {
+    color: darkorange;
+}
+
+.boolean {
+    color: blue;
+}
+
+.null {
+    color: magenta;
+}
+
+.key {
+    color: red;
 }
