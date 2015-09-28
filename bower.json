@@ -33,6 +33,8 @@
         "tests"
     ],
     "dependencies": {
-        "angular": "~1.4.6"
+        "angular": "~1.4.6",
+        "jquery":"~2.1.4",
+        "bootstrap": "~3.3.5"
     }
 }
