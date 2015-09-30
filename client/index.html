@@ -111,14 +111,14 @@
                     </select>
                 </td>
                 <td>
-                    <select ng-model="column.letterCase">
+                    <select ng-model="column.letterCase" ng-disabled="column.type != 'String'">
                         <option value="">NA</option>
                         <option value="U">Upper Case</option>
                         <option value="L">Lower Case</option>
                     </select>
                 </td>
                 <td>
-                    <select ng-model="column.trim">
+                    <select ng-model="column.trim" ng-disabled="column.type != 'String'">
                         <option value="">NA</option>
                         <option value="true">True</option>
                         <option value="false">False</option>
@@ -139,7 +139,7 @@
                     </select>
                 </td>
                 <td>
-                    <input type="text" ng-model="column.default">
+                    <input type="text" ng-model="column.default" ng-disabled="column.required == 'true' || column.unique == 'true'">
                 </td>
             </tr>
             </tbody>

@@ -84,7 +84,6 @@
             let schemaListController = this;
             let setSchema = (index) => {
                 schemaListController.schemaView = JSON.stringify(mongooseSchemaGenerator.generate(schemaListController.schemas[index].columns), undefined, 4);
-                console.log(schemaListController.schemaView);
             };
             SchemaService.list()
                 .success((schemas) => {
