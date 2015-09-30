@@ -14,148 +14,155 @@
                 <div class="navbar-header">
                     <a class="navbar-brand fColor fs40" href="#">Dynamo</a>
                 </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="" class="glyphicon glyphicon-plus fColor" ng-click="schemaController.showStudentModal()"></a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
     <div class="clear h75">&nbsp;</div>
-    <div class="container">
-        <div>
-            <h3>
-                <span>2-Steps to go:</span>
-            </h3>
+    <div id="studentModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content w700">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Add Database Details</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="clear">&nbsp;</div>
+                            <span class="col-md-4" for="dbName">Database Name</span>
+
+                            <div class="col-md-4">
+                                <input type="text" id="dbName" class="form-control"
+                                       ng-model="schemaController.newSchema.databaseName">
+                            </div>
+                            <div class="col-md-2">&nbsp;</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="clear">&nbsp;</div>
+                            <span class="col-md-4" for="tbName">Table Name</span>
+
+                            <div class="col-md-4">
+                                <input class="form-control" type="text" id="tbName" ng-model="schemaController.newSchema.tableName">
+                            </div>
+                            <div class="col-md-2">&nbsp;</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="clear">&nbsp;</div>
+                            <span class="col-md-4" for="dbName">&nbsp;</span>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-success btn-sm" ng-click="schemaController.addNewColumn();">Add New Column</button>
+                            </div>
+                            <div class="col-md-2">&nbsp;</div>
+                        </div>
+                        <div class="clear">&nbsp;</div>
+                    </form>
+                    <div class="container" style="overflow:auto; max-width: 600px; max-height: 250px;">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr class="fColor bgColor">
+                                <td>Name</td>
+                                <td>Type</td>
+                                <td>Required</td>
+                                <td>Upper/Lower Case</td>
+                                <td>Trim</td>
+                                <td>Unique</td>
+                                <td>Index</td>
+                                <td>Default</td>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <button type="button" class="btn btn-primary" ng-click="schemaController.reset();">Reset</button>
+                                    <button type="button" class="btn btn-success" ng-click="schemaController.save();">Save</button>
+                                </td>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <tr>
+                                <td>_id</td>
+                                <td>ObjectId</td>
+                                <td>true</td>
+                                <td>NA</td>
+                                <td>NA</td>
+                                <td>true</td>
+                                <td>true</td>
+                                <td></td>
+                            </tr>
+                            <tr ng-repeat="column in schemaController.newSchema.columns track by column.name">
+                                <td><input type="text" ng-model="column.name"></td>
+                                <td>
+                                    <select ng-options="type for type in ::schemaController.types" ng-model="column.type">
+                                        <option value="">NA</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select ng-model="column.required">
+                                        <option value="">NA</option>
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select ng-model="column.letterCase">
+                                        <option value="">NA</option>
+                                        <option value="U">Upper Case</option>
+                                        <option value="L">Lower Case</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select ng-model="column.trim">
+                                        <option value="">NA</option>
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select ng-model="column.unique">
+                                        <option value="">NA</option>
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select ng-model="column.index">
+                                        <option value="">NA</option>
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="column.default">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="error">
+                        {{schemaController.errorMessage}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div>&nbsp;</div>
-        <div>
-            {{schemaController.errorMessage}}
-        </div>
-        <form>
-            <span class="fColor">Step 1 > Add Database Details</span>
-
-            <div class="form-group">
-                <div class="clear">&nbsp;</div>
-                <label class="col-md-2" for="dbName">Database Name</label>
-
-                <div class="col-md-4">
-                    <input type="text" id="dbName" class="form-control"
-                           ng-model="schemaController.newSchema.databaseName">
-                </div>
-                <div class="col-md-6">&nbsp;</div>
-            </div>
-            <div class="form-group">
-                <div class="clear">&nbsp;</div>
-                <label class="col-md-2" for="tbName">Table Name</label>
-
-                <div class="col-md-4">
-                    <input class="form-control" type="text" id="tbName" ng-model="schemaController.newSchema.tableName">
-                </div>
-                <div class="col-md-6">&nbsp;</div>
-            </div>
-            <div class="form-group">
-                <div class="clear">&nbsp;</div>
-                <label class="col-md-2" for="dbName">Click to Add</label>
-
-                <div class="col-md-4">
-                    <button type="button" class="btn btn-primary btn-sm" ng-click="schemaController.addNewColumn();">Add
-                        New Column
-                    </button>
-                </div>
-                <div class="col-md-6">&nbsp;</div>
-            </div>
-            <div class="clear">&nbsp;</div>
-        </form>
-
-        <table class="table table-bordered">
-            <thead>
-            <tr class="fColor bgColor">
-                <td>Name</td>
-                <td>Type</td>
-                <td>Required</td>
-                <td>Upper/Lower Case</td>
-                <td>Trim</td>
-                <td>Unique</td>
-                <td>Index</td>
-                <td>Default</td>
-            </tr>
-            </thead>
-            <tfoot>
-            <tr>
-                <td colspan="8">
-                    <button type="button" class="btn btn-primary" ng-click="schemaController.reset();">Reset</button>
-                    <button type="button" class="btn btn-success" ng-click="schemaController.save();">Save</button>
-                </td>
-            </tr>
-            </tfoot>
-            <tbody>
-            <tr>
-                <td>_id</td>
-                <td>ObjectId</td>
-                <td>true</td>
-                <td>NA</td>
-                <td>NA</td>
-                <td>true</td>
-                <td>true</td>
-                <td></td>
-            </tr>
-            <tr ng-repeat="column in schemaController.newSchema.columns track by column.name">
-                <td><input type="text" ng-model="column.name"></td>
-                <td>
-                    <select ng-options="type for type in ::schemaController.types" ng-model="column.type">
-                        <option value="">NA</option>
-                    </select>
-                </td>
-                <td>
-                    <select ng-model="column.required">
-                        <option value="">NA</option>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                    </select>
-                </td>
-                <td>
-                    <select ng-model="column.letterCase" ng-disabled="column.type != 'String'">
-                        <option value="">NA</option>
-                        <option value="U">Upper Case</option>
-                        <option value="L">Lower Case</option>
-                    </select>
-                </td>
-                <td>
-                    <select ng-model="column.trim" ng-disabled="column.type != 'String'">
-                        <option value="">NA</option>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                    </select>
-                </td>
-                <td>
-                    <select ng-model="column.unique" ng-disabled="column.type != 'String' && column.type != 'Number'">
-                        <option value="">NA</option>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                    </select>
-                </td>
-                <td>
-                    <select ng-model="column.index">
-                        <option value="">NA</option>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="text" ng-model="column.default" ng-disabled="column.required == 'true' || column.unique == 'true'">
-                </td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 
 <div class="container" ng-controller="SchemaListController as schemaListController">
-    <span class="fColor">Step 2 > Sip a Coffee, click below to view Schema:</span>
-
-    <div class="clear">&nbsp;</div>
+    <h4 class="strong title center">Your Database</h4>
     <table class="table table-bordered">
         <thead>
         <tr class="fColor bgColor">
             <td>Database Name</td>
             <td>Table Name</td>
+            <td>View</td>
         </tr>
         </thead>
         <tbody>
@@ -163,9 +170,14 @@
             ng-click="schemaListController.viewSchema($index)">
             <td>{{schema.databaseName}}</td>
             <td>{{schema.tableName}}</td>
+            <td><a href="" class=" noStyle fColor glyphicon glyphicon-eye-open" ng-click=""></a></td>
         </tr>
         </tbody>
     </table>
+    <div class="clear">&nbsp;</div>
+    <hr>
+    <div class="clear">&nbsp;</div>
+    <h4 class="strong title center">Schema View</h4>
     <div ng-if="schemaListController.schemaView">
         <json-view json="{{schemaListController.schemaView}}"></json-view>
     </div>

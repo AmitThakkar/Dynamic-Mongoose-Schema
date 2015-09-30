@@ -43,3 +43,40 @@ pre {
 .key {
     color: red;
 }
+.mTop16{
+    margin-top: 16px;
+}
+.w700{
+    width: 700px;
+}
+.error{
+    color: red;
+}
+.title {
+    color: #97A4A9;
+    font-size: 24px;
+    font-weight: lighter;
+    margin: 0px;
+    padding: 10px 0px 28px 0px;
+}
+.strong {
+    font-weight: 300;
+}
+.center{
+    text-align: center;
+}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}

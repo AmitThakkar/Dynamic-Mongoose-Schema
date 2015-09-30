@@ -52,6 +52,9 @@
                     columns: []
                 };
             };
+            schemaController.showStudentModal =  () => {
+                ng.element('#studentModal').modal('show');
+            };
             schemaController.save = () => {
                 if (!schemaController.newSchema.databaseName) {
                     schemaController.errorMessage = 'Please provide Database Name';
