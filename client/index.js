@@ -10,8 +10,8 @@
                 let field = dynamicSchema[column.name] = {};
                 field.type = column.type;
                 field.required = column.required == 'true';
-                column.letterCase == 'L' ? column.lowercase = true : '';
-                column.letterCase == 'U' ? column.uppercase = true : '';
+                column.letterCase == 'L' ? field.lowercase = true : '';
+                column.letterCase == 'U' ? field.uppercase = true : '';
                 field.trim = column.trim == 'true';
                 field.unique = column.unique == 'true';
                 field.index = column.index == 'true';
@@ -83,6 +83,7 @@
             let schemaListController = this;
             let setSchema = (index) => {
                 schemaListController.schemaView = JSON.stringify(mongooseSchemaGenerator.generate(schemaListController.schemas[index].columns), undefined, 4);
+                console.log(schemaListController.schemaView);
             };
             SchemaService.list()
                 .success((schemas) => {

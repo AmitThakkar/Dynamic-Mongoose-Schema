@@ -23,8 +23,8 @@
                         break;
                 }
                 field.required = column.required == 'true';
-                column.letterCase == 'L' ? column.lowercase = true : '';
-                column.letterCase == 'U' ? column.uppercase = true : '';
+                column.letterCase == 'L' ? field.lowercase = true : '';
+                column.letterCase == 'U' ? field.uppercase = true : '';
                 field.trim = column.trim == 'true';
                 field.unique = column.unique == 'true';
                 field.index = column.index == 'true';
