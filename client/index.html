@@ -125,7 +125,7 @@
                     </select>
                 </td>
                 <td>
-                    <select ng-model="column.unique">
+                    <select ng-model="column.unique" ng-disabled="column.type != 'String' && column.type != 'Number'">
                         <option value="">NA</option>
                         <option value="true">True</option>
                         <option value="false">False</option>
