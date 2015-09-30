@@ -28,6 +28,7 @@
                 field.trim = column.trim == 'true';
                 field.unique = column.unique == 'true';
                 field.index = column.index == 'true';
+                column.default ? field.default = column.default : '';
             });
             return dynamicSchema;
         }
