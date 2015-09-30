@@ -8,13 +8,13 @@
             let dynamicSchema = {};
             columns.forEach(function (column) {
                 let field = dynamicSchema[column.name] = {};
-                field.type = column.type;
-                field.required = column.required == 'true';
+                column.type ? field.type = column.type : '';
+                column.required ? field.required = column.required == 'true' : '';
+                column.trim ? field.trim = column.trim == 'true' : '';
+                column.unique ? field.unique = column.unique == 'true' : '';
                 column.letterCase == 'L' ? field.lowercase = true : '';
                 column.letterCase == 'U' ? field.uppercase = true : '';
-                field.trim = column.trim == 'true';
-                field.unique = column.unique == 'true';
-                field.index = column.index == 'true';
+                column.index ? field.index = column.index == 'true' : '';
                 column.default ? field.default = column.default : '';
             });
             return dynamicSchema;
