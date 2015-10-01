@@ -5,7 +5,7 @@
     'use strict';
     class MongooseSchemaGenerator {
         generate(columns) {
-            let dynamicSchema = {};
+            let dynamicSchema = {_id: {type: 'ObjectId', unique: true, index: true}};
             columns.forEach(function (column) {
                 let field = dynamicSchema[column.name] = {};
                 column.type ? field.type = column.type : '';
@@ -52,7 +52,7 @@
                     columns: []
                 };
             };
-            schemaController.showStudentModal =  () => {
+            schemaController.showStudentModal = () => {
                 ng.element('#studentModal').modal('show');
             };
             schemaController.save = () => {
@@ -132,7 +132,7 @@
                     element.html('<pre>' + jsonView + '</pre>');
                 };
                 $scope.$watch('json', (newValue, oldValue) => {
-                    if(newValue != oldValue) {
+                    if (newValue != oldValue) {
                         parseJsonToHTML();
                     }
                 });
