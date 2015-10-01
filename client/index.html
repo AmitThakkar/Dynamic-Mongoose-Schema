@@ -16,7 +16,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="" class="glyphicon glyphicon-plus fColor" ng-click="schemaController.showStudentModal()"></a></li>
+                        <li><a href="" class="glyphicon glyphicon-plus fColor"
+                               ng-click="schemaController.showStudentModal()"></a></li>
                     </ul>
                 </div>
             </div>
@@ -47,15 +48,19 @@
                             <span class="col-md-4" for="tbName">Table Name</span>
 
                             <div class="col-md-4">
-                                <input class="form-control" type="text" id="tbName" ng-model="schemaController.newSchema.tableName">
+                                <input class="form-control" type="text" id="tbName"
+                                       ng-model="schemaController.newSchema.tableName">
                             </div>
                             <div class="col-md-2">&nbsp;</div>
                         </div>
                         <div class="form-group">
                             <div class="clear">&nbsp;</div>
                             <span class="col-md-4" for="dbName">&nbsp;</span>
+
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-success btn-sm" ng-click="schemaController.addNewColumn();">Add New Column</button>
+                                <button type="button" class="btn btn-success btn-sm"
+                                        ng-click="schemaController.addNewColumn();">Add New Column
+                                </button>
                             </div>
                             <div class="col-md-2">&nbsp;</div>
                         </div>
@@ -78,8 +83,12 @@
                             <tfoot>
                             <tr>
                                 <td colspan="8">
-                                    <button type="button" class="btn btn-primary" ng-click="schemaController.reset();">Reset</button>
-                                    <button type="button" class="btn btn-success" ng-click="schemaController.save();">Save</button>
+                                    <button type="button" class="btn btn-primary" ng-click="schemaController.reset();">
+                                        Reset
+                                    </button>
+                                    <button type="button" class="btn btn-success" ng-click="schemaController.save();">
+                                        Save
+                                    </button>
                                 </td>
                             </tr>
                             </tfoot>
@@ -97,7 +106,8 @@
                             <tr ng-repeat="column in schemaController.newSchema.columns track by column.name">
                                 <td><input type="text" ng-model="column.name"></td>
                                 <td>
-                                    <select ng-options="type for type in ::schemaController.types" ng-model="column.type">
+                                    <select ng-options="type for type in ::schemaController.types"
+                                            ng-model="column.type">
                                         <option value="">NA</option>
                                     </select>
                                 </td>
@@ -166,11 +176,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="schema in schemaListController.schemas track by $index"
-            ng-click="schemaListController.viewSchema($index)">
+        <tr ng-repeat="schema in schemaListController.schemas track by $index">
             <td>{{schema.databaseName}}</td>
             <td>{{schema.tableName}}</td>
-            <td><a href="" class=" noStyle fColor glyphicon glyphicon-eye-open" ng-click=""></a></td>
+            <td>
+                <a href="javascript:void(0);" class="noStyle fColor glyphicon glyphicon-eye-open"
+                   ng-click="schemaListController.viewSchema($index)"></a>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -178,6 +190,7 @@
     <hr>
     <div class="clear">&nbsp;</div>
     <h4 class="strong title center">Schema View</h4>
+
     <div ng-if="schemaListController.schemaView">
         <json-view json="{{schemaListController.schemaView}}"></json-view>
     </div>
