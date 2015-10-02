@@ -32,62 +32,61 @@
             return $http.get(URL)
         };
     }]);
-    dynamicMongooseSchemaModule.controller('AddSchemaController', [
+    dynamicMongooseSchemaModule.controller('SchemaController', [
         'SchemaService', '$modal', function (SchemaService, $modal) {
-            let addSchemaController = this;
-            addSchemaController.open = () => {
-                let modalInstance = $modal.open({
+            let schemaController = this;
+            schemaController.open = () => {
+                $modal.open({
                     templateUrl: 'myModalContent.html',
-                    controller: 'SchemaController'
+                    controller: 'AddSchemaController as addSchemaController'
                 });
             };
         }
     ]);
-    dynamicMongooseSchemaModule.controller('SchemaController', [
+    dynamicMongooseSchemaModule.controller('AddSchemaController', [
         'SchemaService', '$rootScope',
         function (SchemaService, $rootScope) {
-            let schemaController = this;
-            schemaController.types = [
+            let addSchemaController = this;
+            addSchemaController.types = [
                 'String',
                 'Number',
                 'Array',
                 'Object'
             ];
-            schemaController.addNewColumn = () => {
-                console.log("test");
-                schemaController.newSchema.columns.push({
-                    name: 'field ' + schemaController.newSchema.columns.length
+            addSchemaController.addNewColumn = () => {
+                addSchemaController.newSchema.columns.push({
+                    name: 'field ' + addSchemaController.newSchema.columns.length
                 });
             };
-            schemaController.reset = () => {
-                schemaController.newSchema = {
+            addSchemaController.reset = () => {
+                addSchemaController.newSchema = {
                     columns: []
                 };
             };
-            schemaController.save = () => {
-                if (!schemaController.newSchema.databaseName) {
-                    schemaController.errorMessage = 'Please provide Database Name';
+            addSchemaController.save = () => {
+                if (!addSchemaController.newSchema.databaseName) {
+                    addSchemaController.errorMessage = 'Please provide Database Name';
                     return;
                 }
-                if (!schemaController.newSchema.tableName) {
-                    schemaController.errorMessage = 'Please provide Table Name';
+                if (!addSchemaController.newSchema.tableName) {
+                    addSchemaController.errorMessage = 'Please provide Table Name';
                     return;
                 }
-                if (schemaController.newSchema.columns.length < 1) {
-                    schemaController.errorMessage = 'Please provide at-least one Column details';
+                if (addSchemaController.newSchema.columns.length < 1) {
+                    addSchemaController.errorMessage = 'Please provide at-least one Column details';
                     return;
                 }
-                SchemaService.save(schemaController.newSchema)
+                SchemaService.save(addSchemaController.newSchema)
                     .success(() => {
-                        $rootScope.$emit('schema:added', schemaController.newSchema);
-                        schemaController.reset();
+                        $rootScope.$emit('schema:added', addSchemaController.newSchema);
+                        addSchemaController.reset();
                     })
                     .error((error) => {
-                        schemaController.errorMessage = error;
+                        addSchemaController.errorMessage = error;
                     });
             };
-            if (!schemaController.newSchema) {
-                schemaController.reset();
+            if (!addSchemaController.newSchema) {
+                addSchemaController.reset();
             }
         }
     ]);

@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body ng-app="dynamicMongooseSchema">
-<div ng-controller="AddSchemaController as addSchemaController">
+<div ng-controller="SchemaController as schemaController">
     <div>
         <nav id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -17,7 +17,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="glyphicon glyphicon-plus fColor"
-                               ng-click="addSchemaController.open()"></a></li>
+                               ng-click="schemaController.open()"></a></li>
                     </ul>
                 </div>
             </div>
@@ -25,7 +25,7 @@
     </div>
 </div>
 <div class="clear h75">&nbsp;</div>
-<div ng-controller="SchemaController as schemaController">
+<div ng-controller="AddSchemaController as addSchemaController">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -39,7 +39,7 @@
 
                     <div class="col-md-4">
                         <input type="text" id="dbName" class="form-control"
-                               ng-model="schemaController.newSchema.databaseName">
+                               ng-model="addSchemaController.newSchema.databaseName">
                     </div>
                     <div class="col-md-2">&nbsp;</div>
                 </div>
@@ -49,7 +49,7 @@
 
                     <div class="col-md-4">
                         <input class="form-control" type="text" id="tbName"
-                               ng-model="schemaController.newSchema.tableName">
+                               ng-model="addSchemaController.newSchema.tableName">
                     </div>
                     <div class="col-md-2">&nbsp;</div>
                 </div>
@@ -59,7 +59,7 @@
 
                     <div class="col-md-4">
                         <button type="button" class="btn btn-success btn-sm"
-                                ng-click="schemaController.addNewColumn();">Add New Column
+                                ng-click="addSchemaController.addNewColumn();">Add New Column
                         </button>
                     </div>
                     <div class="col-md-2">&nbsp;</div>
@@ -83,10 +83,10 @@
                     <tfoot>
                     <tr>
                         <td colspan="8">
-                            <button type="button" class="btn btn-primary" ng-click="schemaController.reset();">
+                            <button type="button" class="btn btn-primary" ng-click="addSchemaController.reset();">
                                 Reset
                             </button>
-                            <button type="button" class="btn btn-success" ng-click="schemaController.save();">
+                            <button type="button" class="btn btn-success" ng-click="addSchemaController.save();">
                                 Save
                             </button>
                         </td>
@@ -103,10 +103,10 @@
                         <td>true</td>
                         <td></td>
                     </tr>
-                    <tr ng-repeat="column in schemaController.newSchema.columns track by column.name">
+                    <tr ng-repeat="column in addSchemaController.newSchema.columns track by column.name">
                         <td><input type="text" ng-model="column.name"></td>
                         <td>
-                            <select ng-options="type for type in ::schemaController.types"
+                            <select ng-options="type for type in ::addSchemaController.types"
                                     ng-model="column.type">
                                 <option value="">NA</option>
                             </select>
@@ -154,7 +154,7 @@
                 </table>
             </div>
             <div class="error">
-                {{schemaController.errorMessage}}
+                {{addSchemaController.errorMessage}}
             </div>
         </div>
         <div class="modal-footer">
