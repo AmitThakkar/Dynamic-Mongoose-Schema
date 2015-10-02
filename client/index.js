@@ -21,7 +21,7 @@
         }
     }
     let mongooseSchemaGenerator = new MongooseSchemaGenerator();
-    let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema', ['ngAnimate','ui.bootstrap']);
+    let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema', ['ngAnimate', 'ui.bootstrap']);
     dynamicMongooseSchemaModule.service('SchemaService', ['$http', function ($http) {
         let schemaService = this;
         const URL = 'schema';
@@ -34,7 +34,7 @@
     }]);
     dynamicMongooseSchemaModule.controller('SchemaController', [
         'SchemaService', '$rootScope', '$modal',
-        function (SchemaService, $rootScope,$modal) {
+        function (SchemaService, $rootScope, $modal) {
             let schemaController = this;
             schemaController.types = [
                 'String',
@@ -53,9 +53,9 @@
                 };
             };
             schemaController.open = () => {
-                    let modalInstance = $modal.open({
-                        templateUrl: 'myModalContent.html'
-                    });
+                let modalInstance = $modal.open({
+                    templateUrl: 'myModalContent.html'
+                });
             };
             schemaController.save = () => {
                 if (!schemaController.newSchema.databaseName) {
