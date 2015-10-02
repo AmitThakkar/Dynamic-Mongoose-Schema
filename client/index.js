@@ -32,8 +32,8 @@
             return $http.get(URL)
         };
     }]);
-    dynamicMongooseSchemaModule.controller('AddSchemaController',[
-        'SchemaService','$modal',function(SchemaService, $modal){
+    dynamicMongooseSchemaModule.controller('AddSchemaController', [
+        'SchemaService', '$modal', function (SchemaService, $modal) {
             let addSchemaController = this;
             addSchemaController.open = () => {
                 let modalInstance = $modal.open({
@@ -89,7 +89,8 @@
             if (!schemaController.newSchema) {
                 schemaController.reset();
             }
-        }]);
+        }
+    ]);
     dynamicMongooseSchemaModule.controller('SchemaListController', [
         'SchemaService', '$rootScope',
         function (SchemaService, $rootScope) {
@@ -114,7 +115,8 @@
                 schemaListController.schemas.push(newSchema);
                 setSchema(schemaListController.schemas.length - 1);
             });
-        }]);
+        }
+    ]);
     dynamicMongooseSchemaModule.directive('jsonView', [() => {
         return {
             restrict: 'E',
@@ -123,21 +125,22 @@
             },
             link: ($scope, element) => {
                 let parseJsonToHTML = () => {
-                    var jsonView = $scope.json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-                        var cls = 'number';
-                        if (/^"/.test(match)) {
-                            if (/:$/.test(match)) {
-                                cls = 'key';
-                            } else {
-                                cls = 'string';
+                    var jsonView = $scope.json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                        .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                            var cls = 'number';
+                            if (/^"/.test(match)) {
+                                if (/:$/.test(match)) {
+                                    cls = 'key';
+                                } else {
+                                    cls = 'string';
+                                }
+                            } else if (/true|false/.test(match)) {
+                                cls = 'boolean';
+                            } else if (/null/.test(match)) {
+                                cls = 'null';
                             }
-                        } else if (/true|false/.test(match)) {
-                            cls = 'boolean';
-                        } else if (/null/.test(match)) {
-                            cls = 'null';
-                        }
-                        return '<span class="' + cls + '">' + match + '</span>';
-                    });
+                            return '<span class="' + cls + '">' + match + '</span>';
+                        });
                     element.html('<pre>' + jsonView + '</pre>');
                 };
                 $scope.$watch('json', (newValue, oldValue) => {
