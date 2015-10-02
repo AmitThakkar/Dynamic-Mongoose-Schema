@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body ng-app="dynamicMongooseSchema">
-<div ng-controller="SchemaController as schemaController">
+<div ng-controller="AddSchemaController as addSchemaController">
     <div>
         <nav id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -17,13 +17,15 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="glyphicon glyphicon-plus fColor"
-                               ng-click="schemaController.open()"></a></li>
+                               ng-click="addSchemaController.open()"></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
+    </div>
     <div class="clear h75">&nbsp;</div>
+    <div ng-controller="SchemaController as schemaController">
     <script type="text/ng-template" id="myModalContent.html">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

@@ -32,9 +32,20 @@
             return $http.get(URL)
         };
     }]);
+    dynamicMongooseSchemaModule.controller('AddSchemaController',[
+        'SchemaService','$modal',function(SchemaService, $modal){
+            let addSchemaController = this;
+            addSchemaController.open = () => {
+                let modalInstance = $modal.open({
+                    templateUrl: 'myModalContent.html',
+                    controller: 'SchemaController'
+                });
+            };
+        }
+    ]);
     dynamicMongooseSchemaModule.controller('SchemaController', [
-        'SchemaService', '$rootScope', '$modal',
-        function (SchemaService, $rootScope, $modal) {
+        'SchemaService', '$rootScope',
+        function (SchemaService, $rootScope) {
             let schemaController = this;
             schemaController.types = [
                 'String',
@@ -43,6 +54,7 @@
                 'Object'
             ];
             schemaController.addNewColumn = () => {
+                console.log("test");
                 schemaController.newSchema.columns.push({
                     name: 'field ' + schemaController.newSchema.columns.length
                 });
@@ -51,11 +63,6 @@
                 schemaController.newSchema = {
                     columns: []
                 };
-            };
-            schemaController.open = () => {
-                let modalInstance = $modal.open({
-                    templateUrl: 'myModalContent.html'
-                });
             };
             schemaController.save = () => {
                 if (!schemaController.newSchema.databaseName) {
