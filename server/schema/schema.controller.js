@@ -31,7 +31,7 @@
     };
     module.exports.remove = (request, response) => {
         let _id = request.params._id;
-        Schema.removeOneById(_id, (error, result) => {
+        Schema.softRemove(_id, (error, result) => {
             if (error) {
                 logger.error(error);
                 response.status(500).json(error.message);

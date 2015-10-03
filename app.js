@@ -31,10 +31,6 @@
             logger.trace('Request:', req.url, 'Method:', req.method);
             next();
         });
-        app.use(express.static('client'));
-        app.use(express.static('bower_components'));
-        app.use(bodyParser.json());
-        require('./server/routeMapping')(app);
         mongoose.connect(config.mongoDBUrl, (error) => {
             if (error) {
                 logger.error('Failed to connect with MongoDB', error);
@@ -42,6 +38,10 @@
                 logger.info('Connected with MongoDB Server on ', config.mongoDBUrl);
             }
         });
+        app.use(express.static('client'));
+        app.use(express.static('bower_components'));
+        app.use(bodyParser.json());
+        require('./server/routeMapping')(app);
         const port = process.env.PORT || config.port;
         const server = app.listen(port, () => {
             logger.info('Dynamic Schema app listening at http://%s:%s', config.host, port);

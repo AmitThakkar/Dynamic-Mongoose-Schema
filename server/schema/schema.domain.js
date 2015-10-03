@@ -8,12 +8,13 @@
     let schemaObject = mongoose.Schema({
         databaseName: {type: String, required: true, trim: true, lowercase: true},
         tableName: {type: String, required: true, trim: true, lowercase: true},
+        isRemoved: {type: Boolean, default: false},
         columns: {type: Array}
     });
     schemaObject.static('findAll', function (callback) {
         this.find({isRemoved: false}, {_id: 0, __v: 0, isRemoved: 0}).lean().exec(callback);
     });
-    schemaObject.static('removeOneById', function (_id, callback) {
+    schemaObject.static('softRemove', function (_id, callback) {
         this.update({_id: ObjectId(_id)}, {$set: {isRemoved: true}}, {multi: false, upsert: false}, callback);
     });
     schemaObject.index({databaseName: 1, tableName: 1}, {unique: true});
