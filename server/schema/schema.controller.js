@@ -29,6 +29,17 @@
             }
         });
     };
+    module.exports.get = (request, response) => {
+        let _id = request.params._id;
+        Schema.findOneById(_id, (error, schema) => {
+            if (error) {
+                logger.error(error);
+                response.status(500).json(error.message);
+            } else {
+                response.status(200).json(schema);
+            }
+        });
+    };
     module.exports.remove = (request, response) => {
         let _id = request.params._id;
         Schema.softRemove(_id, (error, result) => {

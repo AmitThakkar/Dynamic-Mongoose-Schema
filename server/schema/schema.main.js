@@ -8,5 +8,6 @@
         app.post('/schema', SchemaController.save);
         app.get('/schema', SchemaController.list);
         app.delete('/schema/:_id', SchemaController.remove);
+        app.get('/schema/:_id', SchemaController.get);
     };
 })(module, require);

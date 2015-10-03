@@ -24,7 +24,7 @@
     let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema', ['ngAnimate', 'ui.bootstrap']);
     dynamicMongooseSchemaModule.service('SchemaService', ['$http', function ($http) {
         let schemaService = this;
-        const URL = 'schema';
+        const URL = 'schema/';
         schemaService.save = (newSchema) => {
             return $http.post(URL, newSchema)
         };
@@ -53,13 +53,13 @@
                 'Array',
                 'Object'
             ];
-            addSchemaController.ok = () =>{
+            addSchemaController.ok = () => {
                 $rootScope.$modalInstance.close();
             };
-            addSchemaController.cancel = () =>{
+            addSchemaController.cancel = () => {
                 $rootScope.$modalInstance.dismiss('cancel');
             };
-                addSchemaController.addNewColumn = () => {
+            addSchemaController.addNewColumn = () => {
                 addSchemaController.newSchema.columns.push({
                     name: 'field ' + addSchemaController.newSchema.columns.length
                 });
@@ -87,7 +87,6 @@
                         $rootScope.$emit('schema:added', addSchemaController.newSchema);
                         addSchemaController.reset();
                         addSchemaController.ok();
-
                     })
                     .error((error) => {
                         addSchemaController.errorMessage = error;
@@ -108,25 +107,20 @@
             SchemaService.list()
                 .success((schemas) => {
                     schemaListController.schemas = schemas;
-                    if (schemas.length > 0) {
-                        setSchema(0);
-                    }
                 })
                 .error((error) => {
                     schemaListController.errorMessage = error;
                 });
             $rootScope.$on('schema:added', (event, newSchema) => {
                 schemaListController.schemas.push(newSchema);
-                setSchema(schemaListController.schemas.length - 1);
             });
             schemaListController.viewSchema = (index) => {
                 setSchema(index);
                 $rootScope.$modalInstance = $modal.open({
-                    templateUrl: 'schema/schema.view.html',
-                    controller: 'SchemaListController as schemaListController'
+                    templateUrl: 'schema/schema.view.html'
                 });
             };
-            schemaListController.ok = () =>{
+            schemaListController.ok = () => {
                 $rootScope.$modalInstance.close();
             };
         }

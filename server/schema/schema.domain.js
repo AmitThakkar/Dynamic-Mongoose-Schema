@@ -11,8 +11,11 @@
         isRemoved: {type: Boolean, default: false},
         columns: {type: Array}
     });
+    schemaObject.static('findOneById', function (_id, callback) {
+        this.findOne({_id: _id}, {__v: 0, isRemoved: 0}).lean().exec(callback);
+    });
     schemaObject.static('findAll', function (callback) {
-        this.find({isRemoved: false}, {_id: 0, __v: 0, isRemoved: 0}).lean().exec(callback);
+        this.find({isRemoved: false}, {__v: 0, isRemoved: 0, columns: 0}).lean().exec(callback);
     });
     schemaObject.static('softRemove', function (_id, callback) {
         this.update({_id: ObjectId(_id)}, {$set: {isRemoved: true}}, {multi: false, upsert: false}, callback);
