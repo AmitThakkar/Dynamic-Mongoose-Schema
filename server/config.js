@@ -6,7 +6,7 @@
     let config = {
         mongoDBUrl: 'mongodb://localhost/dynamicSchema',
         logFolder: 'logs',
-        logFormat: '{{timestamp}} {{file}}:{{line}} {{message}}',
+        logFormat: 'Process PID: ' + process.pid + ' {{timestamp}} {{file}}:{{line}} {{message}}',
         environment: 'DEV',
         logLevel: 'trace',
         dateFormat: 'mmmm dd, yyyy HH:MM:ss',
