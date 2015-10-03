@@ -167,6 +167,7 @@
     <table class="table table-bordered">
         <thead>
         <tr class="fColor bgColor">
+            <td>S.No.</td>
             <td>Database Name</td>
             <td>Table Name</td>
             <td>View</td>
@@ -174,6 +175,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="schema in schemaListController.schemas track by $index">
+            <td>{{$index+1}}</td>
             <td>{{schema.databaseName}}</td>
             <td>{{schema.tableName}}</td>
             <td>
