@@ -18,17 +18,17 @@
     const MongooseSchemaGenerator = require('./server/MongooseSchemaGenerator');
     logger.info('Starting Application in =>', config.environment, 'Environment');
     if (cluster.isMaster) {
-        logger.info('Starting', NUMBER_OF_CPUs, 'Node Servers!');
+        logger.debug('Starting', NUMBER_OF_CPUs, 'Node Servers!');
         for (var coreIndex = 0; coreIndex < NUMBER_OF_CPUs; coreIndex++) {
             cluster.fork();
         }
         cluster.on('exit', (worker) => {
-            logger.info('worker ' + worker.process.pid + ' died');
+            logger.error('worker ' + worker.process.pid + ' died');
         });
     } else {
         let app = express();
         app.use((req, res, next) => {
-            logger.debug('Request:', req.url, 'Method:', req.method);
+            logger.trace('Request:', req.url, 'Method:', req.method);
             next();
         });
         app.use(express.static('client'));

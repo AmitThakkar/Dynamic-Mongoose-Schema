@@ -7,5 +7,6 @@
     module.exports = (app) => {
         app.post('/schema', SchemaController.save);
         app.get('/schema', SchemaController.list);
+        app.delete('/schema/:_id', SchemaController.remove);
     };
 })(module, require);
