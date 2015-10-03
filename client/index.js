@@ -37,7 +37,7 @@
             let schemaController = this;
             schemaController.open = () => {
                 $rootScope.$modalInstance = $modal.open({
-                    templateUrl: 'myModalContent.html',
+                    templateUrl: 'schema/schema.add.html',
                     controller: 'AddSchemaController as addSchemaController'
                 });
             };
@@ -122,7 +122,7 @@
             schemaListController.viewSchema = (index) => {
                 setSchema(index);
                 $rootScope.$modalInstance = $modal.open({
-                    templateUrl: 'mySchema.html',
+                    templateUrl: 'schema/schema.view.html',
                     controller: 'SchemaListController as schemaListController'
                 });
             };
