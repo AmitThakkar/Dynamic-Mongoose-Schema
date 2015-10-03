@@ -33,10 +33,10 @@
         };
     }]);
     dynamicMongooseSchemaModule.controller('SchemaController', [
-        'SchemaService', '$modal', function (SchemaService, $modal) {
+        'SchemaService', '$modal', '$rootScope', function (SchemaService, $modal, $rootScope) {
             let schemaController = this;
             schemaController.open = () => {
-                $modal.open({
+                $rootScope.$modalInstance = $modal.open({
                     templateUrl: 'myModalContent.html',
                     controller: 'AddSchemaController as addSchemaController'
                 });
@@ -53,7 +53,13 @@
                 'Array',
                 'Object'
             ];
-            addSchemaController.addNewColumn = () => {
+            addSchemaController.ok = () =>{
+                $rootScope.$modalInstance.close();
+            };
+            addSchemaController.cancel = () =>{
+                $rootScope.$modalInstance.dismiss('cancel');
+            };
+                addSchemaController.addNewColumn = () => {
                 addSchemaController.newSchema.columns.push({
                     name: 'field ' + addSchemaController.newSchema.columns.length
                 });
@@ -80,6 +86,8 @@
                     .success(() => {
                         $rootScope.$emit('schema:added', addSchemaController.newSchema);
                         addSchemaController.reset();
+                        addSchemaController.ok();
+
                     })
                     .error((error) => {
                         addSchemaController.errorMessage = error;
@@ -113,10 +121,13 @@
             });
             schemaListController.viewSchema = (index) => {
                 setSchema(index);
-                $modal.open({
+                $rootScope.$modalInstance = $modal.open({
                     templateUrl: 'mySchema.html',
                     controller: 'SchemaListController as schemaListController'
-                })
+                });
+            };
+            schemaListController.ok = () =>{
+                $rootScope.$modalInstance.close();
             };
         }
     ]);
