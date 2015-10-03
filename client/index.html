@@ -184,13 +184,21 @@
         </tbody>
     </table>
     <div class="clear">&nbsp;</div>
-    <hr>
-    <div class="clear">&nbsp;</div>
-    <h4 class="strong title center">Schema View</h4>
 
-    <div ng-if="schemaListController.schemaView">
-        <json-view json="{{schemaListController.schemaView}}"></json-view>
-    </div>
+    <script type="text/ng-template" id="mySchema.html">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Schema View</h4>
+        </div>
+        <div class="modal-body">
+            <div class="container" style="overflow:auto; max-width: 563px; max-height: 350px;">
+                <json-view json="{{schemaListController.schemaView}}"></json-view>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+    </script>
 </div>
 <script type="application/javascript" src="angular/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>

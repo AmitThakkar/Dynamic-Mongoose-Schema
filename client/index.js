@@ -91,8 +91,8 @@
         }
     ]);
     dynamicMongooseSchemaModule.controller('SchemaListController', [
-        'SchemaService', '$rootScope',
-        function (SchemaService, $rootScope) {
+        'SchemaService', '$rootScope', '$modal',
+        function (SchemaService, $rootScope, $modal) {
             let schemaListController = this;
             let setSchema = (index) => {
                 schemaListController.schemaView = JSON.stringify(mongooseSchemaGenerator.generate(schemaListController.schemas[index].columns), undefined, 4);
@@ -107,13 +107,17 @@
                 .error((error) => {
                     schemaListController.errorMessage = error;
                 });
-            schemaListController.viewSchema = (index) => {
-                setSchema(index);
-            };
             $rootScope.$on('schema:added', (event, newSchema) => {
                 schemaListController.schemas.push(newSchema);
                 setSchema(schemaListController.schemas.length - 1);
             });
+            schemaListController.viewSchema = (index) => {
+                setSchema(index);
+                $modal.open({
+                    templateUrl: 'mySchema.html',
+                    controller: 'SchemaListController as schemaListController'
+                })
+            };
         }
     ]);
     dynamicMongooseSchemaModule.directive('jsonView', [() => {
