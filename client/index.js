@@ -31,7 +31,7 @@
         schemaService.list = () => {
             return $http.get(URL)
         };
-        schemaService.delete = (id) => {
+        schemaService.remove = (id) => {
             return $http.delete(URL + id)
         };
     }]);
@@ -128,7 +128,7 @@
             };
             schemaListController.remove = (index)=> {
                 let id = schemaListController.schemas[index]._id;
-                SchemaService.delete(id)
+                SchemaService.remove(id)
                     .success((data) => {
                         schemaListController.schemas.splice(index, 1);
                     })
