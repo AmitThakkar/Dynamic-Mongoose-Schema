@@ -38,17 +38,6 @@
             return $http.delete(URL + id)
         };
     }]);
-    dynamicMongooseSchemaModule.controller('SchemaController', [
-        'SchemaService', '$modal', '$rootScope', function (SchemaService, $modal, $rootScope) {
-            let schemaController = this;
-            schemaController.open = () => {
-                $rootScope.$modalInstance = $modal.open({
-                    templateUrl: 'schema/schema.add.html',
-                    controller: 'AddSchemaController as addSchemaController'
-                });
-            };
-        }
-    ]);
     dynamicMongooseSchemaModule.controller('AddSchemaController', [
         'SchemaService', '$rootScope',
         function (SchemaService, $rootScope) {
