@@ -21,7 +21,7 @@
         }
     }
     let mongooseSchemaGenerator = new MongooseSchemaGenerator();
-    let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema', ['ngAnimate', 'ui.bootstrap']);
+    let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema', ['ui.bootstrap']);
     dynamicMongooseSchemaModule.service('SchemaService', ['$http', function ($http) {
         let schemaService = this;
         const URL = 'schema/';
