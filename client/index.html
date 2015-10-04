@@ -33,7 +33,7 @@
             <td>S.No.</td>
             <td>Database Name</td>
             <td>Table Name</td>
-            <td>View</td>
+            <td colspan="2">Action(s)</td>
         </tr>
         </thead>
         <tbody>
@@ -44,6 +44,10 @@
             <td>
                 <a href="javascript:void(0);" class="noStyle fColor glyphicon glyphicon-eye-open"
                    ng-click="schemaListController.viewSchema($index)"></a>
+            </td>
+            <td>
+                <a href="javascript:void(0);" class="noStyle fColor glyphicon glyphicon-trash"
+                   ng-click="schemaListController.remove($index)"></a>
             </td>
         </tr>
         </tbody>

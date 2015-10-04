@@ -24,12 +24,15 @@
     let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema', ['ngAnimate', 'ui.bootstrap']);
     dynamicMongooseSchemaModule.service('SchemaService', ['$http', function ($http) {
         let schemaService = this;
-        const URL = 'schema/';
+        schemaService.URL = 'schema/';
         schemaService.save = (newSchema) => {
-            return $http.post(URL, newSchema)
+            return $http.post( schemaService.URL, newSchema)
         };
-        schemaService.list = () => {
-            return $http.get(URL)
+        schemaService.list = (url) => {
+                return $http.get(url)
+        };
+        schemaService.delete = (url) => {
+            return $http.delete(url)
         };
     }]);
     dynamicMongooseSchemaModule.controller('SchemaController', [
@@ -117,11 +120,22 @@
             schemaListController.viewSchema = (index) => {
                 setSchema(index);
                 $rootScope.$modalInstance = $modal.open({
-                    templateUrl: 'schema/schema.view.html'
+                    templateUrl: 'schema/schema.view.html',
+                    controller: 'SchemaListController as schemaListController'
                 });
             };
             schemaListController.ok = () => {
                 $rootScope.$modalInstance.close();
+            };
+            schemaListController.remove = (index)=>{
+                let url = SchemaService.URL+schemaListController.schemas[index]._id;
+                SchemaService.delete(url)
+                    .success((data) =>{
+                        schemaListController.schemas.splice(index,1);
+                    })
+                    .error((error) => {
+
+                    });
             };
         }
     ]);
