@@ -26,7 +26,7 @@
         let schemaService = this;
         const URL = 'schema/';
         schemaService.save = (newSchema) => {
-            return $http.post(schemaService.URL, newSchema)
+            return $http.post(URL, newSchema)
         };
         schemaService.list = () => {
             return $http.get(URL)
