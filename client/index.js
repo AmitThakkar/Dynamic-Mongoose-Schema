@@ -89,8 +89,8 @@
                     return;
                 }
                 SchemaService.save(addSchemaController.newSchema)
-                    .success(() => {
-                        $rootScope.$emit('schema:added', addSchemaController.newSchema);
+                    .success((newSchema) => {
+                        $rootScope.$emit('schema:added', newSchema);
                         addSchemaController.reset();
                         addSchemaController.ok();
                     })
