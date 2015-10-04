@@ -28,8 +28,8 @@
         schemaService.save = (newSchema) => {
             return $http.post( schemaService.URL, newSchema)
         };
-        schemaService.list = (url) => {
-                return $http.get(url)
+        schemaService.list = () => {
+                return $http.get( schemaService.URL)
         };
         schemaService.delete = (url) => {
             return $http.delete(url)
