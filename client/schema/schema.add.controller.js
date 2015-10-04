@@ -4,57 +4,57 @@
 ((ng) => {
     "use strict";
     let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema');
-    dynamicMongooseSchemaModule.controller('AddSchemaController', [
+    dynamicMongooseSchemaModule.controller('SchemaAddController', [
         'SchemaService', '$rootScope',
         function (SchemaService, $rootScope) {
-            let addSchemaController = this;
-            addSchemaController.types = [
+            let schemaAddController = this;
+            schemaAddController.types = [
                 'String',
                 'Number',
                 'Array',
                 'Object'
             ];
-            addSchemaController.ok = () => {
+            schemaAddController.ok = () => {
                 $rootScope.$modalInstance.close();
             };
-            addSchemaController.cancel = () => {
+            schemaAddController.cancel = () => {
                 $rootScope.$modalInstance.dismiss('cancel');
             };
-            addSchemaController.addNewColumn = () => {
-                addSchemaController.newSchema.columns.push({
-                    name: 'field ' + addSchemaController.newSchema.columns.length
+            schemaAddController.addNewColumn = () => {
+                schemaAddController.newSchema.columns.push({
+                    name: 'field ' + schemaAddController.newSchema.columns.length
                 });
             };
-            addSchemaController.reset = () => {
-                addSchemaController.newSchema = {
+            schemaAddController.reset = () => {
+                schemaAddController.newSchema = {
                     columns: []
                 };
             };
-            addSchemaController.save = () => {
-                if (!addSchemaController.newSchema.databaseName) {
-                    addSchemaController.errorMessage = 'Please provide Database Name';
+            schemaAddController.save = () => {
+                if (!schemaAddController.newSchema.databaseName) {
+                    schemaAddController.errorMessage = 'Please provide Database Name';
                     return;
                 }
-                if (!addSchemaController.newSchema.tableName) {
-                    addSchemaController.errorMessage = 'Please provide Table Name';
+                if (!schemaAddController.newSchema.tableName) {
+                    schemaAddController.errorMessage = 'Please provide Table Name';
                     return;
                 }
-                if (addSchemaController.newSchema.columns.length < 1) {
-                    addSchemaController.errorMessage = 'Please provide at-least one Column details';
+                if (schemaAddController.newSchema.columns.length < 1) {
+                    schemaAddController.errorMessage = 'Please provide at-least one Column details';
                     return;
                 }
-                SchemaService.save(addSchemaController.newSchema)
+                SchemaService.save(schemaAddController.newSchema)
                     .success((newSchema) => {
                         $rootScope.$emit('schema:added', newSchema);
-                        addSchemaController.reset();
-                        addSchemaController.ok();
+                        schemaAddController.reset();
+                        schemaAddController.ok();
                     })
                     .error((error) => {
-                        addSchemaController.errorMessage = error;
+                        schemaAddController.errorMessage = error;
                     });
             };
-            if (!addSchemaController.newSchema) {
-                addSchemaController.reset();
+            if (!schemaAddController.newSchema) {
+                schemaAddController.reset();
             }
         }
     ]);

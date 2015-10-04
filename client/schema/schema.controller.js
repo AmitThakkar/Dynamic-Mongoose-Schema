@@ -11,7 +11,7 @@
             schemaController.open = () => {
                 $rootScope.$modalInstance = $modal.open({
                     templateUrl: 'schema/schema.add.html',
-                    controller: 'AddSchemaController as addSchemaController'
+                    controller: 'SchemaAddController as schemaAddController'
                 });
             };
         }
