@@ -4,22 +4,6 @@
 ((ng) => {
     'use strict';
     let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema', ['ui.bootstrap']);
-    dynamicMongooseSchemaModule.service('SchemaService', ['$http', function ($http) {
-        let schemaService = this;
-        const URL = 'schema/';
-        schemaService.save = (newSchema) => {
-            return $http.post(URL, newSchema)
-        };
-        schemaService.list = () => {
-            return $http.get(URL)
-        };
-        schemaService.get = (id) => {
-            return $http.get(URL + id)
-        };
-        schemaService.remove = (id) => {
-            return $http.delete(URL + id)
-        };
-    }]);
     dynamicMongooseSchemaModule.directive('jsonView', [() => {
         return {
             restrict: 'E',
