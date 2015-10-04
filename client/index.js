@@ -120,8 +120,7 @@
             schemaListController.viewSchema = (index) => {
                 setSchema(index);
                 $rootScope.$modalInstance = $modal.open({
-                    templateUrl: 'schema/schema.view.html',
-                    controller: 'SchemaListController as schemaListController'
+                    templateUrl: 'schema/schema.view.html'
                 });
             };
             schemaListController.ok = () => {
