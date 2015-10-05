@@ -1,8 +1,8 @@
-<div class="modal-header">
+<div class="modal">
     <button type="button" class="close" ng-click="schemaAddController.cancel()" aria-hidden="true">&times;</button>
     <h4 class="modal-title">New Table Details</h4>
 </div>
-<div class="modal-body">
+<div class="modal-content">
     <form>
         <div class="form-group">
             <div class="clear">&nbsp;</div>
@@ -37,7 +37,6 @@
         </div>
         <div class="clear">&nbsp;</div>
     </form>
-    <div class="container" style="overflow:auto; max-width: 563px; max-height: 250px;">
         <table class="table table-bordered">
             <thead>
             <tr class="fColor bgColor">
@@ -123,7 +122,6 @@
             </tr>
             </tbody>
         </table>
-    </div>
     <div class="error">
         {{schemaAddController.errorMessage}}
     </div>

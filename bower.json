@@ -36,6 +36,7 @@
     "angular": "~1.4.6",
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.5",
-    "angular-bootstrap": "~0.13.4"
+    "angular-bootstrap": "~0.13.4",
+    "Materialize": "materialize#~0.97.1"
   }
 }
