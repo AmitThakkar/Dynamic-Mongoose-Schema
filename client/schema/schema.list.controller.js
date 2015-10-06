@@ -9,8 +9,8 @@
         function (SchemaService, $rootScope, $modal) {
             let schemaListController = this;
             SchemaService.list()
-                .success((schemas) => {
-                    schemaListController.schemas = schemas;
+                .success((response) => {
+                    schemaListController.schemas = response.tables;
                 })
                 .error((error) => {
                     schemaListController.errorMessage = error;

@@ -3,6 +3,8 @@
  */
 ((require, module)=> {
     "use strict";
+    const DEFAULT_LIMIT = 10;
+    const DEFAULT_PAGE_NUMBER = 1;
     let Schema = require('./schema.domain');
     let exports = module.exports;
     exports.save = (request, response) => {
@@ -21,12 +23,26 @@
         });
     };
     exports.list = (request, response) => {
-        Schema.findAll((error, schemas) => {
+        let limit = request.params.limit || DEFAULT_LIMIT;
+        let pageNumber = request.params.pageNumber || DEFAULT_PAGE_NUMBER;
+        let options = {
+            limit: limit,
+            skip: (pageNumber - 1) * limit
+        };
+        logger.trace('Getting Schema List with options: ', options);
+        Schema.findAll(options, (error, schemas) => {
             if (error) {
                 logger.error(error);
                 response.status(500).json(error.message);
             } else {
-                response.status(200).json(schemas);
+                Schema.countAll((error, count) => {
+                    if (error) {
+                        logger.error(error);
+                        response.status(500).json(error.message);
+                    } else {
+                        response.status(200).json({tables: schemas, total: count});
+                    }
+                });
             }
         });
     };
