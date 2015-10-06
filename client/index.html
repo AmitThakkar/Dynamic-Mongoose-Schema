@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <title>Dynamo</title>
     <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="Materialize/dist/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body ng-app="dynamicMongooseSchema">
 <div ng-controller="SchemaController as schemaController">
-    <nav id="myNavbar" class="navbar navbar-default navbar-fixed-top bgColor" role="navigation">
+    <nav id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand fColor fs40" href="#">Dynamo</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="tpad3"><a href="javascript:void(0);" class="btn-floating btn-large waves-effect waves-light red" popover="Add New Schema"
-                           popover-placement="bottom" popover-trigger="mouseenter" ng-click="schemaController.open()"><i class="material-icons icon-position">+</i></a></li>
-
+                    <li><a href="javascript:void(0);" class="glyphicon glyphicon-plus fColor" popover="Add New Schema"
+                           popover-placement="bottom" popover-trigger="mouseenter"
+                           ng-click="schemaController.open()"></a></li>
                 </ul>
             </div>
         </div>
@@ -27,14 +25,13 @@
     <div class="clear h75">&nbsp;</div>
     <div class="container" ng-controller="SchemaListController as schemaListController">
         <h4 class="strong title center">Your Database</h4>
-        <table class="bordered fColor striped responsive-table">
+        <table class="table table-bordered">
             <thead>
-            <tr style="font-weight: bold;">
+            <tr class="fColor bgColor">
                 <td>S.No.</td>
                 <td>Database Name</td>
                 <td>Table Name</td>
-                <td>View</td>
-                <td>Delete</td>
+                <td class="text-center" colspan="2">Action(s)</td>
             </tr>
             </thead>
             <tbody>
@@ -43,12 +40,12 @@
                 <td>{{schema.databaseName}}</td>
                 <td>{{schema.tableName}}</td>
                 <td>
-                    <a href="javascript:void(0);" class="fColor" style="text-decoration: none;"
-                       ng-click="schemaListController.viewSchema($index)"><i class="tiny material-icons">visibility</i></a>
+                    <a href="javascript:void(0);" class="noStyle fColor glyphicon glyphicon-eye-open"
+                       ng-click="schemaListController.viewSchema($index)"></a>
                 </td>
                 <td>
-                    <a href="javascript:void(0);" class="fColor"
-                       ng-click="schemaListController.remove($index)"><i class="tiny material-icons">delete</i></a>
+                    <a href="javascript:void(0);" class="noStyle fColor glyphicon glyphicon-trash"
+                       ng-click="schemaListController.remove($index)"></a>
                 </td>
             </tr>
             </tbody>
@@ -56,10 +53,8 @@
         <div class="clear">&nbsp;</div>
     </div>
 </div>
-<script type="application/javascript" src="jquery/dist/jquery.min.js"></script>
 <script type="application/javascript" src="angular/angular.min.js"></script>
 <script type="application/javascript" src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script type="application/javascript" src="Materialize/dist/materialize.min.js"></script>
 <script type="application/javascript" src="./index.js"></script>
 <script type="application/javascript" src="./schema/schema.service.js"></script>
 <script type="application/javascript" src="./schema/schema.view.directive.js"></script>
