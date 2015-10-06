@@ -9,6 +9,7 @@
     const config = require('./server/config');
     const bodyParser = require('body-parser');
     const cluster = require('cluster');
+    const MONGODB_RECONECT_TIMEINTERVAL = 5000;
     const NUMBER_OF_CPUs = require('os').cpus().length;
     const logger = global.logger = require('tracer').colorConsole({
         level: config.logLevel,
@@ -31,12 +32,33 @@
             logger.trace('Request:', req.url, 'Method:', req.method);
             next();
         });
-        mongoose.connect(config.mongoDBUrl, (error) => {
-            if (error) {
-                logger.error('Failed to connect with MongoDB', error);
-            } else {
-                logger.info('Connected with MongoDB Server on ', config.mongoDBUrl);
-            }
+        let db;
+        let connectWithRetry = (cb) => {
+            mongoose.connect(config.mongoDBUrl, (error) => {
+                if (error) {
+                    db.close();
+                    logger.error('Failed to connect with MongoDB', error);
+                } else {
+                    logger.info('Connected with MongoDB Server on ', config.mongoDBUrl);
+                }
+            });
+            db = mongoose.connection;
+            cb && cb();
+        };
+        connectWithRetry(function () {
+            db.on('error', function (error) {
+                logger.error('Mongoose Error: ', error);
+            });
+            db.on('connected', function () {
+                logger.info('Mongoose Connected to ', config.mongoDBUrl);
+            });
+            db.once('open', function () {
+                logger.info('Mongoose Connection Open with MongoDB Server on ', config.mongoDBUrl);
+            });
+            db.on('disconnected', function () {
+                logger.info('Mongoose connection disconnected');
+                setTimeout(connectWithRetry, MONGODB_RECONECT_TIMEINTERVAL);
+            });
         });
         app.use(express.static('client'));
         app.use(express.static('bower_components'));
