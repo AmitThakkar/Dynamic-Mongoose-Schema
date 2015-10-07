@@ -8,7 +8,7 @@
     const mongoose = require('mongoose');
     const config = require('./server/config');
     const bodyParser = require('body-parser');
-    var responseTime = require('response-time');
+    const responseTime = require('response-time');
     const cluster = require('cluster');
     const MONGODB_RECONECT_TIMEINTERVAL = 5000;
     const NUMBER_OF_CPUs = require('os').cpus().length;
