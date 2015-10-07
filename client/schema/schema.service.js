@@ -10,8 +10,8 @@
         schemaService.save = (newSchema) => {
             return $http.post(URL, newSchema)
         };
-        schemaService.list = () => {
-            return $http.get(URL)
+        schemaService.list = (max, pageNumber) => {
+            return $http.get(URL + max + '/' + pageNumber)
         };
         schemaService.get = (id) => {
             return $http.get(URL + id)
@@ -19,9 +19,5 @@
         schemaService.remove = (id) => {
             return $http.delete(URL + id)
         };
-        schemaService.loadMoreData = (max,pagenumber) =>{
-            var url = URL + max + '/' + pagenumber;
-            return $http.get(url);
-        }
     }]);
 })(angular);

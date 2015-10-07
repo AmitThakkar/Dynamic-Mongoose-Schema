@@ -8,20 +8,23 @@
         'SchemaService', '$rootScope', '$modal',
         function (SchemaService, $rootScope, $modal) {
             let schemaListController = this;
-            SchemaService.list()
-                .success((response) => {
-                    schemaListController.schemas = response.tables;
-                    schemaListController.records = response.total;
-                    schemaListController.recordsPerPage = 10;
-                    schemaListController.pageArr = [];
-                    schemaListController.pageNum = Math.ceil(schemaListController.records / schemaListController.recordsPerPage);
-                    for (var i = 1; i <= schemaListController.pageNum; i++) {
-                        schemaListController.pageArr.push(i);
-                    }
-                })
-                .error((error) => {
-                    schemaListController.errorMessage = error;
-                });
+            schemaListController.recordsPerPage = 10;
+            schemaListController.get = (pageNumber) => {
+                SchemaService.list(schemaListController.recordsPerPage, pageNumber)
+                    .success((response) => {
+                        schemaListController.schemas = response.tables;
+                        schemaListController.records = response.total;
+                        schemaListController.pageArr = [];
+                        schemaListController.totalPages = Math.ceil(schemaListController.records / schemaListController.recordsPerPage);
+                        for (var i = 1; i <= schemaListController.totalPages; i++) {
+                            schemaListController.pageArr.push(i);
+                        }
+                    })
+                    .error((error) => {
+                        schemaListController.errorMessage = error;
+                    });
+            };
+            schemaListController.get(1);
             $rootScope.$on('schema:added', (event, newSchema) => {
                 schemaListController.schemas.push(newSchema);
             });
@@ -49,15 +52,6 @@
 
                     });
             };
-            schemaListController.loadMore = (page) => {
-                SchemaService.loadMoreData(schemaListController.recordsPerPage, page)
-                    .success((data) => {
-                        schemaListController.schemas = data.tables;
-                    })
-                    .error((error) => {
-
-                    });
-            }
         }
     ]);
 })(angular);
