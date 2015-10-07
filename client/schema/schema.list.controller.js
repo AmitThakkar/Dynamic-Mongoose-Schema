@@ -14,11 +14,7 @@
                     .success((response) => {
                         schemaListController.schemas = response.tables;
                         schemaListController.records = response.total;
-                        schemaListController.pageArr = [];
                         schemaListController.totalPages = Math.ceil(schemaListController.records / schemaListController.recordsPerPage);
-                        for (var i = 1; i <= schemaListController.totalPages; i++) {
-                            schemaListController.pageArr.push(i);
-                        }
                     })
                     .error((error) => {
                         schemaListController.errorMessage = error;

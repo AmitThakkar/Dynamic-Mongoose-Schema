@@ -56,8 +56,8 @@
         </table>{{schemaListController.Pages}}
         <ul class="pagination pagination-sm">
             <li class="disabled"><a href="javascript:void(0)">«</a></li>
-            <li ng-repeat="page in schemaListController.pageArr" ng-class="{'active' : $index == 0}">
-                <a href="javascript:void(0)" ng-click="schemaListController.loadMore($index+1)">{{$index+1}}</a>
+            <li ng-repeat="page in [] | range : 1 : schemaListController.totalPages" ng-class="{'active' : $index == 0}">
+                <a href="javascript:void(0)" ng-click="schemaListController.get($index+1)">{{$index+1}}</a>
             </li>
             <li><a href="javascript:void(0)">»</a></li>
         </ul>
@@ -68,6 +68,7 @@
 <script type="application/javascript" src="angular/angular.min.js"></script>
 <script type="application/javascript" src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script type="application/javascript" src="./index.js"></script>
+<script type="application/javascript" src="./common/global.filters.js"></script>
 <script type="application/javascript" src="./schema/schema.service.js"></script>
 <script type="application/javascript" src="./schema/schema.view.directive.js"></script>
 <script type="application/javascript" src="./schema/schema.controller.js"></script>
