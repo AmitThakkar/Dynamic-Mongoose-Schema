@@ -10,7 +10,7 @@
     const bodyParser = require('body-parser');
     const responseTime = require('response-time');
     const cluster = require('cluster');
-    const MONGODB_RECONECT_TIMEINTERVAL = 5000;
+    const MONGODB_RECONNECT_TIME_INTERVAL = 5000;
     const NUMBER_OF_CPUs = require('os').cpus().length;
     const logger = global.logger = require('tracer').colorConsole({
         level: config.logLevel,
@@ -64,7 +64,7 @@
             });
             db.on('disconnected', function () {
                 logger.info('Mongoose connection disconnected');
-                setTimeout(connectWithRetry, MONGODB_RECONECT_TIMEINTERVAL);
+                setTimeout(connectWithRetry, MONGODB_RECONNECT_TIME_INTERVAL);
             });
         });
         app.use(express.static('client'));
