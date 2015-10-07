@@ -12,9 +12,9 @@
                 .success((response) => {
                     schemaListController.schemas = response.tables;
                     schemaListController.records = response.total;
-                    schemaListController.recordsPerPage = 2;
+                    schemaListController.recordsPerPage = 10;
                     schemaListController.pageArr = [];
-                    schemaListController.pageNum = Number(schemaListController.records / schemaListController.recordsPerPage);
+                    schemaListController.pageNum = Math.ceil(schemaListController.records / schemaListController.recordsPerPage);
                     for (var i = 1; i <= schemaListController.pageNum; i++) {
                         schemaListController.pageArr.push(i);
                     }
