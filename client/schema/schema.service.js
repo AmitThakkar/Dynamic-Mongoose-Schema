@@ -19,5 +19,9 @@
         schemaService.remove = (id) => {
             return $http.delete(URL + id)
         };
+        schemaService.loadMoreData = (max,pagenumber) =>{
+            var url = URL + max + '/' + pagenumber;
+            return $http.get(url);
+        }
     }]);
 })(angular);

@@ -11,6 +11,13 @@
             SchemaService.list()
                 .success((response) => {
                     schemaListController.schemas = response.tables;
+                    schemaListController.records = response.total;
+                    schemaListController.recordsPerPage = 2;
+                    schemaListController.pageArr = [];
+                    schemaListController.pageNum = Number(schemaListController.records / schemaListController.recordsPerPage);
+                    for (var i = 1; i <= schemaListController.pageNum; i++) {
+                        schemaListController.pageArr.push(i);
+                    }
                 })
                 .error((error) => {
                     schemaListController.errorMessage = error;
@@ -42,6 +49,15 @@
 
                     });
             };
+            schemaListController.loadMore = (page) => {
+                SchemaService.loadMoreData(schemaListController.recordsPerPage, page)
+                    .success((data) => {
+                        schemaListController.schemas = data.tables;
+                    })
+                    .error((error) => {
+
+                    });
+            }
         }
     ]);
 })(angular);
