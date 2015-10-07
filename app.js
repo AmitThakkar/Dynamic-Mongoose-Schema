@@ -8,6 +8,7 @@
     const mongoose = require('mongoose');
     const config = require('./server/config');
     const bodyParser = require('body-parser');
+    var responseTime = require('response-time');
     const cluster = require('cluster');
     const MONGODB_RECONECT_TIMEINTERVAL = 5000;
     const NUMBER_OF_CPUs = require('os').cpus().length;
@@ -29,9 +30,15 @@
     } else {
         let app = express();
         app.use((req, res, next) => {
-            logger.trace('Request:', req.url, 'Method:', req.method);
+            logger.trace(req.method, '=>', req.url);
+            let startTime = Date.now();
+            res.on('finish', function () {
+                let responseTime = Date.now() - startTime;
+                logger.trace(req.method, '=>', req.url, 'Response Time:', responseTime);
+            });
             next();
         });
+        app.use(responseTime());
         let db;
         let connectWithRetry = (cb) => {
             mongoose.connect(config.mongoDBUrl, (error) => {
