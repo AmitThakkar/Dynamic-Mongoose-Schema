@@ -40,9 +40,9 @@
             </thead>
             <tbody>
             <tr ng-repeat="schema in schemaListController.schemas track by $index">
-                <td>{{$index+1+schemaListController.serialNumCal}}</td>
-                <td>{{schema.databaseName}}</td>
-                <td>{{schema.tableName}}</td>
+                <td>{{ schemaListController.alreadyShownRecordCount + $index }}</td>
+                <td>{{ ::schema.databaseName }}</td>
+                <td>{{ ::schema.tableName }}</td>
                 <td>
                     <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
                        ng-click="schemaListController.viewSchema($index)"></a>
@@ -53,10 +53,12 @@
                 </td>
             </tr>
             </tbody>
-        </table>{{schemaListController.Pages}}
+        </table>
+        {{schemaListController.Pages}}
         <ul class="pagination pagination-sm">
             <li class="disabled"><a href="javascript:void(0)">«</a></li>
-            <li ng-repeat="page in [] | range : 1 : schemaListController.totalPages" ng-class="{'active' : $index == 0}">
+            <li ng-repeat="page in [] | range : 1 : schemaListController.totalPages"
+                ng-class="{'active' : $index == 0}">
                 <a href="javascript:void(0)" ng-click="schemaListController.get($index+1)">{{$index+1}}</a>
             </li>
             <li><a href="javascript:void(0)">»</a></li>
