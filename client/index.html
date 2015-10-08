@@ -40,7 +40,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="schema in schemaListController.schemas track by $index">
-                <td>{{$index+1}}</td>
+                <td>{{$index+1+schemaListController.serialNumCal}}</td>
                 <td>{{schema.databaseName}}</td>
                 <td>{{schema.tableName}}</td>
                 <td>

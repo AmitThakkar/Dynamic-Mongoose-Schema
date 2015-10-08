@@ -8,8 +8,9 @@
         'SchemaService', '$rootScope', '$modal',
         function (SchemaService, $rootScope, $modal) {
             let schemaListController = this;
-            schemaListController.recordsPerPage = 10;
-            schemaListController.get = (pageNumber) => {
+            schemaListController.recordsPerPage = 5;
+            schemaListController.get = (pageNumber,clicked) => {
+                schemaListController.serialNumCal = (pageNumber-1) * schemaListController.recordsPerPage;
                 SchemaService.list(schemaListController.recordsPerPage, pageNumber)
                     .success((response) => {
                         schemaListController.schemas = response.tables;
