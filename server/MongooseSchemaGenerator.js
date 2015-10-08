@@ -11,6 +11,9 @@
                 switch (column.type) {
                     case 'String' :
                         field.type = String;
+                        field.trim = column.trim == 'true';
+                        column.letterCase == 'L' ? field.lowercase = true : '';
+                        column.letterCase == 'U' ? field.uppercase = true : '';
                         break;
                     case 'Number' :
                         field.type = Number;
@@ -23,11 +26,8 @@
                         break;
                 }
                 column.required ? field.required = column.required == 'true' : '';
-                column.trim ? field.trim = column.trim == 'true' : '';
-                column.unique ? field.unique = column.unique == 'true' : '';
-                column.letterCase == 'L' ? field.lowercase = true : '';
-                column.letterCase == 'U' ? field.uppercase = true : '';
-                column.index ? field.index = column.index == 'true' : '';
+                field.unique = column.unique == 'true';
+                field.index = column.index == 'true';
                 column.default ? field.default = column.default : '';
             });
             return dynamicSchema;
