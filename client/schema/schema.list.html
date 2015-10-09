@@ -12,8 +12,8 @@
         <tbody>
         <tr ng-repeat="schema in schemaListController.schemas track by $index">
             <td>{{ schemaListController.alreadyShownRecordCount + $index }}</td>
-            <td>{{ ::schema.databaseName }}</td>
-            <td>{{ ::schema.tableName }}</td>
+            <td>{{ schema.databaseName }}</td>
+            <td>{{ schema.tableName }}</td>
             <td>
                 <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
                    ng-click="schemaListController.viewSchema($index)"></a>
