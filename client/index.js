@@ -14,6 +14,10 @@
             {
                 path: '/schema-list',
                 component: 'schemaList'
+            },
+            {
+                path: '/schema-add',
+                component: 'schemaAdd'
             }
         ]);
         $scope.setTitleAndPageProperty = function(title, page) {

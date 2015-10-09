@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close" ng-click="schemaAddController.cancel()" aria-hidden="true">&times;</button>
+    <button type="button" class="close" ng-click="schemaAdd.cancel()" aria-hidden="true">&times;</button>
     <h4 class="modal-title">New Table Details</h4>
 </div>
 <div class="modal-body">
@@ -10,7 +10,7 @@
 
             <div class="col-md-4">
                 <input type="text" id="dbName" class="form-control"
-                       ng-model="schemaAddController.newSchema.databaseName">
+                       ng-model="schemaAdd.newSchema.databaseName">
             </div>
             <div class="col-md-2">&nbsp;</div>
         </div>
@@ -20,7 +20,7 @@
 
             <div class="col-md-4">
                 <input class="form-control" type="text" id="tbName"
-                       ng-model="schemaAddController.newSchema.tableName">
+                       ng-model="schemaAdd.newSchema.tableName">
             </div>
             <div class="col-md-2">&nbsp;</div>
         </div>
@@ -30,7 +30,7 @@
 
             <div class="col-md-4">
                 <button type="button" class="btn btn-success btn-sm"
-                        ng-click="schemaAddController.addNewColumn();">Add New Column
+                        ng-click="schemaAdd.addNewColumn();">Add New Column
                 </button>
             </div>
             <div class="col-md-2">&nbsp;</div>
@@ -55,10 +55,10 @@
             <tfoot>
             <tr>
                 <td colspan="8">
-                    <button type="button" class="btn btn-primary" ng-click="schemaAddController.reset();">
+                    <button type="button" class="btn btn-primary" ng-click="schemaAdd.reset();">
                         Reset
                     </button>
-                    <button type="button" class="btn btn-success" ng-click="schemaAddController.save();">
+                    <button type="button" class="btn btn-success" ng-click="schemaAdd.save();">
                         Save
                     </button>
                 </td>
@@ -76,10 +76,10 @@
                 <td>NA</td>
                 <td></td>
             </tr>
-            <tr ng-repeat="column in schemaAddController.newSchema.columns track by column.name">
+            <tr ng-repeat="column in schemaAdd.newSchema.columns track by column.name">
                 <td><input type="text" ng-model="column.name"></td>
                 <td>
-                    <select ng-options="type for type in ::schemaAddController.types"
+                    <select ng-options="type for type in ::schemaAdd.types"
                             ng-model="column.type">
                         <option value="">NA</option>
                     </select>
@@ -110,9 +110,9 @@
         </table>
     </div>
     <div class="error">
-        {{schemaAddController.errorMessage}}
+        {{schemaAdd.errorMessage}}
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="schemaAddController.cancel()">Close</button>
+    <button type="button" class="btn btn-primary" ng-click="schemaAdd.cancel()">Close</button>
 </div>

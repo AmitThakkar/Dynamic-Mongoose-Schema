@@ -8,14 +8,6 @@
         '$modal', '$rootScope',
         function ($modal, $rootScope) {
             let schemaController = this;
-            schemaController.open = () => {
-                $rootScope.$modalInstance = $modal.open({
-                    templateUrl: 'schema/schema.add.html',
-                    controller: 'SchemaAddController',
-                    controllerAs: 'schemaAddController',
-                    size: 'lg'
-                });
-            };
         }
     ]);
 })(angular);
