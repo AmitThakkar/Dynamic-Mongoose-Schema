@@ -1,4 +1,4 @@
-<div class="container well infobox" ng-controller="SchemaListController as schemaListController">
+<div class="container well infobox">
     <h4 class="title center">Your Database</h4>
     <table class="table table-striped">
         <thead>
@@ -10,26 +10,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="schema in schemaListController.schemas track by $index">
-            <td>{{ schemaListController.alreadyShownRecordCount + $index }}</td>
+        <tr ng-repeat="schema in schemaList.schemas track by $index">
+            <td>{{ schemaList.alreadyShownRecordCount + $index }}</td>
             <td>{{ schema.databaseName }}</td>
             <td>{{ schema.tableName }}</td>
             <td>
                 <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
-                   ng-click="schemaListController.viewSchema($index)"></a>
+                   ng-click="schemaList.viewSchema($index)"></a>
             </td>
             <td>
                 <a href="javascript:void(0);" class="glyphicon glyphicon-trash icon-color   "
-                   ng-click="schemaListController.remove($index)"></a>
+                   ng-click="schemaList.remove($index)"></a>
             </td>
         </tr>
         </tbody>
     </table>
     <ul class="pagination pagination-sm">
         <li class="disabled"><a href="javascript:void(0)">«</a></li>
-        <li ng-repeat="page in [] | range : 1 : schemaListController.totalPages"
+        <li ng-repeat="page in [] | range : 1 : schemaList.totalPages"
             ng-class="{'active' : $index == 0}">
-            <a href="javascript:void(0)" ng-click="schemaListController.get($index+1)">{{$index+1}}</a>
+            <a href="javascript:void(0)" ng-click="schemaList.get($index+1)">{{$index+1}}</a>
         </li>
         <li><a href="javascript:void(0)">»</a></li>
     </ul>

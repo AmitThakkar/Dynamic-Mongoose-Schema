@@ -3,5 +3,22 @@
  */
 ((ng) => {
     'use strict';
-    ng.module('dynamicMongooseSchema', ['ui.bootstrap', 'ngTagsInput']);
+    let dynamicMongooseSchema = ng.module('dynamicMongooseSchema', ['ui.bootstrap', 'ngTagsInput', 'ngNewRouter']);
+    dynamicMongooseSchema.controller('MasterController', ['$router', '$rootScope', function ($router, $scope) {
+        var master = this;
+        $router.config([
+            {
+                path: '/',
+                redirectTo: '/schema-list'
+            },
+            {
+                path: '/schema-list',
+                component: 'schemaList'
+            }
+        ]);
+        $scope.setTitleAndPageProperty = function(title, page) {
+            master.title = title;
+            master.page = page;
+        };
+    }])
 })(angular);

@@ -37,6 +37,7 @@
     "bootstrap": "~3.3.5",
     "angular-bootstrap": "~0.13.4",
     "bootstrap-material-design": "~0.3.0",
-    "ng-tags-input": "~3.0.0"
+    "ng-tags-input": "~3.0.0",
+    "angular-new-router": "~0.5.3"
   }
 }
