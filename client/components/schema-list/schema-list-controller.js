@@ -7,43 +7,46 @@
     dynamicMongooseSchemaModule.controller('SchemaListController', [
         'SchemaService', '$rootScope', '$modal',
         function (SchemaService, $rootScope, $modal) {
-            let schemaListController = this;
-            schemaListController.recordsPerPage = 5;
-            schemaListController.get = (pageNumber) => {
-                schemaListController.alreadyShownRecordCount = ((pageNumber - 1) * schemaListController.recordsPerPage) + 1;
-                SchemaService.list(schemaListController.recordsPerPage, pageNumber)
+            let schemaList = this;
+            schemaList.activate = ['$scope', function ($scope) {
+                $scope.setTitleAndPageProperty('Schema List', 'schema-list');
+            }];
+            schemaList.recordsPerPage = 5;
+            schemaList.get = (pageNumber) => {
+                schemaList.alreadyShownRecordCount = ((pageNumber - 1) * schemaList.recordsPerPage) + 1;
+                SchemaService.list(schemaList.recordsPerPage, pageNumber)
                     .success((response) => {
-                        schemaListController.schemas = response.tables;
-                        schemaListController.records = response.total;
-                        schemaListController.totalPages = Math.ceil(schemaListController.records / schemaListController.recordsPerPage);
+                        schemaList.schemas = response.tables;
+                        schemaList.records = response.total;
+                        schemaList.totalPages = Math.ceil(schemaList.records / schemaList.recordsPerPage);
                     })
                     .error((error) => {
-                        schemaListController.errorMessage = error;
+                        schemaList.errorMessage = error;
                     });
             };
-            schemaListController.get(1);
+            schemaList.get(1);
             $rootScope.$on('schema:added', (event, newSchema) => {
-                schemaListController.schemas.push(newSchema);
+                schemaList.schemas.push(newSchema);
             });
-            schemaListController.viewSchema = (index) => {
+            schemaList.viewSchema = (index) => {
                 $rootScope.$modalInstance = $modal.open({
                     templateUrl: 'schema/schema.view.html',
                     controller: 'SchemaViewController as schemaViewController',
                     resolve: {
                         schema_id: function () {
-                            return schemaListController.schemas[index]._id;
+                            return schemaList.schemas[index]._id;
                         }
                     }
                 });
             };
-            schemaListController.ok = () => {
+            schemaList.ok = () => {
                 $rootScope.$modalInstance.close();
             };
-            schemaListController.remove = (index)=> {
-                let id = schemaListController.schemas[index]._id;
+            schemaList.remove = (index)=> {
+                let id = schemaList.schemas[index]._id;
                 SchemaService.remove(id)
                     .success((data) => {
-                        schemaListController.schemas.splice(index, 1);
+                        schemaList.schemas.splice(index, 1);
                     })
                     .error((error) => {
 
