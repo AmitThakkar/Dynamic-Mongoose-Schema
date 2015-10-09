@@ -6,7 +6,7 @@
     class MongooseSchemaGenerator {
         generate(columns) {
             let dynamicSchema = {_id: {type: 'ObjectId', unique: true, index: true}};
-            columns.forEach(function (column) {
+            ng.forEach(columns, function (column) {
                 let field = dynamicSchema[column.name] = {};
                 if (column.type) {
                     field.type = column.type;
@@ -23,6 +23,12 @@
                         case 'Object' :
                             break;
                     }
+                }
+                if (column.enum) {
+                    field.enum = [];
+                    ng.forEach(column.enum, function (enumObject) {
+                        field.enum.push(enumObject.text)
+                    });
                 }
                 column.required ? field.required = column.required == 'true' : '';
                 field.unique = column.unique == 'true';

@@ -25,6 +25,12 @@
                         field.type = Object;
                         break;
                 }
+                if (column.enum) {
+                    field.enum = [];
+                    column.enum.forEach(function (enumObject) {
+                        field.enum.push(enumObject.text)
+                    });
+                }
                 column.required ? field.required = column.required == 'true' : '';
                 field.unique = column.unique == 'true';
                 field.index = column.index == 'true';
