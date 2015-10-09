@@ -8,6 +8,9 @@
         'SchemaService', '$rootScope',
         function (SchemaService, $rootScope) {
             let schemaAdd = this;
+            schemaAdd.activate = ['$scope', function ($scope) {
+                $scope.setTitleAndPageProperty('Schema Add', 'schema-add');
+            }];
             schemaAdd.types = [
                 'String',
                 'Number',

@@ -9,8 +9,7 @@
             <span class="col-md-4" for="dbName">Database Name</span>
 
             <div class="col-md-4">
-                <input type="text" id="dbName" class="form-control"
-                       ng-model="schemaAdd.newSchema.databaseName">
+                <input type="text" id="dbName" class="form-control" ng-model="schemaAdd.newSchema.databaseName">
             </div>
             <div class="col-md-2">&nbsp;</div>
         </div>
@@ -19,8 +18,7 @@
             <span class="col-md-4" for="tbName">Table Name</span>
 
             <div class="col-md-4">
-                <input class="form-control" type="text" id="tbName"
-                       ng-model="schemaAdd.newSchema.tableName">
+                <input class="form-control" type="text" id="tbName" ng-model="schemaAdd.newSchema.tableName">
             </div>
             <div class="col-md-2">&nbsp;</div>
         </div>
@@ -29,8 +27,7 @@
             <span class="col-md-4" for="dbName">&nbsp;</span>
 
             <div class="col-md-4">
-                <button type="button" class="btn btn-success btn-sm"
-                        ng-click="schemaAdd.addNewColumn();">Add New Column
+                <button type="button" class="btn btn-success btn-sm" ng-click="schemaAdd.addNewColumn();">Add New Column
                 </button>
             </div>
             <div class="col-md-2">&nbsp;</div>
@@ -79,8 +76,7 @@
             <tr ng-repeat="column in schemaAdd.newSchema.columns track by column.name">
                 <td><input type="text" ng-model="column.name"></td>
                 <td>
-                    <select ng-options="type for type in ::schemaAdd.types"
-                            ng-model="column.type">
+                    <select ng-options="type for type in ::schemaAdd.types" ng-model="column.type">
                         <option value="">NA</option>
                     </select>
                 </td>
