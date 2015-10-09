@@ -19,7 +19,7 @@
     });
     const MongooseSchemaGenerator = require('./server/MongooseSchemaGenerator');
     logger.info('Starting Application in =>', config.environment, 'Environment');
-    if (cluster.isMaster) {
+    if (cluster.isMaster && config.isClusterEnvironment) {
         logger.debug('Starting', NUMBER_OF_CPUs, 'Node Servers!');
         for (var coreIndex = 0; coreIndex < NUMBER_OF_CPUs; coreIndex++) {
             cluster.fork();

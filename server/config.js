@@ -11,13 +11,16 @@
         logLevel: 'trace',
         dateFormat: 'mmmm dd, yyyy HH:MM:ss',
         port: 8080,
+        isClusterEnvironment: false,
         host: 'localhost'
     };
     if (process.env.NODE_ENV && process.env.NODE_ENV == 'QA') {
         config.environment = 'QA';
+        config.isClusterEnvironment = true;
         config.mongo_url = "mongodb://QAServerIP/dynamicSchema";
     } else if (process.env.NODE_ENV && process.env.NODE_ENV == 'STAGING') {
         config.environment = 'STAGING';
+        config.isClusterEnvironment = true;
         config.mongoDBUrl = "mongodb://StagingServerIP/dynamicSchema";
     }
     module.exports = config;
