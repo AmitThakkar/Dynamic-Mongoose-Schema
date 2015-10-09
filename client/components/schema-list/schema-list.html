@@ -25,11 +25,10 @@
         </tr>
         </tbody>
     </table>
-    <ul class="pagination pagination-sm">
+    <ul class="pagination pagination-sm test ">
         <li class="disabled"><a href="javascript:void(0)">«</a></li>
-        <li ng-repeat="page in [] | range : 1 : schemaList.totalPages"
-            ng-class="{'active' : $index == 0}">
-            <a href="javascript:void(0)" ng-click="schemaList.get($index+1)">{{$index+1}}</a>
+        <li ng-repeat="page in [] | range : 1 : schemaList.totalPages">
+            <a href="javascript:void(0)" ng-click="schemaList.get($index+1);schemaList.test[$index]=true">{{$index+1}}</a>
         </li>
         <li><a href="javascript:void(0)">»</a></li>
     </ul>
