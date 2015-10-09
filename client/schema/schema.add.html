@@ -48,6 +48,7 @@
                 <td>Trim</td>
                 <td>Unique</td>
                 <td>Index</td>
+                <td>ENUM</td>
                 <td>Default</td>
             </tr>
             </thead>
@@ -72,6 +73,7 @@
                 <td>NA</td>
                 <td>true</td>
                 <td>true</td>
+                <td>NA</td>
                 <td></td>
             </tr>
             <tr ng-repeat="column in schemaAddController.newSchema.columns track by column.name">
@@ -96,6 +98,9 @@
                            ng-disabled="column.type != 'String' && column.type != 'Number'">
                 </td>
                 <td><input type="checkbox" ng-model="column.index"></td>
+                <td>
+                    <tags-input ng-model="column.numbers" placeholder="Add a number" min-length="1" max-length="20">
+                </td>
                 <td>
                     <input type="text" ng-model="column.default"
                            ng-disabled="column.required == true || column.unique == true">

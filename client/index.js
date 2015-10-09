@@ -3,5 +3,5 @@
  */
 ((ng) => {
     'use strict';
-    ng.module('dynamicMongooseSchema', ['ui.bootstrap']);
+    ng.module('dynamicMongooseSchema', ['ui.bootstrap', 'ngTagsInput']);
 })(angular);
