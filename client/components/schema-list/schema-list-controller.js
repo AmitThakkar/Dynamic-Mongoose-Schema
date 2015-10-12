@@ -13,6 +13,7 @@
             }];
             schemaList.recordsPerPage = 5;
             schemaList.get = (pageNumber) => {
+                schemaList.pageNumber = pageNumber;
                 schemaList.alreadyShownRecordCount = ((pageNumber - 1) * schemaList.recordsPerPage) + 1;
                 SchemaService.list(schemaList.recordsPerPage, pageNumber)
                     .success((response) => {

@@ -85,4 +85,9 @@ a:active {
     text-decoration: none;
 }
 
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+/*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
+
+
+.not-active {
+    pointer-events: none;
+}
