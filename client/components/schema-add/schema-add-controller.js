@@ -17,23 +17,23 @@
                 'Array',
                 'Object'
             ];
-            schemaAdd.ok = () => {
-                $rootScope.$modalInstance.close();
-            };
-            schemaAdd.cancel = () => {
-                $rootScope.$modalInstance.dismiss('cancel');
-            };
             schemaAdd.addNewColumn = () => {
                 schemaAdd.newSchema.columns.push({
                     name: 'field ' + schemaAdd.newSchema.columns.length
                 });
             };
-            schemaAdd.reset = () => {
+            schemaAdd.reset = (isManualReset) => {
+                schemaAdd.errorMessage = '';
+                if(isManualReset){
+                    schemaAdd.successMessage = '';
+                }
                 schemaAdd.newSchema = {
                     columns: []
                 };
             };
             schemaAdd.save = () => {
+                schemaAdd.errorMessage = '';
+                schemaAdd.successMessage = '';
                 if (!schemaAdd.newSchema.databaseName) {
                     schemaAdd.errorMessage = 'Please provide Database Name';
                     return;
@@ -49,15 +49,15 @@
                 SchemaService.save(schemaAdd.newSchema)
                     .success((newSchema) => {
                         $rootScope.$emit('schema:added', newSchema);
-                        schemaAdd.reset();
-                        schemaAdd.ok();
+                        schemaAdd.successMessage = "Your schema has been successfully saved.";
+                        schemaAdd.reset(false);
                     })
                     .error((error) => {
                         schemaAdd.errorMessage = error;
                     });
             };
             if (!schemaAdd.newSchema) {
-                schemaAdd.reset();
+                schemaAdd.reset(false);
             }
         }
     ]);
