@@ -14,8 +14,8 @@
             schemaList.recordsPerPage = 5;
             schemaList.get = (pageNumber) => {
                 schemaList.pageNumber = pageNumber;
-                schemaList.alreadyShownRecordCount = ((pageNumber - 1) * schemaList.recordsPerPage) + 1;
-                SchemaService.list(schemaList.recordsPerPage, pageNumber)
+                schemaList.alreadyShownRecordCount = ((schemaList.pageNumber - 1) * schemaList.recordsPerPage) + 1;
+                SchemaService.list(schemaList.recordsPerPage, schemaList.pageNumber)
                     .success((response) => {
                         schemaList.schemas = response.tables;
                         schemaList.records = response.total;
