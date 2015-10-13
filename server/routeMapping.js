@@ -4,6 +4,6 @@
 ((module, require) => {
     "use strict";
     module.exports = (app) => {
-        require('./schema/schema.main')(app);
+        require('./schema/schema-main')(app);
     };
 })(module, require);

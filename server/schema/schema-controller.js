@@ -5,7 +5,7 @@
     "use strict";
     const DEFAULT_LIMIT = 10;
     const DEFAULT_PAGE_NUMBER = 1;
-    let Schema = require('./schema.domain');
+    let Schema = require('./schema-domain');
     let exports = module.exports;
     exports.save = (request, response) => {
         let newSchema = new Schema(request.body);

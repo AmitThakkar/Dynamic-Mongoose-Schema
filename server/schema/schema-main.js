@@ -3,7 +3,7 @@
  */
 ((module, require) => {
     'use strict';
-    let SchemaController = require('./schema.controller');
+    let SchemaController = require('./schema-controller');
     module.exports = (app) => {
         app.post('/schema', SchemaController.save);
         app.get('/schema/:limit/:pageNumber', SchemaController.list);
