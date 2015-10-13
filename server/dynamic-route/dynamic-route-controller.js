@@ -10,6 +10,12 @@
             if (error) {
                 logger.error(error);
                 response.status(500).json(error.message);
+            } else if (!route) {
+                response.status(200).json({
+                    isSuccess: false,
+                    errorCode: 404,
+                    errorMessage: 'The requested URL ' + request.url + ' with Method ' + request.method + ' was not found on this server.'
+                });
             } else {
                 response.status(200).json(route);
             }
