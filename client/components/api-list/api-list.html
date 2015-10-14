@@ -1,36 +1,41 @@
 <div class="container well infobox">
-    <h4 class="title center">Your APIs</h4>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <td>S.No.</td>
-            <td>URL</td>
-            <td>Method</td>
-            <td colspan="2">Handler(s)</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="api in apiList.apis track by $index">
-            <td>{{ apiList.alreadyShownRecordCount + $index }}</td>
-            <td>{{ api.databaseName }}</td>
-            <td>{{ api.tableName }}</td>
-            <td>
-                <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
-                   ng-click="apiList.viewSchema($index)"></a>
-            </td>
-            <td>
-                <a href="javascript:void(0);" class="glyphicon glyphicon-trash icon-color   "
-                   ng-click="apiList.remove($index)"></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <ul class="pagination pagination-sm">
-        <li ng-click="apiList.get(apiList.pageNumber-1)"><a ng-class="{'not-active':apiList.pageNumber-1==0}" href="javascript:void(0)">«</a></li>
-        <li ng-repeat="page in [] | range : 1 : apiList.totalPages" ng-class="{'active' : $index == apiList.pageNumber-1}">
-            <a href="javascript:void(0)" ng-click="apiList.get($index+1)">{{$index+1}}</a>
-        </li>
-        <li><a href="javascript:void(0)" ng-class="{'not-active':apiList.pageNumber == apiList.totalPages}" ng-click="apiList.get(apiList.pageNumber+1)">»</a></li>
-    </ul>
-    <div class="clear">&nbsp;</div>
+    <div ng-if='apiList.apis.length'>
+        <h4 class="title center">Your APIs</h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>S.No.</td>
+                <td>URL</td>
+                <td>Method</td>
+                <td colspan="2">Handler(s)</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="api in apiList.apis track by $index">
+                <td>{{ apiList.alreadyShownRecordCount + $index }}</td>
+                <td>{{ api.databaseName }}</td>
+                <td>{{ api.tableName }}</td>
+                <td>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
+                       ng-click="apiList.viewSchema($index)"></a>
+                </td>
+                <td>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-trash icon-color   "
+                       ng-click="apiList.remove($index)"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="pagination pagination-sm">
+            <li ng-click="apiList.get(apiList.pageNumber-1)"><a ng-class="{'not-active':apiList.pageNumber-1==0}" href="javascript:void(0)">«</a></li>
+            <li ng-repeat="page in [] | range : 1 : apiList.totalPages" ng-class="{'active' : $index == apiList.pageNumber-1}">
+                <a href="javascript:void(0)" ng-click="apiList.get($index+1)">{{$index+1}}</a>
+            </li>
+            <li><a href="javascript:void(0)" ng-class="{'not-active':apiList.pageNumber == apiList.totalPages}" ng-click="apiList.get(apiList.pageNumber+1)">»</a></li>
+        </ul>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div ng-hide='apiList.apis.length'>
+        No API found.
+    </div>
 </div>
