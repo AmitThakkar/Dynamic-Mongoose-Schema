@@ -38,7 +38,9 @@
                         logger.error(error);
                         response.status(500).json(error.message);
                     } else {
-                        response.status(200).json({tables: Apis, total: count});
+                        response.status(200).json({
+                            apis: Apis, total: count
+                        });
                     }
                 });
             }

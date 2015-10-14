@@ -5,16 +5,18 @@
             <thead>
             <tr>
                 <td>S.No.</td>
+                <td>Name</td>
                 <td>URL</td>
                 <td>Method</td>
-                <td colspan="2">Handler(s)</td>
+                <td colspan="2">Action(s)</td>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="api in apiList.apis track by $index">
                 <td>{{ apiList.alreadyShownRecordCount + $index }}</td>
-                <td>{{ api.databaseName }}</td>
-                <td>{{ api.tableName }}</td>
+                <td>{{ api.name }}</td>
+                <td>{{ api.url }}</td>
+                <td>{{ api.method }}</td>
                 <td>
                     <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
                        ng-click="apiList.viewSchema($index)"></a>

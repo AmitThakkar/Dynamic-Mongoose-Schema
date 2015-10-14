@@ -25,7 +25,7 @@
                         apiList.errorMessage = error;
                     });
             };
-            //apiList.get(1);
+            apiList.get(1);
             apiList.viewApi = (index) => {
                 /*$rootScope.$modalInstance = $modal.open({
                     templateUrl: 'schema/schema.view.html',

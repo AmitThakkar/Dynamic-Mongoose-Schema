@@ -11,6 +11,12 @@
         handlers: {type: Array, required: true},
         isRemoved: {type: Boolean, default: false}
     });
+    apiObject.static('findAll', function (options, callback) {
+        this.find({isRemoved: false}, {__v: 0, isRemoved: 0, handlers: 0}, options).lean().exec(callback);
+    });
+    apiObject.static('countAll', function (callback) {
+        this.count({isRemoved: false}, callback);
+    });
     apiObject.static('findOneByURLAndMethod', function (url, method, callback) {
         this.findOne({url: url, method: method}, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
