@@ -38,12 +38,13 @@
                     <button type="button" class="btn btn-success btn-sm" ng-click="apiAdd.addNewHandler();">
                         Add New Handler
                     </button>
-                    <ul>
-                        <li ng-repeat="handler in apiAdd.newApi.handlers track by $index">
-                            <textarea ng-model="apiAdd.newApi.handlers[$index]"></textarea>
-                        </li>
-                    </ul>
                 </div>
+                <div class="clear">&nbsp;</div>
+                <ul>
+                    <li ng-repeat="handler in apiAdd.newApi.handlers track by $index">
+                        <textarea rows="10" cols="150" ng-model="apiAdd.newApi.handlers[$index]"></textarea>
+                    </li>
+                </ul>
                 <div class="col-md-2">&nbsp;</div>
             </div>
             <div class="clear">&nbsp;</div>
