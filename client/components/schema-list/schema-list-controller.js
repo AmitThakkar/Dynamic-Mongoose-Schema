@@ -28,7 +28,7 @@
             schemaList.get(1);
             schemaList.viewSchema = (index) => {
                 $rootScope.$modalInstance = $modal.open({
-                    templateUrl: 'schema/schema.view.html',
+                    templateUrl: 'components/schema-view/schema-view.html',
                     controller: 'SchemaViewController as schemaViewController',
                     resolve: {
                         schema_id: function () {

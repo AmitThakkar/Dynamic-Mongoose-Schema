@@ -17,7 +17,6 @@
         format: [config.logFormat],
         dateformat: config.dateFormat
     });
-    const MongooseSchemaGenerator = require('./server/MongooseSchemaGenerator');
     logger.info('Starting Application in =>', config.environment, 'Environment');
     if (cluster.isMaster && config.isClusterEnvironment) {
         logger.debug('Starting', NUMBER_OF_CPUs, 'Node Servers!');
