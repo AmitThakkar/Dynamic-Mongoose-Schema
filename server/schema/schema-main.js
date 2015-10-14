@@ -10,6 +10,6 @@
         app.get('/schema/', SchemaController.list);
         app.delete('/schema/:_id', SchemaController.remove);
         app.get('/schema/:_id', SchemaController.get);
-        app.put('/schema/:_id', SchemaController.update)
+        app.put('/schema/:_id', SchemaController.update);
     };
 })(module, require);

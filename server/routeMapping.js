@@ -5,6 +5,7 @@
     "use strict";
     module.exports = (app) => {
         require('./schema/schema-main')(app);
-        require('./dynamic-route/dynamic-route-main')(app);
+        // This route must be last to handle all the request.
+        require('./api/api-main')(app);
     };
 })(module, require);
