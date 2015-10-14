@@ -5,8 +5,8 @@
     "use strict";
     let dynamicMongooseSchemaModule = ng.module('dynamicMongooseSchema');
     dynamicMongooseSchemaModule.controller('SchemaAddController', [
-        'SchemaService', '$rootScope',
-        function (SchemaService, $rootScope) {
+        'SchemaService',
+        function (SchemaService) {
             let schemaAdd = this;
             schemaAdd.activate = ['$scope', function ($scope) {
                 $scope.setTitleAndPageProperty('Schema Add', 'schema-add');

@@ -1,23 +1,32 @@
 <div class="container well infobox">
-    <h4 class="title">New Table Details</h4>
+    <h4 class="title">New API Details</h4>
 
     <div>
         <form>
             <div class="form-group">
                 <div class="clear">&nbsp;</div>
-                <span class="col-md-4" for="dbName">Database Name</span>
+                <span class="col-md-4" for="apiName">Name</span>
 
                 <div class="col-md-4">
-                    <input type="text" id="dbName" class="form-control" ng-model="schemaAdd.newSchema.databaseName">
+                    <input type="text" class="form-control" ng-model="apiAdd.newApi.name">
                 </div>
                 <div class="col-md-2">&nbsp;</div>
             </div>
             <div class="form-group">
                 <div class="clear">&nbsp;</div>
-                <span class="col-md-4" for="tbName">Table Name</span>
+                <span class="col-md-4" for="tbName">URL</span>
 
                 <div class="col-md-4">
-                    <input class="form-control" type="text" id="tbName" ng-model="schemaAdd.newSchema.tableName">
+                    <input class="form-control" type="text" ng-model="apiAdd.newApi.url">
+                </div>
+                <div class="col-md-2">&nbsp;</div>
+            </div>
+            <div class="form-group">
+                <div class="clear">&nbsp;</div>
+                <span class="col-md-4" for="tbName">Method</span>
+
+                <div class="col-md-4">
+                    <input class="form-control" type="text" ng-model="apiAdd.newApi.method">
                 </div>
                 <div class="col-md-2">&nbsp;</div>
             </div>
@@ -26,9 +35,14 @@
                 <span class="col-md-4" for="dbName">&nbsp;</span>
 
                 <div class="col-md-4 center">
-                    <button type="button" class="btn btn-success btn-sm" ng-click="schemaAdd.addNewColumn();">
-                        Add New Column
+                    <button type="button" class="btn btn-success btn-sm" ng-click="apiAdd.addNewHandler();">
+                        Add New Handler
                     </button>
+                    <ul>
+                        <li ng-repeat="handler in apiAdd.newApi.handlers track by $index">
+                            {{handler}}
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-md-2">&nbsp;</div>
             </div>
@@ -36,35 +50,10 @@
         </form>
         <div class="container" style="overflow:auto; max-width: 100%; max-height: 250px;">
             <table class="table table-striped">
-                <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Type</td>
-                    <td>Required</td>
-                    <td>Upper/Lower Case</td>
-                    <td>Trim</td>
-                    <td>Unique</td>
-                    <td>Index</td>
-                    <td>ENUM</td>
-                    <td>Default</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>_id</td>
-                    <td>ObjectId</td>
-                    <td>true</td>
-                    <td>NA</td>
-                    <td>NA</td>
-                    <td>true</td>
-                    <td>true</td>
-                    <td>NA</td>
-                    <td></td>
-                </tr>
-                <tr ng-repeat="column in schemaAdd.newSchema.columns track by column.name">
+                <tr ng-repeat="column in apiAdd.newApi.columns track by column.name">
                     <td><input type="text" ng-model="column.name"></td>
                     <td>
-                        <select ng-options="type for type in ::schemaAdd.types" ng-model="column.type">
+                        <select ng-options="type for type in ::apiAdd.types" ng-model="column.type">
                             <option value="">NA</option>
                         </select>
                     </td>
@@ -93,17 +82,17 @@
                 </tbody>
             </table>
         </div>
-        <div class="text-danger" ng-show="!schemaAdd.successMessage">
-            {{schemaAdd.errorMessage}}
+        <div class="text-danger" ng-show="!apiAdd.successMessage">
+            {{apiAdd.errorMessage}}
         </div>
-        <div class="text-success" ng-show="!schemaAdd.errorMessage">
-            {{schemaAdd.successMessage}}
+        <div class="text-success" ng-show="!apiAdd.errorMessage">
+            {{apiAdd.successMessage}}
         </div>
         <div class="center">
-            <button type="button" class="btn btn-primary" ng-click="schemaAdd.reset(true);">
+            <button type="button" class="btn btn-primary" ng-click="apiAdd.reset(true);">
                 Reset
             </button>
-            <button type="button" class="btn btn-success" ng-click="schemaAdd.save();">
+            <button type="button" class="btn btn-success" ng-click="apiAdd.save();">
                 Save
             </button>
         </div>
