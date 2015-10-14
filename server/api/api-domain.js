@@ -7,7 +7,7 @@
     let apiObject = mongoose.Schema({
         name: {type: String, required: true, trim: true, lowercase: true, unique: true},
         url: {type: String, required: true, trim: true, lowercase: true},
-        method: {type: String, required: true, trim: true, lowercase: true, default: 'get'},
+        method: {type: String, required: true, trim: true, uppercase: true, default: 'get'},
         handlers: {type: Array, required: true},
         isRemoved: {type: Boolean, default: false}
     });
