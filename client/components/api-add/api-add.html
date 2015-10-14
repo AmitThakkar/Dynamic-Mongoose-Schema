@@ -40,7 +40,7 @@
                     </button>
                     <ul>
                         <li ng-repeat="handler in apiAdd.newApi.handlers track by $index">
-                            {{handler}}
+                            <textarea ng-model="apiAdd.newApi.handlers[$index]"></textarea>
                         </li>
                     </ul>
                 </div>
