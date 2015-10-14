@@ -48,7 +48,6 @@
                 }
                 SchemaService.save(schemaAdd.newSchema)
                     .success((newSchema) => {
-                        $rootScope.$emit('schema:added', newSchema);
                         schemaAdd.successMessage = "Your schema has been successfully saved.";
                         schemaAdd.reset(false);
                     })

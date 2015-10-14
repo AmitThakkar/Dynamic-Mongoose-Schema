@@ -18,17 +18,14 @@
                 SchemaService.list(schemaList.recordsPerPage, schemaList.pageNumber)
                     .success((response) => {
                         schemaList.schemas = response.tables;
-                        schemaList.records = response.total;
-                        schemaList.totalPages = Math.ceil(schemaList.records / schemaList.recordsPerPage);
+                        schemaList.total = response.total;
+                        schemaList.totalPages = Math.ceil(schemaList.total / schemaList.recordsPerPage);
                     })
                     .error((error) => {
                         schemaList.errorMessage = error;
                     });
             };
             schemaList.get(1);
-            $rootScope.$on('schema:added', (event, newSchema) => {
-                schemaList.schemas.push(newSchema);
-            });
             schemaList.viewSchema = (index) => {
                 $rootScope.$modalInstance = $modal.open({
                     templateUrl: 'schema/schema.view.html',
