@@ -1,10 +1,8 @@
 /**
  * Created by Amit Thakkar on 9/25/15.
  */
-((require, module)=> {
+((require, module, config)=> {
     "use strict";
-    const DEFAULT_LIMIT = 10;
-    const DEFAULT_PAGE_NUMBER = 1;
     let Schema = require('./schema-domain');
     let exports = module.exports;
     exports.save = (request, response) => {
@@ -23,8 +21,8 @@
         });
     };
     exports.list = (request, response) => {
-        let limit = request.params.limit || DEFAULT_LIMIT;
-        let pageNumber = request.params.pageNumber || DEFAULT_PAGE_NUMBER;
+        let limit = request.params.limit || config.DEFAULT_LIMIT;
+        let pageNumber = request.params.pageNumber || config.DEFAULT_PAGE_NUMBER;
         let options = {
             limit: limit,
             skip: (pageNumber - 1) * limit
@@ -114,4 +112,4 @@
             }
         });
     };
-})(require, module);
+})(require, module, config);

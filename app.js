@@ -1,12 +1,12 @@
 /**
  * Created by Amit Thakkar on 9/24/15.
  */
-((require, process) => {
+((require, process, global) => {
     'use strict';
     // Requiring Dependencies
     const express = require('express');
     const mongoose = require('mongoose');
-    const config = require('./server/config');
+    const config = global.config = require('./server/config');
     const bodyParser = require('body-parser');
     const responseTime = require('response-time');
     const cluster = require('cluster');
@@ -98,4 +98,4 @@
      });*!/
      }
      });*/
-})(require, process);
+})(require, process, global);

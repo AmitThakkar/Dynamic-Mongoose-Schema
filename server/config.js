@@ -10,6 +10,8 @@
         environment: 'DEV',
         logLevel: 'trace',
         dateFormat: 'mmmm dd, yyyy HH:MM:ss',
+        DEFAULT_LIMIT: 10,
+        DEFAULT_PAGE_NUMBER: 1,
         port: 8080,
         isClusterEnvironment: false,
         host: 'localhost'
