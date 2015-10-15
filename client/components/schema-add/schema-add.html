@@ -2,35 +2,35 @@
     <h4 class="title">New Table Details</h4>
 
     <div>
-        <form>
+        <form class="form-horizontal">
             <div class="form-group">
                 <div class="clear">&nbsp;</div>
-                <span class="col-md-4" for="dbName">Database Name</span>
+                <!--<span class="col-md-2" for="dbName">Database Name</span>-->
 
-                <div class="col-md-4">
-                    <input type="text" id="dbName" class="form-control" ng-model="schemaAdd.newSchema.databaseName">
+                <div class="col-md-10">
+                    <input type="text" id="dbName" class="form-control" placeholder="Database Name" ng-model="schemaAdd.newSchema.databaseName">
                 </div>
-                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-4">&nbsp;</div>
             </div>
             <div class="form-group">
                 <div class="clear">&nbsp;</div>
-                <span class="col-md-4" for="tbName">Table Name</span>
+                <!--<span class="col-md-2" for="tbName">Table Name</span>-->
 
-                <div class="col-md-4">
-                    <input class="form-control" type="text" id="tbName" ng-model="schemaAdd.newSchema.tableName">
+                <div class="col-md-10">
+                    <input class="form-control" placeholder="Table Name" type="text" id="tbName" ng-model="schemaAdd.newSchema.tableName">
                 </div>
-                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-4">&nbsp;</div>
             </div>
             <div class="form-group">
                 <div class="clear">&nbsp;</div>
-                <span class="col-md-4" for="dbName">&nbsp;</span>
+                <span class="col-md-2" for="dbName">&nbsp;</span>
 
-                <div class="col-md-4 center">
+                <div class="col-md-6 center">
                     <button type="button" class="btn btn-success btn-sm" ng-click="schemaAdd.addNewColumn();">
                         Add New Column
                     </button>
                 </div>
-                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-4    ">&nbsp;</div>
             </div>
             <div class="clear">&nbsp;</div>
         </form>
@@ -100,10 +100,10 @@
             {{schemaAdd.successMessage}}
         </div>
         <div class="center">
-            <button type="button" class="btn btn-primary" ng-click="schemaAdd.reset(true);">
+            <button type="button" class="btn btn-primary center" ng-click="schemaAdd.reset(true);">
                 Reset
             </button>
-            <button type="button" class="btn btn-success" ng-click="schemaAdd.save();">
+            <button type="button" class="btn btn-success center" ng-click="schemaAdd.save();">
                 Save
             </button>
         </div>

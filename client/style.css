@@ -89,3 +89,8 @@ a:active {
 .not-active {
     pointer-events: none;
 }
+
+input::-webkit-input-placeholder { font-size: 11pt; color: #97A4A9 !important; }
+input::-moz-placeholder { font-size: 11pt; color: #97A4A9 !important; }
+input:-ms-input-placeholder { font-size: 11pt; color: #97A4A9 !important; }
+input:-moz-placeholder { font-size: 11pt; color: #97A4A9 !important; }
