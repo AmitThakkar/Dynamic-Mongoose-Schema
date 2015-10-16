@@ -1,0 +1,101 @@
+<div class="container well infobox">
+    <h4 class="title">New API Details</h4>
+
+    <div>
+        <form>
+            <div class="form-group">
+                <div class="clear">&nbsp;</div>
+                <span class="col-md-4" for="apiName">Name</span>
+
+                <div class="col-md-4">
+                    <input type="text" class="form-control" ng-model="apiView.api.name">
+                </div>
+                <div class="col-md-2">&nbsp;</div>
+            </div>
+            <div class="form-group">
+                <div class="clear">&nbsp;</div>
+                <span class="col-md-4" for="tbName">URL</span>
+
+                <div class="col-md-4">
+                    <input class="form-control" type="text" ng-model="apiView.api.url">
+                </div>
+                <div class="col-md-2">&nbsp;</div>
+            </div>
+            <div class="form-group">
+                <div class="clear">&nbsp;</div>
+                <span class="col-md-4" for="tbName">Method</span>
+
+                <div class="col-md-4">
+                    <input class="form-control" type="text" ng-model="apiView.api.method">
+                </div>
+                <div class="col-md-2">&nbsp;</div>
+            </div>
+            <div class="form-group">
+                <div class="clear">&nbsp;</div>
+                <span class="col-md-4" for="dbName">&nbsp;</span>
+
+                <div class="col-md-4 center">
+                    <button type="button" class="btn btn-success btn-sm" ng-click="apiView.addNewHandler();">
+                        Add New Handler
+                    </button>
+                </div>
+                <div class="clear">&nbsp;</div>
+                <ul>
+                    <li ng-repeat="handler in apiView.api.handlers track by $index">
+                        <textarea rows="10" cols="150" ng-model="apiView.api.handlers[$index]"></textarea>
+                    </li>
+                </ul>
+                <div class="col-md-2">&nbsp;</div>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </form>
+        <div class="container" style="overflow:auto; max-width: 100%; max-height: 250px;">
+            <table class="table table-striped">
+                <tr ng-repeat="column in apiView.api.columns track by column.name">
+                    <td><input type="text" ng-model="column.name"></td>
+                    <td>
+                        <select ng-options="type for type in ::apiView.types" ng-model="column.type">
+                            <option value="">NA</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" ng-model="column.required"></td>
+                    <td>
+                        <select ng-model="column.letterCase" ng-disabled="column.type != 'String'">
+                            <option value="">NA</option>
+                            <option value="U">Upper Case</option>
+                            <option value="L">Lower Case</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" ng-model="column.trim" ng-disabled="column.type != 'String'"></td>
+                    <td>
+                        <input type="checkbox" ng-model="column.unique"
+                               ng-disabled="column.type != 'String' && column.type != 'Number'">
+                    </td>
+                    <td><input type="checkbox" ng-model="column.index"></td>
+                    <td>
+                        <tags-input ng-model="column.enum" placeholder="Add Enum Values" min-length="1" max-length="20">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="column.default"
+                               ng-disabled="column.required == true || column.unique == true">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-danger" ng-show="!apiView.successMessage">
+            {{apiView.errorMessage}}
+        </div>
+        <div class="text-success" ng-show="!apiView.errorMessage">
+            {{apiView.successMessage}}
+        </div>
+        <div class="center">
+            <button type="button" class="btn btn-primary" ng-click="apiView.reset(true);">
+                Reset
+            </button>
+            <button type="button" class="btn btn-success" ng-click="apiView.save();">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

@@ -14,7 +14,7 @@
             <tbody>
             <tr ng-repeat="api in apiList.apis track by $index">
                 <td>{{ apiList.alreadyShownRecordCount + $index }}</td>
-                <td>{{ api.name }}</td>
+                <td><a ng-href="#/api-view/{{api._id}}">{{ api.name }}</a></td>
                 <td>{{ api.url }}</td>
                 <td>{{ api.method }}</td>
                 <td>
