@@ -21,7 +21,7 @@
         }
 
         getFunctionsFromStringFunctions(stringFunctions, callback) {
-            this.writeIntoFile(stringFunctions, function (fileName) {
+            this.writeIntoFile(stringFunctions, (fileName) => {
                 callback(require(fileName));
             });
         }
