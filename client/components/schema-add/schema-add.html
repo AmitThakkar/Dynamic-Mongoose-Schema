@@ -1,13 +1,16 @@
 <div class="container well infobox" style="max-height:10%">
     <h5 class="title">New Table Details</h5>
+
     <div>
         <form class="form-horizontal">
             <div class="form-group">
                 <div class="col-lg-4">
+                    {{ schemaAdd.newSchema.databaseName && 'Database Name' }}
                     <input type="text" id="dbName" class="form-control" placeholder="Database Name"
                            ng-model="schemaAdd.newSchema.databaseName">
                 </div>
                 <div class="col-lg-4">
+                    {{ schemaAdd.newSchema.tableName && 'Table Name' }}
                     <input class="form-control" placeholder="Table Name" type="text" id="tbName"
                            ng-model="schemaAdd.newSchema.tableName">
                 </div>
