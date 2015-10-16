@@ -1,24 +1,30 @@
 /**
  * Created by Amit Thakkar on 10/14/15.
  */
-((process) => {
+((process, module) => {
     "use strict";
     const fs = require('fs');
-    const TEMP_FOLDER = process.cwd() + '/';
+    const TEMP_FOLDER = process.cwd() + '/temp/';
     class FunctionMaker {
-        writeIntoFile(writeIntoFile, callback) {
+        writeIntoFile(stringFunctions, callback) {
             let nowFileName = TEMP_FOLDER + Date.now() + '.js';
-            var nowFile = fs.createWriteStream(nowFileName);
-            nowFile.write(writeIntoFile, function () {
+            let moduleString = 'module.exports={';
+            let postfix = '}';
+            stringFunctions.forEach((stringFunction, functionIndex) => {
+                moduleString += '"' + functionIndex + '":' + stringFunction + ',';
+            });
+            moduleString = moduleString.replace(/,$/, '');
+            moduleString += postfix;
+            fs.writeFile(nowFileName, moduleString, () => {
                 callback(nowFileName);
             });
         }
 
-        getFunctionFromString(functionString, callback) {
-            this.writeIntoFile(functionString, function (fileName) {
+        getFunctionsFromStringFunctions(stringFunctions, callback) {
+            this.writeIntoFile(stringFunctions, function (fileName) {
                 callback(require(fileName));
             });
         }
     }
     module.exports = new FunctionMaker();
-})(process);
+})(process, module);
