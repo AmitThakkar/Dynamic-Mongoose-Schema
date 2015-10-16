@@ -20,6 +20,9 @@
     apiObject.static('countAll', function (callback) {
         this.count({isRemoved: false}, callback);
     });
+    apiObject.static('updateById', function (_id, updatedApi, callback) {
+        this.update({_id: _id}, {$set:updatedApi}).exec(callback);
+    });
     apiObject.static('findOneByURLAndMethod', function (url, method, callback) {
         this.findOne({url: url, method: method}, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });

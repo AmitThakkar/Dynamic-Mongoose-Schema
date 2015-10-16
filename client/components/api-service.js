@@ -10,14 +10,17 @@
         apiService.save = (newApi) => {
             return $http.post(URL, newApi)
         };
+        apiService.update = (_id, updatedApi) => {
+            return $http.put(URL + _id, updatedApi)
+        };
         apiService.list = (max, pageNumber) => {
             return $http.get(URL + max + '/' + pageNumber)
         };
-        apiService.get = (id) => {
-            return $http.get(URL + id)
+        apiService.get = (_id) => {
+            return $http.get(URL + _id)
         };
-        apiService.remove = (id) => {
-            return $http.delete(URL + id)
+        apiService.remove = (_id) => {
+            return $http.delete(URL + _id)
         };
     }]);
 })(angular);

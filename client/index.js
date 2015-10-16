@@ -30,6 +30,10 @@
             {
                 path: '/api-view/:_id',
                 component: 'apiView'
+            },
+            {
+                path: '/api-edit/:_id',
+                component: 'apiEdit'
             }
         ]);
         $scope.setTitleAndPageProperty = function(title, page) {

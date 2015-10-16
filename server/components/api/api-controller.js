@@ -89,7 +89,7 @@
     exports.update = (request, response) => {
         let _id = request.params._id;
         var updatedApiFields = request.body;
-        Api.update(_id, updatedApiFields, (error, result) => {
+        Api.updateById(_id, updatedApiFields, (error, result) => {
             if (error) {
                 logger.error(error);
                 response.status(500).json(error.message);
