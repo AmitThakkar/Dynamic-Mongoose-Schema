@@ -26,7 +26,7 @@
                 <span class="col-md-4" for="tbName">Method</span>
 
                 <div class="col-md-4">
-                    <input class="form-control" type="text" ng-model="apiAdd.newApi.method">
+                    <select ng-options="method for method in ::apiAdd.methods" ng-model="apiAdd.newApi.method"></select>
                 </div>
                 <div class="col-md-2">&nbsp;</div>
             </div>

@@ -11,6 +11,12 @@
             apiAdd.activate = ['$scope', function ($scope) {
                 $scope.setTitleAndPageProperty('API Add', 'api-add');
             }];
+            apiAdd.methods = [
+                'GET',
+                'POST',
+                'PUT',
+                'DELETE'
+            ];
             apiAdd.addNewHandler = () => {
                 apiAdd.newApi.handlers.push('//New Handler Code should go here');
             };

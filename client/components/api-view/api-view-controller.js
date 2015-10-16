@@ -16,39 +16,8 @@
                     apiView.api = api;
                 })
                 .error((error)=> {
-                    apiView.errorMessage = error;
+                    // TODO handler api handler before showing
                 });
-            apiView.addNewHandler = () => {
-                apiView.api.handlers.push('//New Handler Code should go here');
-            };
-            apiView.reset = (isManualReset) => {
-                apiView.errorMessage = '';
-                if (isManualReset) {
-                    apiView.successMessage = '';
-                }
-                apiView.api = {
-                    handlers: ['//New Handler Code should go here']
-                };
-            };
-            apiView.update = () => {
-                apiView.errorMessage = '';
-                apiView.successMessage = '';
-                if (apiView.api.handlers.length < 1) {
-                    apiView.errorMessage = 'Please provide at-least one Handler for API';
-                    return;
-                }
-                ApiService.save(apiView.api)
-                    .success((api) => {
-                        apiView.successMessage = "Your Api has been successfully saved.";
-                        apiView.reset(false);
-                    })
-                    .error((error) => {
-                        apiView.errorMessage = error;
-                    });
-            };
-            if (!apiView.api) {
-                apiView.reset(false);
-            }
         }
     ]);
 })(angular);
