@@ -49,40 +49,6 @@
             </div>
             <div class="clear">&nbsp;</div>
         </form>
-        <div class="container" style="overflow:auto; max-width: 100%; max-height: 250px;">
-            <table class="table table-striped">
-                <tr ng-repeat="column in apiView.api.columns track by column.name">
-                    <td><input type="text" ng-model="column.name"></td>
-                    <td>
-                        <select ng-options="type for type in ::apiView.types" ng-model="column.type">
-                            <option value="">NA</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" ng-model="column.required"></td>
-                    <td>
-                        <select ng-model="column.letterCase" ng-disabled="column.type != 'String'">
-                            <option value="">NA</option>
-                            <option value="U">Upper Case</option>
-                            <option value="L">Lower Case</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" ng-model="column.trim" ng-disabled="column.type != 'String'"></td>
-                    <td>
-                        <input type="checkbox" ng-model="column.unique"
-                               ng-disabled="column.type != 'String' && column.type != 'Number'">
-                    </td>
-                    <td><input type="checkbox" ng-model="column.index"></td>
-                    <td>
-                        <tags-input ng-model="column.enum" placeholder="Add Enum Values" min-length="1" max-length="20">
-                    </td>
-                    <td>
-                        <input type="text" ng-model="column.default"
-                               ng-disabled="column.required == true || column.unique == true">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
         <div class="text-danger" ng-show="!apiView.successMessage">
             {{apiView.errorMessage}}
         </div>
