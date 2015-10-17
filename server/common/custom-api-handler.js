@@ -1,14 +1,23 @@
 /**
  * Created by Amit Thakkar on 10/14/15.
  */
-((module) => {
+((module, require) => {
     "use strict";
     const fs = require('fs');
     const TEMP_FOLDER = config.customApiHandlerDirectory;
     class FunctionMaker {
+        removeOldApiHandler(_id) {
+            let apiHandlerFileAbsolutePath = TEMP_FOLDER + _id + '.js';
+            fs.unlink(apiHandlerFileAbsolutePath, (error) => {
+                if(error) {
+                    logger.error(error);
+                }
+            });
+            delete require.cache[apiHandlerFileAbsolutePath];
+        }
+
         requireApiHandlers(api, callback) {
-            let fileName = api.url + api.method;
-            let apiHandlerFileAbsolutePath = TEMP_FOLDER + fileName + '.js';
+            let apiHandlerFileAbsolutePath = TEMP_FOLDER + api._id + '.js';
             fs.exists(apiHandlerFileAbsolutePath, (exists) => {
                 if (exists) {
                     callback(require(apiHandlerFileAbsolutePath));
@@ -28,4 +37,4 @@
         }
     }
     module.exports = new FunctionMaker();
-})(module);
+})(module, require);

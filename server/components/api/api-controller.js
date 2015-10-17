@@ -4,7 +4,7 @@
 ((require, module, config, process)=> {
     "use strict";
     let Api = require('./api-domain');
-    let functionMaker = require(process.cwd() + '/server/common/function-maker');
+    let customApiManage = require(process.cwd() + '/server/common/custom-api-handler');
     let exports = module.exports;
     exports.save = (request, response) => {
         let newApi = new Api(request.body);
@@ -111,6 +111,7 @@
                         isSuccess: true,
                         message: 'Record Update with _id ' + _id
                     });
+                    customApiManage.removeOldApiHandler(_id);
                 }
             }
         });
@@ -127,7 +128,7 @@
                     errorMessage: 'The requested URL ' + request.url + ' with Method ' + request.method + ' was not found on this server.'
                 });
             } else {
-                functionMaker.requireApiHandlers(api, (handlers) => {
+                customApiManage.requireApiHandlers(api, (handlers) => {
                     var routeExecutor = (request, response, routes, routeIndex) => {
                         routes[routeIndex].apply(null, [request, response, () => {
                             routeExecutor(request, response, routes, ++routeIndex);
