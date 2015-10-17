@@ -14,6 +14,7 @@
         DEFAULT_PAGE_NUMBER: 1,
         port: 8080,
         isClusterEnvironment: false,
+        customApiHandlerDirectory: process.cwd() + '/temp/',
         host: 'localhost'
     };
     if (process.env.NODE_ENV && process.env.NODE_ENV == 'QA') {
