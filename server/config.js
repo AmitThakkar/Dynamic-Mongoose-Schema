@@ -24,6 +24,10 @@
         config.environment = 'STAGING';
         config.isClusterEnvironment = true;
         config.mongoDBUrl = "mongodb://StagingServerIP/dynamicSchema";
+    } else if (process.env.NODE_ENV && process.env.NODE_ENV == 'PRODUCTION') {
+        config.environment = 'PRODUCTION';
+        config.isClusterEnvironment = true;
+        config.mongoDBUrl = "mongodb://ProductionServerIP/dynamicSchema";
     }
     module.exports = config;
 })(module, process);

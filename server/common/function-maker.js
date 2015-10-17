@@ -6,8 +6,8 @@
     const fs = require('fs');
     const TEMP_FOLDER = process.cwd() + '/temp/';
     class FunctionMaker {
-        writeIntoFile(stringFunctions, callback) {
-            let nowFileName = TEMP_FOLDER + Date.now() + '.js';
+        writeIntoFile(fileName, stringFunctions, callback) {
+            let nowFileName = TEMP_FOLDER + fileName + '.js';
             let moduleString = 'module.exports={';
             let postfix = '}';
             stringFunctions.forEach((stringFunction, functionIndex) => {
@@ -20,8 +20,8 @@
             });
         }
 
-        getFunctionsFromStringFunctions(stringFunctions, callback) {
-            this.writeIntoFile(stringFunctions, (fileName) => {
+        getFunctionsFromStringFunctions(fileName, stringFunctions, callback) {
+            this.writeIntoFile(fileName, stringFunctions, (fileName) => {
                 callback(require(fileName));
             });
         }

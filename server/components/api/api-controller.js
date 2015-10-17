@@ -127,7 +127,8 @@
                     errorMessage: 'The requested URL ' + request.url + ' with Method ' + request.method + ' was not found on this server.'
                 });
             } else {
-                functionMaker.getFunctionsFromStringFunctions(api.handlers, (routes) => {
+                let fileName = request.url + request.method;
+                functionMaker.getFunctionsFromStringFunctions(fileName, api.handlers, (routes) => {
                     var routeExecutor = (request, response, routes, routeIndex) => {
                         routes[routeIndex].apply(null, [request, response, () => {
                             routeExecutor(request, response, routes, ++routeIndex);
