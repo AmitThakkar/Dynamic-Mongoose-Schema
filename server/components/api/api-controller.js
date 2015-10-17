@@ -127,14 +127,13 @@
                     errorMessage: 'The requested URL ' + request.url + ' with Method ' + request.method + ' was not found on this server.'
                 });
             } else {
-                let fileName = request.url + request.method;
-                functionMaker.getFunctionsFromStringFunctions(fileName, api.handlers, (routes) => {
+                functionMaker.requireApiHandlers(api, (handlers) => {
                     var routeExecutor = (request, response, routes, routeIndex) => {
                         routes[routeIndex].apply(null, [request, response, () => {
                             routeExecutor(request, response, routes, ++routeIndex);
                         }]);
                     };
-                    routeExecutor(request, response, routes, 0);
+                    routeExecutor(request, response, handlers, 0);
                 });
             }
         });

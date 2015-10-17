@@ -6,7 +6,8 @@
     const fs = require('fs');
     const TEMP_FOLDER = config.customApiHandlerDirectory;
     class FunctionMaker {
-        getFunctionsFromStringFunctions(fileName, stringFunctions, callback) {
+        requireApiHandlers(api, callback) {
+            let fileName = api.url + api.method;
             let apiHandlerFileAbsolutePath = TEMP_FOLDER + fileName + '.js';
             fs.exists(apiHandlerFileAbsolutePath, (exists) => {
                 if (exists) {
@@ -14,7 +15,7 @@
                 } else {
                     let moduleString = 'module.exports={';
                     let postfix = '}';
-                    stringFunctions.forEach((stringFunction, functionIndex) => {
+                    api.handlers.forEach((stringFunction, functionIndex) => {
                         moduleString += '"' + functionIndex + '":' + stringFunction + ',';
                     });
                     moduleString = moduleString.replace(/,$/, '');
