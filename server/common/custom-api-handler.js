@@ -6,10 +6,14 @@
     const fs = require('fs');
     const TEMP_FOLDER = config.customApiHandlerDirectory;
     class FunctionMaker {
+        getApiHandlerFileName(_id) {
+            return TEMP_FOLDER + _id + '.js';
+        }
+
         removeOldApiHandler(_id) {
-            let apiHandlerFileAbsolutePath = TEMP_FOLDER + _id + '.js';
+            let apiHandlerFileAbsolutePath = this.getApiHandlerFileName(_id);
             fs.unlink(apiHandlerFileAbsolutePath, (error) => {
-                if(error) {
+                if (error) {
                     logger.error(error);
                 }
             });
@@ -17,7 +21,7 @@
         }
 
         requireApiHandlers(api, callback) {
-            let apiHandlerFileAbsolutePath = TEMP_FOLDER + api._id + '.js';
+            let apiHandlerFileAbsolutePath = this.getApiHandlerFileName(api._id);
             fs.exists(apiHandlerFileAbsolutePath, (exists) => {
                 if (exists) {
                     callback(require(apiHandlerFileAbsolutePath));
