@@ -1,9 +1,11 @@
 /**
  * Created by Amit Thakkar on 9/25/15.
  */
-((require, module, config)=> {
+((require, module, config, global)=> {
     "use strict";
-    let Schema = require('./schema-domain');
+    const Schema = require('./schema-domain');
+    const mongoose = require('mongoose');
+    const MongooseSchemaGenerator = require(process.cwd() + '/server/common/mongoose-schema-generator');
     let exports = module.exports;
     exports.save = (request, response) => {
         let newSchema = new Schema(request.body);
@@ -112,4 +114,17 @@
             }
         });
     };
-})(require, module, config);
+    global.getSchema = (databaseName, tableName, callback) => {
+        Schema.findOneByDatabaseNameAndTableName(databaseName, tableName, function (error, table) {
+            if (error) {
+                logger.error(error);
+            } else {
+                var schemaName = databaseName + tableName;
+                delete mongoose.models[schemaName];
+                // TODO Why should we remove schema as well?
+                //delete mongoose.modelSchemas[schemaName];
+                callback(mongoose.model(schemaName, MongooseSchemaGenerator.generate(table.columns)));
+            }
+        });
+    };
+})(require, module, config, global);

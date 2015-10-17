@@ -23,6 +23,9 @@
     schemaObject.static('softRemove', function (_id, callback) {
         this.update({_id: ObjectId(_id)}, {$set: {isRemoved: true}}, {multi: false, upsert: false}, callback);
     });
+    schemaObject.static('findOneByDatabaseNameAndTableName', function (databaseName, tableName, callback) {
+        this.findOne({databaseName: databaseName, tableName: tableName}, {__v: 0, isRemoved: 0}).lean().exec(callback);
+    });
     schemaObject.index({databaseName: 1, tableName: 1}, {unique: true});
     schemaObject.index({isRemoved: 1});
     module.exports = mongoose.model('Schema', schemaObject);

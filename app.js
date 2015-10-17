@@ -75,26 +75,4 @@
             logger.info('Dynamic Schema app listening at http://%s:%s', config.host, port);
         });
     }
-    /*let Schema = require('./server/schema/schema.domain');
-     let databaseName = 'amps';
-     let tableName = 'user';
-     Schema.findOne({databaseName: databaseName, tableName: tableName}, {
-     _id: 0,
-     columns: 1
-     }, function (error, table) {
-     if (error) {
-     logger.error(error);
-     } else {
-     logger.debug(table);
-     let DynamicSchema = mongoose.model(databaseName + tableName, MongooseSchemaGenerator.generate(table.columns));
-     /!*new DynamicSchema({
-     name: 'Amit',
-     age: 23,
-     email: 'asdf',
-     test: 232
-     }).save(function () {
-     logger.debug(arguments)
-     });*!/
-     }
-     });*/
 })(require, process, global);
