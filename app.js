@@ -70,9 +70,10 @@
         app.use(express.static('bower_components'));
         app.use(bodyParser.json());
         require('./server/routeMapping')(app);
-        const port = process.env.PORT || config.port;
-        const server = app.listen(port, () => {
-            logger.info('Dynamic Schema app listening at http://%s:%s', config.host, port);
+        const PORT = process.env.PORT || config.port;
+        const server = app.listen(PORT, () => {
+            logger.info('Dynamic Schema app listening at http://%s:%s', config.host, PORT);
         });
+        require('./server/api-server');
     }
 })(require, process, global);

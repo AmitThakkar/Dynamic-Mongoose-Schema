@@ -13,6 +13,7 @@
         DEFAULT_LIMIT: 10,
         DEFAULT_PAGE_NUMBER: 1,
         port: 8080,
+        API_PORT: 8081,
         isClusterEnvironment: false,
         customApiHandlerDirectory: process.cwd() + '/temp/',
         host: 'localhost'
