@@ -6,12 +6,13 @@
     class GetSchemaHandler {
         handle(dataObject, client) {
             global.getSchema(dataObject.databaseName, dataObject.tableName, (schema) => {
-                schema[dataObject.methodName](dataObject.arguments[0], function () {
+                dataObject.arguments.push(function () {
                     client.write(JSON.stringify({
                         'callbackCount': dataObject.callbackCount,
                         'result': [].slice.call(arguments)
                     }));
                 });
+                schema[dataObject.methodName].apply(schema, dataObject.arguments);
             });
         }
     }
