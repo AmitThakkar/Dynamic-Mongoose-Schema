@@ -9,7 +9,7 @@
                 schema[dataObject.methodName](dataObject.arguments, function () {
                     client.write(JSON.stringify({
                         'callbackCount': dataObject.callbackCount,
-                        'result': arguments
+                        'result': [].slice.call(arguments)
                     }));
                 });
             });
