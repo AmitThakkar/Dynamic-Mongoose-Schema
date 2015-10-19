@@ -69,7 +69,7 @@
         app.use(express.static('client'));
         app.use(express.static('bower_components'));
         app.use(bodyParser.json());
-        require('./server/routeMapping')(app);
+        require('./server/route-mapping')(app);
         const PORT = process.env.PORT || config.port;
         const server = app.listen(PORT, () => {
             logger.info('Dynamic Schema app listening at http://%s:%s', config.host, PORT);
