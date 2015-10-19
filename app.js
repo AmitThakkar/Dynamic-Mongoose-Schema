@@ -74,6 +74,6 @@
         const server = app.listen(PORT, () => {
             logger.info('Dynamic Schema app listening at http://%s:%s', config.host, PORT);
         });
-        require('./server/api-server');
+        require('./server/api-server/index');
     }
 })(require, process, global);
