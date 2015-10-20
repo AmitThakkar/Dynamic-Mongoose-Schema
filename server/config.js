@@ -21,7 +21,7 @@
     if (process.env.NODE_ENV && process.env.NODE_ENV == 'QA') {
         config.environment = 'QA';
         config.isClusterEnvironment = true;
-        config.mongo_url = "mongodb://QAServerIP/dynamicSchema";
+        config.mongoDBUrl = "mongodb://localhost/dynamicSchema";
     } else if (process.env.NODE_ENV && process.env.NODE_ENV == 'STAGING') {
         config.environment = 'STAGING';
         config.isClusterEnvironment = true;
