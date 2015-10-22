@@ -9,14 +9,16 @@
             return config.customApiHandlerDirectory + projectName + '/' + apiFileName + '.js';
         }
 
-        removeOldApiHandler(_id) {
-            let apiHandlerFileAbsolutePath = this.getApiHandlerAbsoluteName(_id);
-            fs.unlink(apiHandlerFileAbsolutePath, (error) => {
+        updateApiHandler(projectName, apiFileName, handler, callback) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(projectName, apiFileName);
+            fs.writeFile(apiHandlerAbsolutePath, handler, (error) => {
                 if (error) {
-                    logger.error(error);
+                    callback(error);
+                } else {
+                    delete require.cache[apiHandlerAbsolutePath];
+                    callback(null);
                 }
             });
-            delete require.cache[apiHandlerFileAbsolutePath];
         }
 
         saveApiHandler(projectName, apiFileName, handler, callback) {

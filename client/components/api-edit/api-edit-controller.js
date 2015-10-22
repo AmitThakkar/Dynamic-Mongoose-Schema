@@ -34,6 +34,8 @@
                 apiEdit.errorMessage = '';
                 apiEdit.successMessage = '';
                 ApiService.update($routeParams._id, {
+                    url: apiEdit.updatedApi.url,
+                    method: apiEdit.updatedApi.method,
                     handler: apiEdit.updatedApi.handler
                 })
                     .success(() => {

@@ -9,10 +9,12 @@
         url: {type: String, required: true, trim: true, lowercase: true},
         method: {type: String, required: true, trim: true, uppercase: true, default: 'get'},
         projectName: {type: String, require: true, trim: true, uppercase: true, default: 'TEST'},
+        createAt: {type: Number, required: true, default: Date.now},
+        updatedAt: {type: Number, required: true, default: Date.now},
         isRemoved: {type: Boolean, default: false}
     });
     apiObject.static('findOneById', function (_id, callback) {
-        this.findOne({_id: _id}, {__v: 0, isRemoved: 0}).lean().exec(callback);
+        this.findById(_id, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
     apiObject.static('findAll', function (options, callback) {
         this.find({isRemoved: false}, {__v: 0, isRemoved: 0}, options).lean().exec(callback);
@@ -20,12 +22,15 @@
     apiObject.static('countAll', function (callback) {
         this.count({isRemoved: false}, callback);
     });
-    apiObject.static('updateById', function (_id, updatedApi, callback) {
-        this.update({_id: _id}, {$set:updatedApi}).exec(callback);
+    apiObject.static('findOneByIdAndUpdate', function (_id, updatedApi, callback) {
+        this.findByIdAndUpdate(_id, {$set: updatedApi}).lean().exec(callback);
     });
     apiObject.static('findOneByURLAndMethod', function (url, method, callback) {
         this.findOne({projectName: 'TEST', url: url, method: method}, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
+    /*apiObject.pre('update', function () {
+        this.update({}, {$set: {updatedAt: Date.now}});
+    });*/
     apiObject.index({projectName: 1, url: 1, method: 1}, {unique: true});
     apiObject.index({isRemoved: 1});
     module.exports = mongoose.model('Api', apiObject);
