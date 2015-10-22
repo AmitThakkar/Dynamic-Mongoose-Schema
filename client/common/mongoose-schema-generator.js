@@ -1,7 +1,7 @@
 /**
  * Created by Amit Thakkar on 10/14/15.
  */
-(() => {
+((ng) => {
     "use strict";
     class MongooseSchemaGenerator {
         generate(columns) {
@@ -38,4 +38,5 @@
             return dynamicSchema;
         }
     }
-})();
+    window.MongooseSchemaGenerator = MongooseSchemaGenerator;
+})(angular);
