@@ -17,17 +17,11 @@
                 'PUT',
                 'DELETE'
             ];
-            apiAdd.addNewHandler = () => {
-                apiAdd.newApi.handlers.push('//New Handler Code should go here');
-            };
             apiAdd.reset = (isManualReset) => {
                 apiAdd.errorMessage = '';
                 if (isManualReset) {
                     apiAdd.successMessage = '';
                 }
-                apiAdd.newApi = {
-                    handlers: ['//New Handler Code should go here']
-                };
             };
             apiAdd.save = () => {
                 apiAdd.errorMessage = '';
@@ -44,12 +38,8 @@
                     apiAdd.errorMessage = 'Please provide Method for API';
                     return;
                 }
-                if (apiAdd.newApi.handlers.length < 1) {
-                    apiAdd.errorMessage = 'Please provide at-least one Handler for API';
-                    return;
-                }
                 ApiService.save(apiAdd.newApi)
-                    .success((newApi) => {
+                    .success(() => {
                         apiAdd.successMessage = "Your Api has been successfully saved.";
                         apiAdd.reset(false);
                     })
