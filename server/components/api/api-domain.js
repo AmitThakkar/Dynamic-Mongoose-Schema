@@ -23,14 +23,15 @@
         this.count({isRemoved: false}, callback);
     });
     apiObject.static('findOneByIdAndUpdate', function (_id, updatedApi, callback) {
-        this.findByIdAndUpdate(_id, {$set: updatedApi}).lean().exec(callback);
+        this.findByIdAndUpdate(_id, {$set: updatedApi}).exec(callback);
     });
     apiObject.static('findOneByURLAndMethod', function (url, method, callback) {
         this.findOne({projectName: 'TEST', url: url, method: method}, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
-    /*apiObject.pre('update', function () {
-        this.update({}, {$set: {updatedAt: Date.now}});
-    });*/
+    // TODO not update date.
+    apiObject.pre('findOneAndUpdate', function () {
+        this.updatedAt = Date.now();
+    });
     apiObject.index({projectName: 1, url: 1, method: 1}, {unique: true});
     apiObject.index({isRemoved: 1});
     module.exports = mongoose.model('Api', apiObject);
