@@ -24,6 +24,11 @@
             fs.writeFile(apiHandlerAbsolutePath, handler, callback);
         }
 
+        getApiHandler(apiFileName, callback) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(apiFileName);
+            fs.readFile(apiHandlerAbsolutePath, callback);
+        }
+
         requireApiHandlers(api, callback) {
             let apiHandlerFileAbsolutePath = this.getApiHandlerAbsoluteName(api._id);
             fs.exists(apiHandlerFileAbsolutePath, (exists) => {

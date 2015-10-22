@@ -61,12 +61,19 @@
     };
     exports.get = (request, response) => {
         let _id = request.params._id;
-        Api.findOneById(_id, (error, Api) => {
+        Api.findOneById(_id, (error, api) => {
             if (error) {
                 logger.error(error);
-                response.status(500).json(error.message);
+                response.status(HTTP_STATUS.ERROR).json(error.message);
             } else {
-                response.status(200).json(Api);
+                api.handler = customApiHandler.getApiHandler(api.name, (error, handler) => {
+                    if(error) {
+                        response.status(HTTP_STATUS.ERROR).json(error.message);
+                    } else {
+                        api.handler = handler.toString();
+                        response.status(HTTP_STATUS.SUCCESS).json(api);
+                    }
+                });
             }
         });
     };
