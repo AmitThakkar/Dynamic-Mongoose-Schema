@@ -9,6 +9,8 @@
         databaseName: {type: String, required: true, trim: true, lowercase: true},
         tableName: {type: String, required: true, trim: true, lowercase: true},
         isRemoved: {type: Boolean, default: false},
+        createdAt: {type: Number, required: true, default: Date.now},
+        lastUpdateAt: {type: Number, required: true, default: Date.now},
         columns: {type: Array}
     });
     schemaObject.static('findOneById', function (_id, callback) {
@@ -25,6 +27,10 @@
     });
     schemaObject.static('findOneByDatabaseNameAndTableName', function (databaseName, tableName, callback) {
         this.findOne({databaseName: databaseName, tableName: tableName}, {__v: 0, isRemoved: 0}).lean().exec(callback);
+    });
+    // TODO not update date.
+    schemaObject.pre('findOneAndUpdate', function () {
+        this.lastUpdateAt = Date.now();
     });
     schemaObject.index({databaseName: 1, tableName: 1}, {unique: true});
     schemaObject.index({isRemoved: 1});

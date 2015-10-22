@@ -9,8 +9,8 @@
         url: {type: String, required: true, trim: true, lowercase: true},
         method: {type: String, required: true, trim: true, uppercase: true, default: 'get'},
         projectName: {type: String, require: true, trim: true, uppercase: true, default: 'TEST'},
-        createAt: {type: Number, required: true, default: Date.now},
-        updatedAt: {type: Number, required: true, default: Date.now},
+        createdAt: {type: Number, required: true, default: Date.now},
+        lastUpdateAt: {type: Number, required: true, default: Date.now},
         isRemoved: {type: Boolean, default: false}
     });
     apiObject.static('findOneById', function (_id, callback) {
@@ -30,7 +30,7 @@
     });
     // TODO not update date.
     apiObject.pre('findOneAndUpdate', function () {
-        this.updatedAt = Date.now();
+        this.lastUpdateAt = Date.now();
     });
     apiObject.index({projectName: 1, url: 1, method: 1}, {unique: true});
     apiObject.index({isRemoved: 1});
