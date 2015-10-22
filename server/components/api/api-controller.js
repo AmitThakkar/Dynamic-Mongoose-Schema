@@ -68,7 +68,7 @@
                 response.status(HTTP_STATUS.ERROR).json(error.message);
             } else {
                 api.handler = customApiHandler.getApiHandler(api.projectName, api.name, (error, handler) => {
-                    if(error) {
+                    if (error) {
                         response.status(HTTP_STATUS.ERROR).json(error.message);
                     } else {
                         api.handler = handler.toString();
@@ -148,14 +148,7 @@
                     errorMessage: 'The requested URL ' + request.url + ' with Method ' + request.method + ' was not found on this server.'
                 });
             } else {
-                customApiHandler.requireApiHandlers(api, (handlers) => {
-                    var routeExecutor = (request, response, routes, routeIndex) => {
-                        routes[routeIndex].apply(null, [request, response, () => {
-                            routeExecutor(request, response, routes, ++routeIndex);
-                        }]);
-                    };
-                    routeExecutor(request, response, handlers, 0);
-                });
+                customApiHandler.requireApiHandlers(api.projectName, api.name).apply(null, [request, response]);
             }
         });
     };

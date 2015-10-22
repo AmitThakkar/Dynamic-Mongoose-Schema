@@ -29,24 +29,9 @@
             fs.readFile(apiHandlerAbsolutePath, callback);
         }
 
-        requireApiHandlers(api, callback) {
-            let apiHandlerFileAbsolutePath = this.getApiHandlerAbsoluteName(api._id);
-            fs.exists(apiHandlerFileAbsolutePath, (exists) => {
-                if (exists) {
-                    callback(require(apiHandlerFileAbsolutePath));
-                } else {
-                    let moduleString = 'module.exports={';
-                    let postfix = '}';
-                    api.handlers.forEach((stringFunction, functionIndex) => {
-                        moduleString += '"' + functionIndex + '":' + stringFunction + ',';
-                    });
-                    moduleString = moduleString.replace(/,$/, '');
-                    moduleString += postfix;
-                    fs.writeFile(apiHandlerFileAbsolutePath, moduleString, () => {
-                        callback(require(apiHandlerFileAbsolutePath));
-                    });
-                }
-            });
+        requireApiHandlers(projectName, apiFileName) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(projectName, apiFileName);
+            return require(apiHandlerAbsolutePath);
         }
     }
     module.exports = new CustomApiHandler();

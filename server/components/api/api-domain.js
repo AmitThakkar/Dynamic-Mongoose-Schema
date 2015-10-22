@@ -24,7 +24,7 @@
         this.update({_id: _id}, {$set:updatedApi}).exec(callback);
     });
     apiObject.static('findOneByURLAndMethod', function (url, method, callback) {
-        this.findOne({url: url, method: method}, {__v: 0, isRemoved: 0}).lean().exec(callback);
+        this.findOne({projectName: 'TEST', url: url, method: method}, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
     apiObject.index({projectName: 1, url: 1, method: 1}, {unique: true});
     apiObject.index({isRemoved: 1});
