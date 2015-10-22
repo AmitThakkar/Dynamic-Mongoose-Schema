@@ -7,6 +7,7 @@
                 <td>S.No.</td>
                 <td>Name</td>
                 <td>URL</td>
+                <td>Project</td>
                 <td>Method</td>
                 <td colspan="2">Action(s)</td>
             </tr>
@@ -16,6 +17,7 @@
                 <td>{{ apiList.alreadyShownRecordCount + $index }}</td>
                 <td><a ng-href="#/api-view/{{api._id}}">{{ api.name }}</a></td>
                 <td>{{ api.url }}</td>
+                <td>{{ api.projectName }}</td>
                 <td>{{ api.method }}</td>
                 <td>
                     <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"

@@ -11,6 +11,7 @@
         let requestBody = request.body;
         let newApi = new Api({
             name: requestBody.name,
+            projectName: requestBody.projectName,
             url: requestBody.url,
             method: requestBody.method
         });
@@ -23,7 +24,7 @@
                     response.status(HTTP_STATUS.ERROR).json({message: error.message});
                 }
             } else {
-                customApiHandler.saveApiHandler(requestBody.name, requestBody.handler, (error) => {
+                customApiHandler.saveApiHandler(requestBody.projectName, requestBody.name, requestBody.handler, (error) => {
                     if (error) {
                         response.status(HTTP_STATUS.ERROR).json({message: error.message});
                     } else {
@@ -66,7 +67,7 @@
                 logger.error(error);
                 response.status(HTTP_STATUS.ERROR).json(error.message);
             } else {
-                api.handler = customApiHandler.getApiHandler(api.name, (error, handler) => {
+                api.handler = customApiHandler.getApiHandler(api.projectName, api.name, (error, handler) => {
                     if(error) {
                         response.status(HTTP_STATUS.ERROR).json(error.message);
                     } else {
