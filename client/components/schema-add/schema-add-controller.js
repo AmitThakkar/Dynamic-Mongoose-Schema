@@ -46,6 +46,7 @@
                     schemaAdd.errorMessage = 'Please provide at-least one Column details';
                     return;
                 }
+                schemaAdd.newSchema.projectName = 'TEST';
                 SchemaService.save(schemaAdd.newSchema)
                     .success((newSchema) => {
                         schemaAdd.successMessage = "Your schema has been successfully saved.";

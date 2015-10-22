@@ -9,12 +9,7 @@
     const HTTP_STATUS = global.HTTP_STATUS;
     exports.save = (request, response) => {
         let requestBody = request.body;
-        let newApi = new Api({
-            name: requestBody.name,
-            projectName: requestBody.projectName,
-            url: requestBody.url,
-            method: requestBody.method
-        });
+        let newApi = new Api(requestBody);
         newApi.save((error) => {
             if (error) {
                 logger.error(error);
