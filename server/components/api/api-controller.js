@@ -1,23 +1,35 @@
 /**
  * Created by Amit Thakkar on 9/25/15.
  */
-((require, module, config, process)=> {
+((require, module, config, process, global)=> {
     "use strict";
     let Api = require('./api-domain');
-    let customApiManage = require(process.cwd() + '/server/common/custom-api-handler');
+    let customApiHandler = require(process.cwd() + '/server/common/custom-api-handler');
     let exports = module.exports;
+    const HTTP_STATUS = global.HTTP_STATUS;
     exports.save = (request, response) => {
-        let newApi = new Api(request.body);
+        let requestBody = request.body;
+        let newApi = new Api({
+            name: requestBody.name,
+            url: requestBody.url,
+            method: requestBody.method
+        });
         newApi.save((error) => {
             if (error) {
                 logger.error(error);
                 if (error.code == 11000) {
-                    response.status(500).json("API already present.");
+                    response.status(HTTP_STATUS.ERROR).json({message: "API already present."});
                 } else {
-                    response.status(500).json(error.message);
+                    response.status(HTTP_STATUS.ERROR).json({message: error.message});
                 }
             } else {
-                response.status(200).json(newApi);
+                customApiHandler.saveApiHandler(requestBody.name, requestBody.handler, (error) => {
+                    if (error) {
+                        response.status(HTTP_STATUS.ERROR).json({message: error.message});
+                    } else {
+                        response.status(HTTP_STATUS.SUCCESS).json(newApi);
+                    }
+                });
             }
         });
     };
@@ -111,7 +123,7 @@
                         isSuccess: true,
                         message: 'Record Update with _id ' + _id
                     });
-                    customApiManage.removeOldApiHandler(_id);
+                    customApiHandler.removeOldApiHandler(_id);
                 }
             }
         });
@@ -128,7 +140,7 @@
                     errorMessage: 'The requested URL ' + request.url + ' with Method ' + request.method + ' was not found on this server.'
                 });
             } else {
-                customApiManage.requireApiHandlers(api, (handlers) => {
+                customApiHandler.requireApiHandlers(api, (handlers) => {
                     var routeExecutor = (request, response, routes, routeIndex) => {
                         routes[routeIndex].apply(null, [request, response, () => {
                             routeExecutor(request, response, routes, ++routeIndex);
@@ -139,4 +151,4 @@
             }
         });
     };
-})(require, module, config, process);
+})(require, module, config, process, global);

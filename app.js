@@ -7,6 +7,7 @@
     const express = require('express');
     const mongoose = require('mongoose');
     const config = global.config = require('./server/config');
+    global.HTTP_STATUS = require('./server/common/http-response-status');
     const bodyParser = require('body-parser');
     const responseTime = require('response-time');
     const cluster = require('cluster');
