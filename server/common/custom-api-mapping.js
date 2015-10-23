@@ -3,15 +3,15 @@
  */
 ((module, require) => {
     "use strict";
-    let CustomApiHandler = require('./custom-api-handler');
+    let customApiHandler = require('./custom-api-handler');
     let Api = require('../components/api/api-domain');
     module.exports = (app) => {
         Api.findAll((error, apis) => {
-            if(error) {
+            if (error) {
                 logger.error('Custom Route Mapping not running because of ', error);
             } else {
                 apis.forEach((api) => {
-                    app[api.method.toLowerCase()](api.url, CustomApiHandler.requireApiHandlers(api.projectName, api.name));
+                    app[api.method.toLowerCase()](api.url, customApiHandler.requireApiHandlers(api.userName, api.projectName, api.name));
                 });
             }
         });

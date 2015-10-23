@@ -47,8 +47,9 @@
                     return;
                 }
                 schemaAdd.newSchema.projectName = 'TEST';
+                schemaAdd.newSchema.userName = 'AmitThakkar01';
                 SchemaService.save(schemaAdd.newSchema)
-                    .success((newSchema) => {
+                    .success(() => {
                         schemaAdd.successMessage = "Your schema has been successfully saved.";
                         schemaAdd.reset(false);
                     })

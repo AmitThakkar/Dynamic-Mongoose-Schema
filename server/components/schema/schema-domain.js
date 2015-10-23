@@ -10,6 +10,7 @@
         tableName: {type: String, required: true, trim: true, lowercase: true},
         columns: {type: Array},
         projectName: {type: String, require: true, trim: true, uppercase: true, default: 'TEST'},
+        userName: {type: String, require: true, trim: true, uppercase: true, default: 'AmitThakkar01'},
         createdAt: {type: Number, required: true, default: Date.now},
         lastUpdateAt: {type: Number, required: true, default: Date.now},
         isRemoved: {type: Boolean, default: false}
@@ -27,13 +28,13 @@
         this.update({_id: ObjectId(_id)}, {$set: {isRemoved: true}}, {multi: false, upsert: false}, callback);
     });
     schemaObject.static('findOneByDatabaseNameAndTableName', function (databaseName, tableName, callback) {
-        this.findOne({projectName: 'TEST', databaseName: databaseName, tableName: tableName}, {__v: 0, isRemoved: 0}).lean().exec(callback);
+        this.findOne({userName: 'AmitThakkar01', projectName: 'TEST', databaseName: databaseName, tableName: tableName}, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
     // TODO not update date.
     schemaObject.pre('findOneAndUpdate', function () {
         this.lastUpdateAt = Date.now();
     });
-    schemaObject.index({projectName: 1, databaseName: 1, tableName: 1}, {unique: true});
+    schemaObject.index({userName: 1, projectName: 1, databaseName: 1, tableName: 1}, {unique: true});
     schemaObject.index({isRemoved: 1});
     module.exports = mongoose.model('Schema', schemaObject);
 })(module, require);
