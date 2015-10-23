@@ -129,20 +129,4 @@
             }
         });
     };
-    exports.handler = (request, response) => {
-        Api.findOneByURLAndMethod(request.url, request.method, (error, api) => {
-            if (error) {
-                logger.error(error);
-                response.status(500).json(error.message);
-            } else if (!api) {
-                response.status(200).json({
-                    isSuccess: false,
-                    errorCode: 404,
-                    errorMessage: 'The requested URL ' + request.url + ' with Method ' + request.method + ' was not found on this server.'
-                });
-            } else {
-                customApiHandler.requireApiHandlers(api.projectName, api.name).apply(null, [request, response]);
-            }
-        });
-    };
 })(require, module, config, process, global);

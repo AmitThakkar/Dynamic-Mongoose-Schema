@@ -5,7 +5,7 @@
     "use strict";
     module.exports = (app) => {
         require('./components/schema/schema-main')(app);
-        // This route must be last to handle all the request.
         require('./components/api/api-main')(app);
+        require('./common/custom-api-mapping')(app);
     };
 })(module, require);

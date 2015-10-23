@@ -5,12 +5,12 @@
     "use strict";
     const fs = require('fs');
     class CustomApiHandler {
-        getApiHandlerAbsoluteName(projectName, apiFileName) {
-            return config.customApiHandlerDirectory + projectName + '/' + apiFileName + '.js';
+        getApiHandlerAbsoluteName(projectName, apiName) {
+            return config.customApiHandlerDirectory + projectName + '/' + apiName + '.js';
         }
 
-        updateApiHandler(projectName, apiFileName, handler, callback) {
-            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(projectName, apiFileName);
+        updateApiHandler(projectName, apiName, handler, callback) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(projectName, apiName);
             fs.writeFile(apiHandlerAbsolutePath, handler, (error) => {
                 if (error) {
                     callback(error);
@@ -21,8 +21,8 @@
             });
         }
 
-        saveApiHandler(projectName, apiFileName, handler, callback) {
-            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(projectName, apiFileName);
+        saveApiHandler(projectName, apiName, handler, callback) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(projectName, apiName);
             fs.writeFile(apiHandlerAbsolutePath, handler, callback);
         }
 
@@ -31,8 +31,8 @@
             fs.readFile(apiHandlerAbsolutePath, callback);
         }
 
-        requireApiHandlers(projectName, apiFileName) {
-            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(projectName, apiFileName);
+        requireApiHandlers(projectName, apiName) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(projectName, apiName);
             return require(apiHandlerAbsolutePath);
         }
     }

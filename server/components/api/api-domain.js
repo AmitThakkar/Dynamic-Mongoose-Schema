@@ -17,6 +17,10 @@
         this.findById(_id, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
     apiObject.static('findAll', function (options, callback) {
+        if(!callback) {
+            callback = options;
+            options = {};
+        }
         this.find({isRemoved: false}, {__v: 0, isRemoved: 0}, options).lean().exec(callback);
     });
     apiObject.static('countAll', function (callback) {

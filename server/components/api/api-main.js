@@ -11,6 +11,5 @@
         app.delete('/api/:_id', ApiController.remove);
         app.get('/api/:_id', ApiController.get);
         app.put('/api/:_id', ApiController.update);
-        app.all('/*', ApiController.handler);
     };
 })(module, require);
