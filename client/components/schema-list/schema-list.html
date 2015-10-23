@@ -8,7 +8,7 @@
                 <td>Database Name</td>
                 <td>Table Name</td>
                 <td>Project</td>
-                <td colspan="2">Action(s)</td>
+                <td colspan="3" class="center">Action(s)</td>
             </tr>
             </thead>
             <tbody>
@@ -22,7 +22,10 @@
                        ng-click="schemaList.viewSchema($index)"></a>
                 </td>
                 <td>
-                    <a href="javascript:void(0);" class="glyphicon glyphicon-trash icon-color   "
+                    <a href="javascript:void(0);" class="glyphicon glyphicon glyphicon-edit icon-color"></a>
+                </td>
+                <td>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-trash icon-color"
                        ng-click="schemaList.remove($index)"></a>
                 </td>
             </tr>

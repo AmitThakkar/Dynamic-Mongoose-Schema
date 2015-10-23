@@ -9,19 +9,22 @@
                 <td>URL</td>
                 <td>Project</td>
                 <td>Method</td>
-                <td colspan="2">Action(s)</td>
+                <td colspan="3" class="center">Action(s)</td>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="api in apiList.apis track by $index">
                 <td>{{ apiList.alreadyShownRecordCount + $index }}</td>
-                <td><a ng-href="#/api-view/{{api._id}}">{{ api.name }}</a></td>
+                <td>{{ api.name }}</td>
                 <td>{{ api.url }}</td>
                 <td>{{ api.projectName }}</td>
                 <td>{{ api.method }}</td>
                 <td>
                     <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
                        ng-click="apiList.viewSchema($index)"></a>
+                </td>
+                <td>
+                    <a href="#/api-edit/{{api._id}}" class="glyphicon glyphicon glyphicon-edit icon-color"></a>
                 </td>
                 <td>
                     <a href="javascript:void(0);" class="glyphicon glyphicon-trash icon-color   "
