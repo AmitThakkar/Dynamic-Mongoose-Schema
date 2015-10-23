@@ -12,11 +12,15 @@
             logger.info('Disconnected with client');
         });
         connection.on('data', function (data) {
-            let dataObject = JSON.parse(data);
-            switch (dataObject.eventName) {
-                case 'getSchema' :
-                    GET_SCHEMA_HANDLER.handle(dataObject, connection);
-                    break;
+            try {
+                let dataObject = JSON.parse(data);
+                switch (dataObject.eventName) {
+                    case 'getSchema' :
+                        GET_SCHEMA_HANDLER.handle(dataObject, connection);
+                        break;
+                }
+            } catch (error) {
+                logger.error(error);
             }
         });
         connection.pipe(connection);
