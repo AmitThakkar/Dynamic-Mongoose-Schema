@@ -21,6 +21,7 @@
             } else {
                 customApiHandler.saveApiHandler(requestBody, requestBody.handler, (error) => {
                     if (error) {
+                        logger.error(error);
                         response.status(HTTP_STATUS.ERROR).json({message: error.message});
                     } else {
                         response.status(HTTP_STATUS.SUCCESS).json(newApi);
@@ -64,6 +65,7 @@
             } else {
                 api.handler = customApiHandler.getApiHandler(api, (error, handler) => {
                     if (error) {
+                        logger.error(error);
                         response.status(HTTP_STATUS.ERROR).json(error.message);
                     } else {
                         api.handler = handler.toString();
