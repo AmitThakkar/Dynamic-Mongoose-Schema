@@ -9,8 +9,8 @@
         databaseName: {type: String, required: true, trim: true, lowercase: true},
         tableName: {type: String, required: true, trim: true, lowercase: true},
         columns: {type: Array},
-        projectName: {type: String, require: true, trim: true, uppercase: true, default: 'TEST'},
-        userName: {type: String, require: true, trim: true, uppercase: true, default: 'AmitThakkar01'},
+        projectName: {type: String, require: true, trim: true, lowercase: true, default: 'test'},
+        userName: {type: String, require: true, trim: true, lowercase: true, default: 'amitthakkar01'},
         createdAt: {type: Number, required: true, default: Date.now},
         lastUpdateAt: {type: Number, required: true, default: Date.now},
         isRemoved: {type: Boolean, default: false}
@@ -28,7 +28,7 @@
         this.update({_id: ObjectId(_id)}, {$set: {isRemoved: true}}, {multi: false, upsert: false}, callback);
     });
     schemaObject.static('findOneByDatabaseNameAndTableName', function (databaseName, tableName, callback) {
-        this.findOne({userName: 'AmitThakkar01', projectName: 'TEST', databaseName: databaseName, tableName: tableName}, {__v: 0, isRemoved: 0}).lean().exec(callback);
+        this.findOne({userName: 'amitthakkar01', projectName: 'test', databaseName: databaseName, tableName: tableName}, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
     // TODO not update date.
     schemaObject.pre('findOneAndUpdate', function () {

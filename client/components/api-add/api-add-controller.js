@@ -38,8 +38,8 @@
                     apiAdd.errorMessage = 'Please provide Method for API';
                     return;
                 }
-                apiAdd.newApi.projectName = 'TEST';
-                apiAdd.newApi.userName = 'AmitThakkar01';
+                apiAdd.newApi.projectName = 'test';
+                apiAdd.newApi.userName = 'amitthakkar01';
                 ApiService.save(apiAdd.newApi)
                     .success(() => {
                         apiAdd.successMessage = "Your Api has been successfully saved.";

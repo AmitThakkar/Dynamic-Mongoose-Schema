@@ -8,8 +8,8 @@
         name: {type: String, required: true, trim: true, lowercase: true, unique: true},
         url: {type: String, required: true, trim: true, lowercase: true},
         method: {type: String, required: true, trim: true, uppercase: true, default: 'get'},
-        projectName: {type: String, require: true, trim: true, uppercase: true, default: 'TEST'},
-        userName: {type: String, require: true, trim: true, uppercase: true, default: 'AmitThakkar01'},
+        projectName: {type: String, require: true, trim: true, uppercase: true, default: 'test'},
+        userName: {type: String, require: true, trim: true, uppercase: true, default: 'amitthakkar01'},
         createdAt: {type: Number, required: true, default: Date.now},
         lastUpdateAt: {type: Number, required: true, default: Date.now},
         isRemoved: {type: Boolean, default: false}

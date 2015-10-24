@@ -46,8 +46,8 @@
                     schemaAdd.errorMessage = 'Please provide at-least one Column details';
                     return;
                 }
-                schemaAdd.newSchema.projectName = 'TEST';
-                schemaAdd.newSchema.userName = 'AmitThakkar01';
+                schemaAdd.newSchema.projectName = 'test';
+                schemaAdd.newSchema.userName = 'amitthakkar01';
                 SchemaService.save(schemaAdd.newSchema)
                     .success(() => {
                         schemaAdd.successMessage = "Your schema has been successfully saved.";
