@@ -15,7 +15,7 @@
         port: 8080,
         API_PORT: 8081,
         isClusterEnvironment: false,
-        customApiHandlerDirectory: '/Users/amit/Data/Projects/temp/',
+        customApiHandlerDirectory: '/Users/amit/Data/Projects/client-code/',
         host: 'localhost'
     };
     if (process.env.NODE_ENV && process.env.NODE_ENV == 'QA') {
