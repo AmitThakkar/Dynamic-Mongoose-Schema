@@ -19,7 +19,7 @@
                     response.status(HTTP_STATUS.ERROR).json({message: error.message});
                 }
             } else {
-                customApiHandler.saveApiHandler(requestBody.userName, requestBody.projectName, requestBody.name, requestBody.handler, (error) => {
+                customApiHandler.saveApiHandler(requestBody, requestBody.handler, (error) => {
                     if (error) {
                         response.status(HTTP_STATUS.ERROR).json({message: error.message});
                     } else {
@@ -62,7 +62,7 @@
                 logger.error(error);
                 response.status(HTTP_STATUS.ERROR).json(error.message);
             } else {
-                api.handler = customApiHandler.getApiHandler(api.userName, api.projectName, api.name, (error, handler) => {
+                api.handler = customApiHandler.getApiHandler(api, (error, handler) => {
                     if (error) {
                         response.status(HTTP_STATUS.ERROR).json(error.message);
                     } else {
@@ -115,7 +115,7 @@
                         message: 'No Record Found with _id ' + _id
                     });
                 } else {
-                    customApiHandler.updateApiHandler(api.userName, api.projectName, api.name, updatedApiFields.handler, (error) => {
+                    customApiHandler.updateApiHandler(api, updatedApiFields.handler, (error) => {
                         if(error) {
                             logger.error(error);
                             response.status(HTTP_STATUS.ERROR).json(error.message);

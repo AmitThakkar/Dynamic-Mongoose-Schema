@@ -28,7 +28,12 @@
         this.update({_id: ObjectId(_id)}, {$set: {isRemoved: true}}, {multi: false, upsert: false}, callback);
     });
     schemaObject.static('findOneByDatabaseNameAndTableName', function (databaseName, tableName, callback) {
-        this.findOne({userName: 'amitthakkar01', projectName: 'test', databaseName: databaseName, tableName: tableName}, {__v: 0, isRemoved: 0}).lean().exec(callback);
+        this.findOne({
+            userName: 'amitthakkar01',
+            projectName: 'test',
+            databaseName: databaseName,
+            tableName: tableName
+        }, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
     // TODO not update date.
     schemaObject.pre('findOneAndUpdate', function () {

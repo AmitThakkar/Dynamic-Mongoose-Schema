@@ -9,8 +9,8 @@
             return config.customApiHandlerDirectory + userName + '/' + projectName + '/' + apiName + '.js';
         }
 
-        updateApiHandler(userName, projectName, apiName, handler, callback) {
-            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(userName, projectName, apiName);
+        updateApiHandler(api, handler, callback) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(api.userName, api.projectName, api.name);
             fs.writeFile(apiHandlerAbsolutePath, handler, (error) => {
                 if (error) {
                     callback(error);
@@ -21,18 +21,18 @@
             });
         }
 
-        saveApiHandler(userName, projectName, apiName, handler, callback) {
-            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(userName, projectName, apiName);
+        saveApiHandler(api, handler, callback) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(api.userName, api.projectName, api.name);
             fs.writeFile(apiHandlerAbsolutePath, handler, callback);
         }
 
-        getApiHandler(userName, projectName, apiFileName, callback) {
-            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(userName, projectName, apiFileName);
+        getApiHandler(api, callback) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(api.userName, api.projectName, api.name);
             fs.readFile(apiHandlerAbsolutePath, callback);
         }
 
-        requireApiHandlers(userName, projectName, apiName) {
-            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(userName, projectName, apiName);
+        requireApiHandlers(api) {
+            let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(api.userName, api.projectName, api.name);
             return require(apiHandlerAbsolutePath);
         }
     }

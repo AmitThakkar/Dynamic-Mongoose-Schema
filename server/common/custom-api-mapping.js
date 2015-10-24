@@ -11,7 +11,7 @@
                 logger.error('Custom Route Mapping not running because of ', error);
             } else {
                 apis.forEach((api) => {
-                    app[api.method.toLowerCase()](api.url, customApiHandler.requireApiHandlers(api.userName, api.projectName, api.name));
+                    app[api.method.toLowerCase()](api.url, customApiHandler.requireApiHandlers(api));
                 });
             }
         });
