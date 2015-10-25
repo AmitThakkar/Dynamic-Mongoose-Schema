@@ -4,8 +4,8 @@
 ((module, require) => {
     "use strict";
     module.exports = (app) => {
+        require('./common/custom-api-handler')(app);
         require('./components/schema/schema-main')(app);
         require('./components/api/api-main')(app);
-        require('./common/custom-api-mapping')(app);
     };
 })(module, require);

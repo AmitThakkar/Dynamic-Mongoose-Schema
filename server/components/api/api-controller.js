@@ -4,7 +4,7 @@
 ((require, module, config, process, global)=> {
     "use strict";
     let Api = require('./api-domain');
-    let customApiHandler = require(process.cwd() + '/server/common/custom-api-handler');
+    let customApiHandler = global.customApiHandler;
     let exports = module.exports;
     const HTTP_STATUS = global.HTTP_STATUS;
     exports.save = (request, response) => {
@@ -118,7 +118,7 @@
                     });
                 } else {
                     customApiHandler.updateApiHandler(api, updatedApiFields.handler, (error) => {
-                        if(error) {
+                        if (error) {
                             logger.error(error);
                             response.status(HTTP_STATUS.ERROR).json(error.message);
                         } else {
