@@ -21,11 +21,12 @@
             return require(apiHandlerAbsolutePath);
         }
 
-        removeApiHandler(path) {
+        removeApiHandler(url, method) {
             let routers = app._router.stack;
             let routerIndex;
             for (let index = 0; index < routers.length; index++) {
-                if (routers[index].route && routers[index].route.path == path) {
+                let router = routers[index].route;
+                if (router && router.path == url && router.methods[method.toLowerCase()]) {
                     routerIndex = index;
                     index = routers.length;
                 }
@@ -52,7 +53,7 @@
             fs.writeFile(apiHandlerAbsolutePath, handler, (error) => {
                 if (!error) {
                     delete require.cache[apiHandlerAbsolutePath];
-                    this.removeApiHandler(api.url);
+                    this.removeApiHandler(api.url, api.method);
                     this.addApiHandler(api);
                 }
                 callback(error);
