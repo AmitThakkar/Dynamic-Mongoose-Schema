@@ -35,7 +35,7 @@
         }
 
         addApiHandler(api) {
-            app[api.method.toLowerCase()](api.url, this.requireApiHandlers(api));
+            app[api.method.toLowerCase()](api.newUrl, this.requireApiHandlers(api));
         }
 
         saveApiHandler(api, handler, callback) {

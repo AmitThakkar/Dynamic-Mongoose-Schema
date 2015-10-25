@@ -117,6 +117,7 @@
                         message: 'No Record Found with _id ' + _id
                     });
                 } else {
+                    api.newUrl = updatedApiFields.url || api.url;
                     customApiHandler.updateApiHandler(api, updatedApiFields.handler, (error) => {
                         if (error) {
                             logger.error(error);
