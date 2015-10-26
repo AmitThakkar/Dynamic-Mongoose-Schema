@@ -10,7 +10,7 @@
         tableName: {type: String, required: true, trim: true, lowercase: true},
         columns: {type: Array},
         projectName: {type: String, require: true, trim: true, lowercase: true, default: 'test'},
-        userName: {type: String, require: true, trim: true, lowercase: true, default: 'amitthakkar01'},
+        userName: {type: String, require: true, trim: true, lowercase: true, default: 'amitthakkar'},
         createdAt: {type: Number, required: true, default: Date.now},
         lastUpdateAt: {type: Number, required: true, default: Date.now},
         isRemoved: {type: Boolean, default: false}
@@ -29,7 +29,7 @@
     });
     schemaObject.static('findOneByDatabaseNameAndTableName', function (databaseName, tableName, callback) {
         this.findOne({
-            userName: 'amitthakkar01',
+            userName: 'amitthakkar',
             projectName: 'test',
             databaseName: databaseName,
             tableName: tableName

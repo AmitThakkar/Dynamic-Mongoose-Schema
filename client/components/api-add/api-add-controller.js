@@ -39,7 +39,7 @@
                     return;
                 }
                 apiAdd.newApi.projectName = 'test';
-                apiAdd.newApi.userName = 'amitthakkar01';
+                apiAdd.newApi.userName = 'amitthakkar';
                 ApiService.save(apiAdd.newApi)
                     .success(() => {
                         apiAdd.successMessage = "Your Api has been successfully saved.";

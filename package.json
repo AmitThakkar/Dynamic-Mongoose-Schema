@@ -1,39 +1,40 @@
 {
-    "name": "dynamic-mongoose-schema",
-    "version": "0.0.1",
-    "description": "This is a demo repository which shows how to define mongoose schema at run time.",
-    "main": "app.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/AmitThakkar/Dynamic-Mongoose-Schema.git"
-    },
-    "keywords": [
-        "Mongoose",
-        "MongooseJS",
-        "NodeJS",
-        "Schema",
-        "Dynamic",
-        "Mongo",
-        "MongoDB",
-        "AngularJS",
-        "Angular",
-        "MEAN",
-        "JavaScript"
-    ],
-    "author": "Amit Thakkar",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/AmitThakkar/Dynamic-Mongoose-Schema/issues"
-    },
-    "homepage": "https://github.com/AmitThakkar/Dynamic-Mongoose-Schema#readme",
-    "dependencies": {
-        "body-parser": "^1.14.0",
-        "express": "^4.13.3",
-        "mongoose": "^4.1.8",
-        "response-time": "^2.3.1",
-        "tracer": "https://github.com/AmitThakkar/tracer.git"
-    }
+  "name": "dynamic-mongoose-schema",
+  "version": "0.0.1",
+  "description": "This is a demo repository which shows how to define mongoose schema at run time.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmitThakkar/Dynamic-Mongoose-Schema.git"
+  },
+  "keywords": [
+    "Mongoose",
+    "MongooseJS",
+    "NodeJS",
+    "Schema",
+    "Dynamic",
+    "Mongo",
+    "MongoDB",
+    "AngularJS",
+    "Angular",
+    "MEAN",
+    "JavaScript"
+  ],
+  "author": "Amit Thakkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmitThakkar/Dynamic-Mongoose-Schema/issues"
+  },
+  "homepage": "https://github.com/AmitThakkar/Dynamic-Mongoose-Schema#readme",
+  "dependencies": {
+    "body-parser": "^1.14.0",
+    "express": "^4.13.3",
+    "github": "^0.2.4",
+    "mongoose": "^4.1.8",
+    "response-time": "^2.3.1",
+    "tracer": "https://github.com/AmitThakkar/tracer.git"
+  }
 }
