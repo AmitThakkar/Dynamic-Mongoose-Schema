@@ -5,7 +5,7 @@
     "use strict";
     class GetSchemaHandler {
         handle(dataObject, client) {
-            global.getSchema(dataObject.databaseName, dataObject.tableName, (schema) => {
+            global.apiServer.getSchema(dataObject.databaseName, dataObject.tableName, (schema) => {
                 dataObject.arguments.push(function () {
                     client.write(JSON.stringify({
                         'callbackCount': dataObject.callbackCount,

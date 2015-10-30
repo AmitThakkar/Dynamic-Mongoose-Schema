@@ -114,7 +114,7 @@
             }
         });
     };
-    global.getSchema = (databaseName, tableName, callback) => {
+    global.apiServer.getSchema = (databaseName, tableName, callback) => {
         Schema.findOneByDatabaseNameAndTableName(databaseName, tableName, function (error, table) {
             if (error) {
                 logger.error(error);

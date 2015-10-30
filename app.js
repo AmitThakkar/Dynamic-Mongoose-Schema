@@ -18,6 +18,7 @@
         format: [config.logFormat],
         dateformat: config.dateFormat
     });
+    global.apiServer = {};
     logger.info('Starting Application in =>', config.environment, 'Environment');
     if (cluster.isMaster && config.isClusterEnvironment) {
         logger.debug('Starting', NUMBER_OF_CPUs, 'Node Servers!');
