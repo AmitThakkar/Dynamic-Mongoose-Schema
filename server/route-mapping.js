@@ -7,5 +7,6 @@
         require('./common/custom-api-handler')(app);
         require('./components/schema/schema-main')(app);
         require('./components/api/api-main')(app);
+        require('./components/module/module-main')(app);
     };
 })(module, require);

@@ -8,12 +8,21 @@
     let app;
     class CustomApiHandler {
         getApiHandlerAbsoluteName(userName, projectName, apiName) {
-            return config.customApiHandlerDirectory + userName + '/' + projectName + '/' + apiName + '.js';
+            return config.customApiHandlerDirectory + userName + '/' + projectName + '/api/' + apiName + '.js';
+        }
+
+        getModuleHandlerAbsoluteName(userName, projectName, moduleName) {
+            return config.customApiHandlerDirectory + userName + '/' + projectName + '/module/' + moduleName + '.js';
         }
 
         getApiHandler(api, callback) {
             let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(api.userName, api.projectName, api.name);
             fs.readFile(apiHandlerAbsolutePath, callback);
+        }
+
+        getModuleHandler(module, callback) {
+            let moduleHandlerAbsolutePath = this.getModuleHandlerAbsoluteName(module.userName, module.projectName, module.name);
+            fs.readFile(moduleHandlerAbsolutePath, callback);
         }
 
         requireApiHandlers(api) {
@@ -48,6 +57,13 @@
             });
         }
 
+        saveModuleHandler(module, handler, callback) {
+            let moduleHandlerAbsolutePath = this.getModuleHandlerAbsoluteName(module.userName, module.projectName, module.name);
+            fs.writeFile(moduleHandlerAbsolutePath, handler, (error) => {
+                callback(error);
+            });
+        }
+
         updateApiHandler(api, handler, callback) {
             let apiHandlerAbsolutePath = this.getApiHandlerAbsoluteName(api.userName, api.projectName, api.name);
             fs.writeFile(apiHandlerAbsolutePath, handler, (error) => {
@@ -55,6 +71,16 @@
                     delete require.cache[apiHandlerAbsolutePath];
                     this.removeApiHandler(api.url, api.method);
                     this.addApiHandler(api);
+                }
+                callback(error);
+            });
+        }
+
+        updateModuleHandler(module, handler, callback) {
+            let moduleHandlerAbsolutePath = this.getModuleHandlerAbsoluteName(module.userName, module.projectName, module.name);
+            fs.writeFile(moduleHandlerAbsolutePath, handler, (error) => {
+                if (!error) {
+                    delete require.cache[moduleHandlerAbsolutePath];
                 }
                 callback(error);
             });

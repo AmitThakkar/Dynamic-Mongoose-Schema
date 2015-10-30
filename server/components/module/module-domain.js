@@ -4,38 +4,39 @@
 ((module, require) => {
     "use strict";
     const mongoose = require('mongoose');
-    let apiObject = mongoose.Schema({
+    const ObjectId = mongoose.Types.ObjectId;
+    let moduleObject = mongoose.Schema({
         name: {type: String, required: true, trim: true, lowercase: true},
-        url: {type: String, required: true, trim: true, lowercase: true},
-        method: {type: String, required: true, trim: true, uppercase: true, default: 'get'},
         projectName: {type: String, require: true, trim: true, lowercase: true, default: 'test'},
         userName: {type: String, require: true, trim: true, lowercase: true, default: 'amitthakkar'},
         createdAt: {type: Number, required: true, default: Date.now},
         lastUpdateAt: {type: Number, required: true, default: Date.now},
         isRemoved: {type: Boolean, default: false}
     });
-    apiObject.static('findOneById', function (_id, callback) {
+    moduleObject.static('findOneById', function (_id, callback) {
         this.findById(_id, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
-    apiObject.static('findAll', function (options, callback) {
+    moduleObject.static('findAll', function (options, callback) {
         if (!callback) {
             callback = options;
             options = {};
         }
         this.find({isRemoved: false}, {__v: 0, isRemoved: 0}, options).lean().exec(callback);
     });
-    apiObject.static('countAll', function (callback) {
+    moduleObject.static('countAll', function (callback) {
         this.count({isRemoved: false}, callback);
     });
-    apiObject.static('findOneByIdAndUpdate', function (_id, updatedApi, callback) {
-        this.findByIdAndUpdate(_id, {$set: updatedApi}).exec(callback);
+    moduleObject.static('findOneByIdAndUpdate', function (_id, updatedModule, callback) {
+        this.findByIdAndUpdate(_id, {$set: updatedModule}).exec(callback);
+    });
+    moduleObject.static('removeById', function (_id, callback) {
+        this.remove({_id: ObjectId(_id)}, callback);
     });
     // TODO not update date.
-    apiObject.pre('findOneAndUpdate', function () {
+    moduleObject.pre('findOneAndUpdate', function () {
         this.lastUpdateAt = Date.now();
     });
-    apiObject.index({userName: 1, projectName: 1, url: 1, method: 1}, {unique: true});
-    apiObject.index({userName: 1, projectName: 1, name: 1}, {unique: true});
-    apiObject.index({isRemoved: 1});
-    module.exports = mongoose.model('Api', apiObject);
+    moduleObject.index({userName: 1, projectName: 1, name: 1}, {unique: true});
+    moduleObject.index({isRemoved: 1});
+    module.exports = mongoose.model('Module', moduleObject);
 })(module, require);
