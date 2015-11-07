@@ -6,9 +6,7 @@
             <tr>
                 <td>S.No.</td>
                 <td>Name</td>
-                <td>URL</td>
                 <td>Project</td>
-                <td>Method</td>
                 <td colspan="3" class="center">Action(s)</td>
             </tr>
             </thead>
@@ -16,9 +14,7 @@
             <tr ng-repeat="module in moduleList.modules track by $index">
                 <td>{{ moduleList.alreadyShownRecordCount + $index }}</td>
                 <td>{{ module.name }}</td>
-                <td>{{ module.url }}</td>
                 <td>{{ module.projectName }}</td>
-                <td>{{ module.method }}</td>
                 <td>
                     <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
                        ng-click="moduleList.viewSchema($index)"></a>
