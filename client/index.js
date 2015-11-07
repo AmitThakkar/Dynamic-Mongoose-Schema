@@ -38,6 +38,10 @@
             {
                 path: '/module-list',
                 component: 'moduleList'
+            },
+            {
+                path: '/module-add',
+                component: 'moduleAdd'
             }
         ]);
         $scope.setTitleAndPageProperty = function(title, page) {
