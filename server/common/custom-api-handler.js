@@ -30,6 +30,11 @@
             return require(apiHandlerAbsolutePath);
         }
 
+        requireModuleHandlers(module) {
+            let apiHandlerAbsolutePath = this.getModuleHandlerAbsoluteName(module.userName, module.projectName, module.name);
+            return require(apiHandlerAbsolutePath);
+        }
+
         removeApiHandler(url, method) {
             let routers = app._router.stack;
             let routerIndex;
