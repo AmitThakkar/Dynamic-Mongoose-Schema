@@ -9,6 +9,8 @@
                 <td>URL</td>
                 <td>Project</td>
                 <td>Method</td>
+                <td>User</td>
+                <td>Created At</td>
                 <td colspan="3" class="center">Action(s)</td>
             </tr>
             </thead>
@@ -19,6 +21,8 @@
                 <td>{{ api.url }}</td>
                 <td>{{ api.projectName }}</td>
                 <td>{{ api.method }}</td>
+                <td>{{ api.userName }}</td>
+                <td>{{ api.createdAt | date }}</td>
                 <td>
                     <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
                        ng-click="apiList.viewSchema($index)"></a>

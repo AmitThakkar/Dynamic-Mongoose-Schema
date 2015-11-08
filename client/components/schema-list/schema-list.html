@@ -8,6 +8,8 @@
                 <td>Database Name</td>
                 <td>Table Name</td>
                 <td>Project</td>
+                <td>User</td>
+                <td>Created At</td>
                 <td colspan="3" class="center">Action(s)</td>
             </tr>
             </thead>
@@ -17,6 +19,8 @@
                 <td>{{ schema.databaseName }}</td>
                 <td>{{ schema.tableName }}</td>
                 <td>{{ schema.projectName }}</td>
+                <td>{{ schema.userName }}</td>
+                <td>{{ schema.createdAt | date }}</td>
                 <td>
                     <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
                        ng-click="schemaList.viewSchema($index)"></a>
