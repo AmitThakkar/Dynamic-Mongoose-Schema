@@ -1,0 +1,36 @@
+<div class="container well infobox">
+    <h4 class="title">Edit Module</h4>
+
+    <div>
+        <form>
+            <div class="form-group">
+                <div class="clear">&nbsp;</div>
+                <span class="col-md-1" for="moduleName">Name</span>
+
+                <div class="col-md-3">
+                    <input type="text" disabled class="form-control" ng-model="moduleEdit.updatedModule.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="clear">&nbsp;</div>
+                <div>Handler</div>
+                <textarea rows="20" cols="150" ng-model="moduleEdit.updatedModule.handler"></textarea>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </form>
+        <div class="text-danger" ng-show="!moduleEdit.successMessage">
+            {{moduleEdit.errorMessage}}
+        </div>
+        <div class="text-success" ng-show="!moduleEdit.errorMessage">
+            {{moduleEdit.successMessage}}
+        </div>
+        <div class="center">
+            <button type="button" class="btn btn-primary" ng-click="moduleEdit.reset(true);">
+                Reset
+            </button>
+            <button type="button" class="btn btn-success" ng-click="moduleEdit.udpate();">
+                Update
+            </button>
+        </div>
+    </div>
+</div>
