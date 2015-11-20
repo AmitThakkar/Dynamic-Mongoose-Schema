@@ -4,7 +4,7 @@
 ((require, module, config, global)=> {
     "use strict";
     const Schema = require('./schema-domain');
-    const mongoose = require('mongoose');
+    //const mongoose = require('mongoose');
     const MongooseSchemaGenerator = require(process.cwd() + '/server/common/mongoose-schema-generator');
     let exports = module.exports;
     exports.save = (request, response) => {
@@ -121,12 +121,7 @@
             if (error) {
                 logger.error(error);
             } else {
-                var schemaName = databaseName + tableName;
-                if(mongoose.models[schemaName]) {
-                    callback(mongoose.models[schemaName]);
-                } else {
-                    callback(mongoose.model(schemaName, MongooseSchemaGenerator.generate(table.columns)));
-                }
+                callback(MongooseSchemaGenerator.generate(table));
             }
         });
     };
