@@ -142,7 +142,6 @@
             modules.forEach((module) => {
                 global.apiServer.modules[module.name] = customApiHandler.requireModuleHandlers(module);
             });
-            console.log(global.apiServer.modules.test);
         }
     });
 })(require, module, config, process, global);
