@@ -92,7 +92,7 @@
             if (error) {
                 logger.error(error);
                 response.status(500).json(error.message);
-            } else {
+            } else  {
                 if (result.n == 0) {
                     logger.debug('No Record Found with _id', _id);
                     response.status(200).json({
@@ -110,6 +110,8 @@
                         isSuccess: true,
                         message: 'Record Update with _id ' + _id
                     });
+                    //delete mongoose.models[schemaName];
+                    //delete mongoose.modelSchemas[schemaName];
                 }
             }
         });
@@ -120,10 +122,11 @@
                 logger.error(error);
             } else {
                 var schemaName = databaseName + tableName;
-                delete mongoose.models[schemaName];
-                // TODO Why should we remove schema as well?
-                //delete mongoose.modelSchemas[schemaName];
-                callback(mongoose.model(schemaName, MongooseSchemaGenerator.generate(table.columns)));
+                if(mongoose.models[schemaName]) {
+                    callback(mongoose.models[schemaName]);
+                } else {
+                    callback(mongoose.model(schemaName, MongooseSchemaGenerator.generate(table.columns)));
+                }
             }
         });
     };
