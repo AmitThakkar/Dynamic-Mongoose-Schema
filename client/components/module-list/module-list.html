@@ -1,0 +1,48 @@
+<div class="container well infobox">
+    <div ng-if='moduleList.modules.length'>
+        <h4 class="title center">Your Modules</h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>S.No.</td>
+                <td>Name</td>
+                <td>Project</td>
+                <td>User</td>
+                <td>Created At</td>
+                <td colspan="3" class="center">Action(s)</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="module in moduleList.modules track by $index">
+                <td>{{ moduleList.alreadyShownRecordCount + $index }}</td>
+                <td>{{ module.name }}</td>
+                <td>{{ module.projectName }}</td>
+                <td>{{ module.userName }}</td>
+                <td>{{ module.createdAt | date }}</td>
+                <td>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
+                       ng-click="moduleList.viewSchema($index)"></a>
+                </td>
+                <td>
+                    <a href="#/module-edit/{{module._id}}" class="glyphicon glyphicon glyphicon-edit icon-color"></a>
+                </td>
+                <td>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-trash icon-color   "
+                       ng-click="moduleList.remove($index)"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="pagination pagination-sm">
+            <li ng-click="moduleList.get(moduleList.pageNumber-1)"><a ng-class="{'not-active':moduleList.pageNumber-1==0}" href="javascript:void(0)">«</a></li>
+            <li ng-repeat="page in [] | range : 1 : moduleList.totalPages" ng-class="{'active' : $index == moduleList.pageNumber-1}">
+                <a href="javascript:void(0)" ng-click="moduleList.get($index+1)">{{$index+1}}</a>
+            </li>
+            <li><a href="javascript:void(0)" ng-class="{'not-active':moduleList.pageNumber == moduleList.totalPages}" ng-click="moduleList.get(moduleList.pageNumber+1)">»</a></li>
+        </ul>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div ng-hide='moduleList.modules.length'>
+        No Module found.
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="dynamicMongooseSchema" ng-controller="MasterController as master">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{{master.title}}</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-material-design/dist/css/material.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-material-design/dist/css/material-fullpalette.min.css">
+    <link rel="stylesheet" type="text/css" href="ng-tags-input/ng-tags-input.min.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+<div>
+    <div id="myNavbar" class="navbar navbar-default navbar-fixed-top navbar-material-light-green-500" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand fColor fs40" href="#">API Seed</a>
+        </div>
+        <div class="navbar-collapse collapse fColor navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-class="{'active': master.page == 'schema-list'}"><a href="#/schema-list">List Schema</a></li>
+                <li ng-class="{'active': master.page == 'schema-add'}"><a href="#/schema-add">Add Schema</a></li>
+                <li ng-class="{'active': master.page == 'api-list'}"><a href="#/api-list">List API</a></li>
+                <li ng-class="{'active': master.page == 'api-add'}"><a href="#/api-add">Add API</a></li>
+                <li ng-class="{'active': master.page == 'module-list'}"><a href="#/module-list">List Module</a></li>
+                <li ng-class="{'active': master.page == 'module-add'}"><a href="#/module-add">Add Module</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="clear h75">&nbsp;</div>
+    <div class="clear">&nbsp;</div>
+    <div ng-viewport></div>
+</div>
+<script type="application/javascript" src="angular/angular.min.js"></script>
+<script type="application/javascript" src="angular-new-router/dist/router.es5.min.js"></script>
+<script type="application/javascript" src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script type="application/javascript" src="ng-tags-input/ng-tags-input.min.js"></script>
+<script type="application/javascript" src="./index.js"></script>
+<script type="application/javascript" src="./common/global-filters.js"></script>
+<script type="application/javascript" src="./common/mongoose-schema-generator.js"></script>
+<script type="application/javascript" src="./components/schema-service.js"></script>
+<script type="application/javascript" src="./components/schema-view/schema-view-directive.js"></script>
+<script type="application/javascript" src="./components/schema-list/schema-list-controller.js"></script>
+<script type="application/javascript" src="./components/schema-add/schema-add-controller.js"></script>
+<script type="application/javascript" src="./components/schema-view/schema-view-controller.js"></script>
+<script type="application/javascript" src="./components/api-service.js"></script>
+<script type="application/javascript" src="./components/api-list/api-list-controller.js"></script>
+<script type="application/javascript" src="./components/api-add/api-add-controller.js"></script>
+<script type="application/javascript" src="./components/api-view/api-view-controller.js"></script>
+<script type="application/javascript" src="./components/api-edit/api-edit-controller.js"></script>
+<script type="application/javascript" src="./components/module-service.js"></script>
+<script type="application/javascript" src="./components/module-list/module-list-controller.js"></script>
+<script type="application/javascript" src="./components/module-add/module-add-controller.js"></script>
+<script type="application/javascript" src="./components/module-edit/module-edit-controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<div class="container well infobox">
+    <h4 class="title">New API Details</h4>
+
+    <div>
+        <form>
+            <div class="form-group">
+                <div class="clear">&nbsp;</div>
+                <span class="col-md-1" for="apiName">Name</span>
+
+                <div class="col-md-3">
+                    <input type="text" class="form-control" ng-model="apiAdd.newApi.name">
+                </div>
+                <span class="col-md-1" for="tbName">URL</span>
+
+                <div class="col-md-3">
+                    <input class="form-control" type="text" ng-model="apiAdd.newApi.url">
+                </div>
+                <span class="col-md-1" for="tbName">Method</span>
+
+                <div class="col-md-3">
+                    <select ng-options="method for method in ::apiAdd.methods" ng-model="apiAdd.newApi.method"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="clear">&nbsp;</div>
+                <div>Handler</div>
+                <textarea rows="20" cols="150" ng-model="apiAdd.newApi.handler"></textarea>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </form>
+        <div class="text-danger" ng-show="!apiAdd.successMessage">
+            {{apiAdd.errorMessage}}
+        </div>
+        <div class="text-success" ng-show="!apiAdd.errorMessage">
+            {{apiAdd.successMessage}}
+        </div>
+        <div class="center">
+            <button type="button" class="btn btn-primary" ng-click="apiAdd.reset(true);">
+                Reset
+            </button>
+            <button type="button" class="btn btn-success" ng-click="apiAdd.save();">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

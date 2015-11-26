@@ -1,0 +1,95 @@
+.fColor {
+    color: white !important;
+}
+
+.icon-color{
+color:#333 !important;
+}
+
+.fs40 {
+    font-size: 40px;
+}
+
+.bgColor {
+    background-color: #f8f8f8;
+}
+
+.clear {
+    clear: both;
+}
+
+.h75 {
+    height: 75px;
+}
+
+pre {
+    outline: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+}
+
+.string {
+    color: green;
+}
+
+.number {
+    color: darkorange;
+}
+
+.boolean {
+    color: blue;
+}
+
+.null {
+    color: magenta;
+}
+
+.key {
+    color: red;
+}
+.mTop16{
+    margin-top: 16px;
+}
+.w700{
+    width: 700px;
+}
+
+.title {
+    color: #97A4A9;
+    font-size: 24px;
+    font-weight: lighter;
+    margin: 0px;
+}
+.strong {
+    font-weight: 300;
+}
+.center{
+    text-align: center;
+}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+/*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
+
+
+.not-active {
+    pointer-events: none;
+}
+
+input::-webkit-input-placeholder { font-size: 11pt; color: #97A4A9 !important; }
+input::-moz-placeholder { font-size: 11pt; color: #97A4A9 !important; }
+input:-ms-input-placeholder { font-size: 11pt; color: #97A4A9 !important; }
+input:-moz-placeholder { font-size: 11pt; color: #97A4A9 !important; }

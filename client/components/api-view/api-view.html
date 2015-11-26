@@ -1,0 +1,41 @@
+<div class="container well infobox">
+    <h4 class="title">API Details</h4>
+    <a ng-href="#/api-edit/{{apiView.api._id}}">Edit</a>
+
+    <div class="form-group">
+        <div class="clear">&nbsp;</div>
+        <span class="col-md-4" for="apiName">Name</span>
+
+        <div class="col-md-4">
+            {{::apiView.api.name}}
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="clear">&nbsp;</div>
+        <span class="col-md-4" for="tbName">URL</span>
+
+        <div class="col-md-4">
+            {{::apiView.api.url}}
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="clear">&nbsp;</div>
+        <span class="col-md-4" for="tbName">Method</span>
+
+        <div class="col-md-4">
+            {{::apiView.api.method}}
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="clear">&nbsp;</div>
+        <span class="col-md-4" for="dbName">&nbsp;</span>
+
+        <div class="clear">&nbsp;</div>
+        {{::apiView.api.handler}}
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+    <div class="clear">&nbsp;</div>
+</div>

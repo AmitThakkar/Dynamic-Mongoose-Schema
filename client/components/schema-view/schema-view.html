@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="schemaViewController.ok()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Schema View</h4>
+</div>
+<div class="modal-body">
+    <div class="container" style="overflow:auto; max-width: 100%; max-height: 500px;">
+        <schema-view json="{{schemaViewController.schemaView}}"></schema-view>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="schemaViewController.ok()">Close</button>
+</div>

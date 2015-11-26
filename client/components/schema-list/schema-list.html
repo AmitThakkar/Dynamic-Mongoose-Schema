@@ -1,0 +1,50 @@
+<div class="container well infobox">
+    <div ng-if='schemaList.schemas.length'>
+        <h4 class="title center">Your Database</h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>S.No.</td>
+                <td>Database Name</td>
+                <td>Table Name</td>
+                <td>Project</td>
+                <td>User</td>
+                <td>Created At</td>
+                <td colspan="3" class="center">Action(s)</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="schema in schemaList.schemas track by $index">
+                <td>{{ schemaList.alreadyShownRecordCount + $index }}</td>
+                <td>{{ schema.databaseName }}</td>
+                <td>{{ schema.tableName }}</td>
+                <td>{{ schema.projectName }}</td>
+                <td>{{ schema.userName }}</td>
+                <td>{{ schema.createdAt | date }}</td>
+                <td>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-eye-open icon-color"
+                       ng-click="schemaList.viewSchema($index)"></a>
+                </td>
+                <td>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon glyphicon-edit icon-color"></a>
+                </td>
+                <td>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-trash icon-color"
+                       ng-click="schemaList.remove($index)"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="pagination pagination-sm">
+            <li ng-click="schemaList.get(schemaList.pageNumber-1)"><a ng-class="{'not-active':schemaList.pageNumber-1==0}" href="javascript:void(0)">«</a></li>
+            <li ng-repeat="page in [] | range : 1 : schemaList.totalPages" ng-class="{'active' : $index == schemaList.pageNumber-1}">
+                <a href="javascript:void(0)" ng-click="schemaList.get($index+1)">{{$index+1}}</a>
+            </li>
+            <li><a href="javascript:void(0)" ng-class="{'not-active':schemaList.pageNumber == schemaList.totalPages}" ng-click="schemaList.get(schemaList.pageNumber+1)">»</a></li>
+        </ul>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div ng-hide='schemaList.schemas.length'>
+        No Database not found.
+    </div>
+</div>

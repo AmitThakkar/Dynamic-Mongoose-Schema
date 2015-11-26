@@ -1,0 +1,104 @@
+<div class="container well infobox" style="max-height:10%">
+    <h5 class="title">New Table Details</h5>
+
+    <div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-lg-4">
+                    {{ schemaAdd.newSchema.databaseName && 'Database Name' }}
+                    <input type="text" id="dbName" class="form-control" placeholder="Database Name"
+                           ng-model="schemaAdd.newSchema.databaseName">
+                </div>
+                <div class="col-lg-4">
+                    {{ schemaAdd.newSchema.tableName && 'Table Name' }}
+                    <input class="form-control" placeholder="Table Name" type="text" id="tbName"
+                           ng-model="schemaAdd.newSchema.tableName">
+                </div>
+                <div class="col-lg-4">
+                    <button type="button" class="btn btn-success btn-sm" ng-click="schemaAdd.addNewColumn();">
+                        Add New Column
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="clear">&nbsp;</div>
+
+<div class="container well infobox">
+    <div class="container" style=" max-width: 100%; ">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>Name</td>
+                <td>Type</td>
+                <td>Required</td>
+                <td>Upper/Lower Case</td>
+                <td>Trim</td>
+                <td>Unique</td>
+                <td>Index</td>
+                <td>ENUM</td>
+                <td>Default</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>_id</td>
+                <td>ObjectId</td>
+                <td>true</td>
+                <td>NA</td>
+                <td>NA</td>
+                <td>true</td>
+                <td>true</td>
+                <td>NA</td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="column in schemaAdd.newSchema.columns track by column.name">
+                <td><input type="text" ng-model="column.name"></td>
+                <td>
+                    <select ng-options="type for type in ::schemaAdd.types" ng-model="column.type">
+                        <option value="">NA</option>
+                    </select>
+                </td>
+                <td><input type="checkbox" ng-model="column.required"></td>
+                <td>
+                    <select ng-model="column.letterCase" ng-disabled="column.type != 'String'">
+                        <option value="">NA</option>
+                        <option value="U">Upper Case</option>
+                        <option value="L">Lower Case</option>
+                    </select>
+                </td>
+                <td><input type="checkbox" ng-model="column.trim" ng-disabled="column.type != 'String'"></td>
+                <td>
+                    <input type="checkbox" ng-model="column.unique"
+                           ng-disabled="column.type != 'String' && column.type != 'Number'">
+                </td>
+                <td><input type="checkbox" ng-model="column.index"></td>
+                <td>
+                    <tags-input ng-model="column.enum" placeholder="Add Enum Values" min-length="1" max-length="20">
+                </td>
+                <td>
+                    <input type="text" ng-model="column.default"
+                           ng-disabled="column.required == true || column.unique == true">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-danger" ng-show="!schemaAdd.successMessage">
+        {{schemaAdd.errorMessage}}
+    </div>
+    <div class="text-success" ng-show="!schemaAdd.errorMessage">
+        {{schemaAdd.successMessage}}
+    </div>
+    <div class="center">
+        <button type="button" class="btn btn-primary center" ng-click="schemaAdd.reset(true);">
+            Reset
+        </button>
+        <button type="button" class="btn btn-success center" ng-click="schemaAdd.save();">
+            Save
+        </button>
+    </div>
+</div>
+</div>
