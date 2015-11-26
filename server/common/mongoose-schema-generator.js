@@ -41,7 +41,26 @@
                     field.index = column.index == true;
                     column.default ? field.default = column.default : '';
                 });
-                return mongoose.model(schemaName, dynamicSchema);
+                let DynamicSchema = mongoose.Schema(dynamicSchema);
+                DynamicSchema.static('findOneById', function (_id, callback) {
+                    this.findById(_id, {__v: 0, isRemoved: 0}).lean().exec(callback);
+                });
+                DynamicSchema.static('findAll', function (projection, options, callback) {
+                    if(!callback) {
+                        if(!options) {
+                            callback = projection;
+                            options = {};
+                            projection = {__v: 0, isRemoved: 0};
+                        } else {
+                            callback = options;
+                        }
+                    }
+                    this.find({isRemoved: false}, projection, options).lean().exec(callback);
+                });
+                DynamicSchema.static('countAll', function (callback) {
+                    this.count({isRemoved: false}, callback);
+                });
+                return mongoose.model(schemaName, DynamicSchema);
             }
         }
     }

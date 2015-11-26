@@ -18,8 +18,17 @@
     schemaObject.static('findOneById', function (_id, callback) {
         this.findById(_id, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
-    schemaObject.static('findAll', function (options, callback) {
-        this.find({isRemoved: false}, {__v: 0, isRemoved: 0, columns: 0}, options).lean().exec(callback);
+    schemaObject.static('findAll', function (projection, options, callback) {
+        if(!callback) {
+            if(!options) {
+                callback = projection;
+                options = {};
+                projection = {__v: 0, isRemoved: 0, columns: 0};
+            } else {
+                callback = options;
+            }
+        }
+        this.find({isRemoved: false}, projection, options).lean().exec(callback);
     });
     schemaObject.static('countAll', function (callback) {
         this.count({isRemoved: false}, callback);
