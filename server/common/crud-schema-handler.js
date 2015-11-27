@@ -21,14 +21,14 @@
                 Schema.findAll(options, (error, records) => {
                     if (error) {
                         logger.error(error);
-                        response.status(500).json(error.message);
+                        response.status(HTTP_STATUS.ERROR).json(error.message);
                     } else {
                         Schema.countAll((error, count) => {
                             if (error) {
                                 logger.error(error);
-                                response.status(500).json(error.message);
+                                response.status(HTTP_STATUS.ERROR).json(error.message);
                             } else {
-                                response.status(200).json({
+                                response.status(HTTP_STATUS.SUCCESS).json({
                                     records: records, total: count
                                 });
                             }
@@ -58,16 +58,16 @@
                 Schema.removeById(_id, (error, result) => {
                     if (error) {
                         logger.error(error);
-                        response.status(500).json(error.message);
+                        response.status(HTTP_STATUS.ERROR).json(error.message);
                     } else {
                         if (result.result.n == 0) {
                             logger.debug('No Record Found with _id', _id);
-                            response.status(200).json({
+                            response.status(HTTP_STATUS.SUCCESS).json({
                                 isSuccess: false,
                                 message: 'No Record Found with _id ' + _id
                             });
                         } else {
-                            response.status(200).json({
+                            response.status(HTTP_STATUS.SUCCESS).json({
                                 isSuccess: true,
                                 message: 'Record Removed with _id ' + _id
                             });
