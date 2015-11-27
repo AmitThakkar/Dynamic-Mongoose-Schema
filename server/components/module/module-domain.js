@@ -16,12 +16,18 @@
     moduleObject.static('findOneById', function (_id, callback) {
         this.findById(_id, {__v: 0, isRemoved: 0}).lean().exec(callback);
     });
-    moduleObject.static('findAll', function (options, callback) {
-        if (!callback) {
-            callback = options;
-            options = {};
+    moduleObject.static('findAll', function (projection, options, callback) {
+        if(!callback) {
+            if(!options) {
+                callback = projection;
+                options = {};
+            } else {
+                callback = options;
+                options = projection;
+            }
+            projection = {__v: 0, isRemoved: 0};
         }
-        this.find({isRemoved: false}, {__v: 0, isRemoved: 0}, options).lean().exec(callback);
+        this.find({isRemoved: false}, projection, options).lean().exec(callback);
     });
     moduleObject.static('countAll', function (callback) {
         this.count({isRemoved: false}, callback);

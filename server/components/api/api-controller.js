@@ -1,9 +1,10 @@
 /**
  * Created by Amit Thakkar on 9/25/15.
  */
-((require, module, config, process, global)=> {
+((require, module, process, global)=> {
     "use strict";
     let Api = require('./api-domain');
+    let config = global.config;
     let customApiHandler = global.customApiHandler;
     let exports = module.exports;
     const HTTP_STATUS = global.HTTP_STATUS;
@@ -132,4 +133,4 @@
             }
         });
     };
-})(require, module, config, process, global);
+})(require, module, process, global);

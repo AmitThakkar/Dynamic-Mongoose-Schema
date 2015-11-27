@@ -1,9 +1,10 @@
 /**
  * Created by Amit Thakkar on 9/25/15.
  */
-((require, module, config, global)=> {
+((require, module, global)=> {
     "use strict";
     const Schema = require('./schema-domain');
+    let config = global.config;
     //const mongoose = require('mongoose');
     const MongooseSchemaGenerator = require(process.cwd() + '/server/common/mongoose-schema-generator');
     let exports = module.exports;
@@ -125,4 +126,4 @@
             }
         });
     };
-})(require, module, config, global);
+})(require, module, global);

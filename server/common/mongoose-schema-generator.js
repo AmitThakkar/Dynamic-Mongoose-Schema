@@ -50,10 +50,11 @@
                         if(!options) {
                             callback = projection;
                             options = {};
-                            projection = {__v: 0, isRemoved: 0};
                         } else {
                             callback = options;
+                            options = projection;
                         }
+                        projection = {__v: 0, isRemoved: 0};
                     }
                     this.find({isRemoved: false}, projection, options).lean().exec(callback);
                 });
