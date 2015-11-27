@@ -15,7 +15,7 @@
             if (error) {
                 logger.error(error);
                 if (error.code == 11000) {
-                    response.status(HTTP_STATUS.ERROR).json({message: "Module already present."});
+                    response.status(HTTP_STATUS.ERROR).json({message: "Document already present.", document: newModule});
                 } else {
                     response.status(HTTP_STATUS.ERROR).json({message: error.message});
                 }
@@ -42,14 +42,14 @@
         Module.findAll(options, (error, modules) => {
             if (error) {
                 logger.error(error);
-                response.status(500).json(error.message);
+                response.status(HTTP_STATUS.ERROR).json(error.message);
             } else {
                 Module.countAll((error, count) => {
                     if (error) {
                         logger.error(error);
-                        response.status(500).json(error.message);
+                        response.status(HTTP_STATUS.ERROR).json(error.message);
                     } else {
-                        response.status(200).json({
+                        response.status(TTP_STATUS.SUCCESS).json({
                             records: modules, total: count
                         });
                     }

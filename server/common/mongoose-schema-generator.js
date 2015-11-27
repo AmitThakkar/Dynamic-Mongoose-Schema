@@ -4,6 +4,7 @@
 ((module) => {
     "use strict";
     const mongoose = require('mongoose');
+    const ObjectId = mongoose.Types.ObjectId;
     class MongooseSchemaGenerator {
         generate(table) {
             let schemaName = table.databaseName + table.tableName;
@@ -44,6 +45,9 @@
                 let DynamicSchema = mongoose.Schema(dynamicSchema);
                 DynamicSchema.static('findOneById', function (_id, callback) {
                     this.findById(_id, {__v: 0, isRemoved: 0}).lean().exec(callback);
+                });
+                DynamicSchema.static('removeById', function (_id, callback) {
+                    this.remove({_id: ObjectId(_id)}, {__v: 0, isRemoved: 0}).lean().exec(callback);
                 });
                 DynamicSchema.static('findAll', function (projection, options, callback) {
                     if(!callback) {

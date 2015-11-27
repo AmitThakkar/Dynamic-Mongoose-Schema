@@ -5,6 +5,7 @@
     "use strict";
     const Schema = require('./schema-domain');
     let config = global.config;
+    const HTTP_STATUS = global.HTTP_STATUS;
     //const mongoose = require('mongoose');
     const MongooseSchemaGenerator = require(process.cwd() + '/server/common/mongoose-schema-generator');
     let exports = module.exports;
@@ -14,12 +15,12 @@
             if (error) {
                 logger.error(error);
                 if (error.code == 11000) {
-                    response.status(500).json("Table already present.");
+                    response.status(HTTP_STATUS.ERROR).json({message: "Document already present.", document: newSchema});
                 } else {
-                    response.status(500).json(error.message);
+                    response.status(HTTP_STATUS.ERROR).json(error.message);
                 }
             } else {
-                response.status(200).json(newSchema);
+                response.status(HTTP_STATUS.SUCCESS).json(newSchema);
             }
         });
     };
@@ -34,14 +35,14 @@
         Schema.findAll({__v: 0, isRemoved: 0, columns: 0}, options, (error, schemas) => {
             if (error) {
                 logger.error(error);
-                response.status(500).json(error.message);
+                response.status(HTTP_STATUS.ERROR).json(error.message);
             } else {
                 Schema.countAll((error, count) => {
                     if (error) {
                         logger.error(error);
-                        response.status(500).json(error.message);
+                        response.status(HTTP_STATUS.ERROR).json(error.message);
                     } else {
-                        response.status(200).json({records: schemas, total: count});
+                        response.status(HTTP_STATUS.SUCCESS).json({records: schemas, total: count});
                     }
                 });
             }
@@ -52,9 +53,9 @@
         Schema.findOneById(_id, (error, schema) => {
             if (error) {
                 logger.error(error);
-                response.status(500).json(error.message);
+                response.status(HTTP_STATUS.ERROR).json(error.message);
             } else {
-                response.status(200).json(schema);
+                response.status(HTTP_STATUS.SUCCESS).json(schema);
             }
         });
     };
@@ -63,22 +64,22 @@
         Schema.softRemove(_id, (error, result) => {
             if (error) {
                 logger.error(error);
-                response.status(500).json(error.message);
+                response.status(HTTP_STATUS.ERROR).json(error.message);
             } else {
                 if (result.n == 0) {
                     logger.debug('No Record Found with _id', _id);
-                    response.status(200).json({
+                    response.status(HTTP_STATUS.SUCCESS).json({
                         isSuccess: false,
                         message: 'No Record Found with _id ' + _id
                     });
                 } else if (result.nModified == 0) {
                     logger.debug('Record has already removed with _id ', _id);
-                    response.status(200).json({
+                    response.status(HTTP_STATUS.SUCCESS).json({
                         isSuccess: false,
                         message: 'Record has already removed with _id ' + _id
                     });
                 } else {
-                    response.status(200).json({
+                    response.status(HTTP_STATUS.SUCCESS).json({
                         isSuccess: true,
                         message: 'Record Update with _id ' + _id
                     });
@@ -92,22 +93,22 @@
         Schema.update(_id, updatedSchemaFields, (error, result) => {
             if (error) {
                 logger.error(error);
-                response.status(500).json(error.message);
+                response.status(HTTP_STATUS.ERROR).json(error.message);
             } else  {
                 if (result.n == 0) {
                     logger.debug('No Record Found with _id', _id);
-                    response.status(200).json({
+                    response.status(HTTP_STATUS.SUCCESS).json({
                         isSuccess: false,
                         message: 'No Record Found with _id ' + _id
                     });
                 } else if (result.nModified == 0) {
                     logger.debug('Record has already same date with _id ', _id);
-                    response.status(200).json({
+                    response.status(HTTP_STATUS.SUCCESS).json({
                         isSuccess: false,
                         message: 'Record has already same date with _id ' + _id
                     });
                 } else {
-                    response.status(200).json({
+                    response.status(HTTP_STATUS.SUCCESS).json({
                         isSuccess: true,
                         message: 'Record Update with _id ' + _id
                     });
