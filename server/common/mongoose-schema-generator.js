@@ -44,10 +44,10 @@
                 });
                 let DynamicSchema = mongoose.Schema(dynamicSchema);
                 DynamicSchema.static('findOneById', function (_id, callback) {
-                    this.findById(_id, {__v: 0, isRemoved: 0}).lean().exec(callback);
+                    this.findById(_id, {__v: 0}).lean().exec(callback);
                 });
                 DynamicSchema.static('removeById', function (_id, callback) {
-                    this.remove({_id: ObjectId(_id)}, {__v: 0, isRemoved: 0}).lean().exec(callback);
+                    this.remove({_id: ObjectId(_id)}, {__v: 0}).lean().exec(callback);
                 });
                 DynamicSchema.static('findAll', function (projection, options, callback) {
                     if(!callback) {
@@ -58,12 +58,12 @@
                             callback = options;
                             options = projection;
                         }
-                        projection = {__v: 0, isRemoved: 0};
+                        projection = {__v: 0};
                     }
-                    this.find({isRemoved: false}, projection, options).lean().exec(callback);
+                    this.find({}, projection, options).lean().exec(callback);
                 });
                 DynamicSchema.static('countAll', function (callback) {
-                    this.count({isRemoved: false}, callback);
+                    this.count({}, callback);
                 });
                 return mongoose.model(schemaName, DynamicSchema);
             }
