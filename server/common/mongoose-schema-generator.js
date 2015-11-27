@@ -47,7 +47,7 @@
                     this.findById(_id, {__v: 0}).lean().exec(callback);
                 });
                 DynamicSchema.static('removeById', function (_id, callback) {
-                    this.remove({_id: ObjectId(_id)}, {__v: 0}).lean().exec(callback);
+                    this.remove({_id: ObjectId(_id)}, callback);
                 });
                 DynamicSchema.static('findAll', function (projection, options, callback) {
                     if(!callback) {

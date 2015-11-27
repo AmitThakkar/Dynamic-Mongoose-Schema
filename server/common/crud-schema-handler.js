@@ -60,22 +60,16 @@
                         logger.error(error);
                         response.status(500).json(error.message);
                     } else {
-                        if (result.n == 0) {
+                        if (result.result.n == 0) {
                             logger.debug('No Record Found with _id', _id);
                             response.status(200).json({
                                 isSuccess: false,
                                 message: 'No Record Found with _id ' + _id
                             });
-                        } else if (result.nModified == 0) {
-                            logger.debug('Record has already removed with _id ', _id);
-                            response.status(200).json({
-                                isSuccess: false,
-                                message: 'Record has already removed with _id ' + _id
-                            });
                         } else {
                             response.status(200).json({
                                 isSuccess: true,
-                                message: 'Record Update with _id ' + _id
+                                message: 'Record Removed with _id ' + _id
                             });
                         }
                     }
@@ -128,7 +122,7 @@
                     let Schema = MongooseSchemaGenerator.generate(schema);
                     app.get('/' + schema.tableName, crudSchemaHandler.getGetRequestHandler(Schema));
                     app.get('/' + schema.tableName + '/:_id', crudSchemaHandler.getGetOneRequestHandler(Schema));
-                    app.delete('/' + schema.tableName, crudSchemaHandler.getDeleteRequestHandler(Schema));
+                    app.delete('/' + schema.tableName + '/:_id', crudSchemaHandler.getDeleteRequestHandler(Schema));
                     app.post('/' + schema.tableName, crudSchemaHandler.getPostRequestHandler(Schema));
                     app.put('/' + schema.tableName, crudSchemaHandler.getPutRequestHandler(Schema));
                 });
