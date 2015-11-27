@@ -17,7 +17,7 @@
                 apiList.alreadyShownRecordCount = ((apiList.pageNumber - 1) * apiList.recordsPerPage) + 1;
                 ApiService.list(apiList.recordsPerPage, apiList.pageNumber)
                     .success((response) => {
-                        apiList.apis = response.apis;
+                        apiList.apis = response.records;
                         apiList.total = response.total;
                         apiList.totalPages = Math.ceil(apiList.total / apiList.recordsPerPage);
                     })

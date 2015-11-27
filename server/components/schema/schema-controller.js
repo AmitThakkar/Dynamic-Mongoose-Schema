@@ -31,7 +31,7 @@
             skip: (pageNumber - 1) * limit
         };
         logger.trace('Getting Schema List with options: ', options);
-        Schema.findAll(options, (error, schemas) => {
+        Schema.findAll({__v: 0, isRemoved: 0, columns: 0}, options, (error, schemas) => {
             if (error) {
                 logger.error(error);
                 response.status(500).json(error.message);
@@ -41,7 +41,7 @@
                         logger.error(error);
                         response.status(500).json(error.message);
                     } else {
-                        response.status(200).json({tables: schemas, total: count});
+                        response.status(200).json({records: schemas, total: count});
                     }
                 });
             }

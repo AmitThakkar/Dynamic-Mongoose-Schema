@@ -50,7 +50,7 @@
                         response.status(500).json(error.message);
                     } else {
                         response.status(200).json({
-                            modules: modules, total: count
+                            records: modules, total: count
                         });
                     }
                 });

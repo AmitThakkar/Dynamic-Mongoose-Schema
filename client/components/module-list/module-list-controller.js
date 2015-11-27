@@ -17,7 +17,7 @@
                 moduleList.alreadyShownRecordCount = ((moduleList.pageNumber - 1) * moduleList.recordsPerPage) + 1;
                 ModuleService.list(moduleList.recordsPerPage, moduleList.pageNumber)
                     .success((response) => {
-                        moduleList.modules = response.modules;
+                        moduleList.modules = response.records;
                         moduleList.total = response.total;
                         moduleList.totalPages = Math.ceil(moduleList.total / moduleList.recordsPerPage);
                     })
