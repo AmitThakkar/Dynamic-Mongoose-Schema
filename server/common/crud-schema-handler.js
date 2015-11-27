@@ -99,12 +99,22 @@
         getPutRequestHandler(Schema) {
             return (request, response) => {
                 let _id = request.params._id;
-                Schema.findOneById(_id, (error, document) => {
+                var updatedApiFields = request.body;
+                Schema.findOneByIdAndUpdate(_id, updatedApiFields, (error, api) => {
                     if (error) {
                         logger.error(error);
                         response.status(HTTP_STATUS.ERROR).json(error.message);
                     } else {
-                        response.status(HTTP_STATUS.SUCCESS).json(document);
+                        if (!api) {
+                            logger.debug('No Record Found with _id', _id);
+                            response.status(HTTP_STATUS.ERROR).json({
+                                message: 'No Record Found with _id ' + _id
+                            });
+                        } else {
+                            response.status(HTTP_STATUS.SUCCESS).json({
+                                message: 'Record Update with _id ' + _id
+                            });
+                        }
                     }
                 });
             };
@@ -124,7 +134,7 @@
                     app.get('/' + schema.tableName + '/:_id', crudSchemaHandler.getGetOneRequestHandler(Schema));
                     app.delete('/' + schema.tableName + '/:_id', crudSchemaHandler.getDeleteRequestHandler(Schema));
                     app.post('/' + schema.tableName, crudSchemaHandler.getPostRequestHandler(Schema));
-                    app.put('/' + schema.tableName, crudSchemaHandler.getPutRequestHandler(Schema));
+                    app.put('/' + schema.tableName + '/:_id', crudSchemaHandler.getPutRequestHandler(Schema));
                 });
             }
         });

@@ -49,6 +49,9 @@
                 DynamicSchema.static('removeById', function (_id, callback) {
                     this.remove({_id: ObjectId(_id)}, callback);
                 });
+                DynamicSchema.static('findOneByIdAndUpdate', function (_id, updatedApi, callback) {
+                    this.findByIdAndUpdate(_id, {$set: updatedApi}).exec(callback);
+                });
                 DynamicSchema.static('findAll', function (projection, options, callback) {
                     if(!callback) {
                         if(!options) {
